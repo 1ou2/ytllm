@@ -53,29 +53,46 @@ def extract_paragraphs(section, section_path=""):
             
     return results
 
-# Load data
-data = read_jsonl('data/frwiki_namespace_0_0.jsonl', 1000)
-df = pd.DataFrame(data)
+def create_sample_dataset(src_datafile:str, dest_file:str, size:int):
+    """Create a sample dataset from the source data file and save it to the destination file.
 
-# Extract paragraphs from articles
-print("\nExtracting paragraphs from articles:")
-for i in range(min(20, len(df))):  # Process first 3 articles as examples
-    row = df.iloc[i]
-    print(f"\n\n--- Article {i}: {row.get('name', 'No name')} ---")
-    print(f"\n{row.get('sections','no sections')}")
+    Args:
+    src_datafile: path to source file
+    dest_file: path to destination file
+    size: number of samples to include in file
+    """
+    data = read_jsonl(src_datafile, size)
     
-    # Process sections
-    all_paragraphs = []
-    if 'sections' in row:
-        for section in row['sections']:
-            paragraphs = extract_paragraphs(section)
-            all_paragraphs.extend(paragraphs)
-    
-    # Print all extracted paragraphs with their section paths
-    print(f"\nFound {len(all_paragraphs)} paragraphs:")
-    for idx, (section_path, paragraph) in enumerate(all_paragraphs, 1):
-        print(f"\n{idx}. Section: {section_path}")
-        print(f"   Text: {paragraph}")
+    # Write directly using json module instead of pandas to ensure proper encoding
+    with open(dest_file, 'w', encoding='utf-8') as f:
+        for item in data:
+            f.write(json.dumps(item, ensure_ascii=False) + '\n')
+
+def display_paragraphs():
+
+    # Load data
+    data = read_jsonl('data/frwiki_namespace_0_0.jsonl', 1000)
+    df = pd.DataFrame(data)
+
+    # Extract paragraphs from articles
+    print("\nExtracting paragraphs from articles:")
+    for i in range(min(20, len(df))):  # Process first 3 articles as examples
+        row = df.iloc[i]
+        print(f"\n\n--- Article {i}: {row.get('name', 'No name')} ---")
+        print(f"\n{row.get('sections','no sections')}")
+        
+        # Process sections
+        all_paragraphs = []
+        if 'sections' in row:
+            for section in row['sections']:
+                paragraphs = extract_paragraphs(section)
+                all_paragraphs.extend(paragraphs)
+        
+        # Print all extracted paragraphs with their section paths
+        print(f"\nFound {len(all_paragraphs)} paragraphs:")
+        for idx, (section_path, paragraph) in enumerate(all_paragraphs, 1):
+            print(f"\n{idx}. Section: {section_path}")
+            print(f"   Text: {paragraph}")
 
 # Example of how to create a new DataFrame with extracted paragraphs
 def extract_all_paragraphs_from_df(df):
@@ -105,3 +122,10 @@ def extract_all_paragraphs_from_df(df):
 # paragraphs_df = extract_all_paragraphs_from_df(df)
 # print(f"\nParagraphs DataFrame shape: {paragraphs_df.shape}")
 # print(paragraphs_df.head())
+
+if __name__ == "__main__":
+    # Uncomment to create a sample dataset
+    create_sample_dataset('data/frwiki_namespace_0_0.jsonl', 'data/sample.jsonl', 100)
+
+    # Uncomment to display paragraphs
+    #display_paragraphs()
