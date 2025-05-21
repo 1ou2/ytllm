@@ -11,5 +11,7 @@ Les paragraphes sont dans des sections.
 "sections": [{"type": "section", "name": "Abstract", "has_parts": ["type": "paragraph", "value": "Esochí etc.. ", "links": [{"url": ""}]]}]
 ```
 
+OSCAR
+
 # install
 uv init

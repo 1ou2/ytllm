@@ -1,6 +1,8 @@
 import json
 from tqdm import tqdm
 import pandas as pd
+from datasets import load_dataset
+import datasets
 
 class WikipediaFr:
     def __init__(self, file_path):
@@ -150,21 +152,52 @@ class WikipediaFr:
         
         return pd.DataFrame(all_data)
 
-# Uncomment to create a DataFrame with all paragraphs
-# paragraphs_df = extract_all_paragraphs_from_df(df)
-# print(f"\nParagraphs DataFrame shape: {paragraphs_df.shape}")
-# print(paragraphs_df.head())
+class Mc4Fr:
+    def __init__(self):
+        print("Loading dataset...")
+        datasets.logging.set_verbosity_debug()
+        self.dataset = load_dataset("allenai/c4", "fr", streaming=True)
+        print("Dataset loaded.")
+    
+    def analyse(self):
+        # Get the train split and create a single iterator
+        train_data = self.dataset["train"]
+        train_iter = iter(train_data)
+
+        print("Sample from MC4 dataset:")
+        for i in range(5):
+            print(f"{i} ---")
+            sample = next(train_iter)
+            print(sample["text"])
+
+class OscarFr:
+    def __init__(self):
+        print("Loading dataset...")
+        datasets.logging.set_verbosity_debug()
+        self.dataset = load_dataset("oscar", "unshuffled_deduplicated_fr", streaming=True)
+        print("Dataset loaded.")
+    
+    def analyse(self):
+        # Get the train split and create a single iterator
+        train_data = self.dataset["train"]
+        train_iter = iter(train_data)
+        
+        print("Sample from OSCAR dataset:")
+        for i in range(5):
+            print(f"{i} ---")
+            sample = next(train_iter)
+            print(sample["text"])
 
 if __name__ == "__main__":
     # Uncomment to create a sample dataset
     #create_sample_dataset('data/frwiki_namespace_0_0.jsonl', 'data/sample.jsonl', 100)
 
-    wikisample = WikipediaFr("data/sample.jsonl")
-    wikisample.display_paragraphs(5)
+    #wikisample = WikipediaFr("data/sample.jsonl")
+    #wikisample.display_paragraphs(5)
 
-    all_articles = wikisample.get_all_articles()
-    print(f"\n\nNumber of articles: {len(all_articles)}")
-    print(f"\n\nRandom article: {all_articles[5]}")
+    #all_articles = wikisample.get_all_articles()
+    #print(f"\n\nNumber of articles: {len(all_articles)}")
+    #print(f"\n\nFifth article: {all_articles[5]}")
 
     """
     data = read_jsonl("data/sample.jsonl")
@@ -182,3 +215,10 @@ if __name__ == "__main__":
         print(f"\n{paragraphs}")
 
     """
+
+    mc4 = Mc4Fr()
+    mc4.analyse()
+    oscar = OscarFr()
+    oscar.analyse()
+
+
