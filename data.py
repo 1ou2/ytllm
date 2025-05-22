@@ -177,13 +177,13 @@ class OscarFr:
         self.dataset = load_dataset("oscar", "unshuffled_deduplicated_fr", streaming=True)
         print("Dataset loaded.")
     
-    def analyse(self):
+    def analyse(self,nb_samples=5):
         # Get the train split and create a single iterator
         train_data = self.dataset["train"]
         train_iter = iter(train_data)
         
         print("Sample from OSCAR dataset:")
-        for i in range(5):
+        for i in range(nb_samples):
             print(f"{i} ---")
             sample = next(train_iter)
             print(sample["text"])
@@ -216,9 +216,9 @@ if __name__ == "__main__":
 
     """
 
-    mc4 = Mc4Fr()
-    mc4.analyse()
+    #mc4 = Mc4Fr()
+    #mc4.analyse()
     oscar = OscarFr()
-    oscar.analyse()
+    oscar.analyse(20)
 
 
