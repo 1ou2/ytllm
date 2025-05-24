@@ -2,12 +2,11 @@
 Custom Tokenizer created from french dataset.
 """
 from tokenizers import ByteLevelBPETokenizer
-from datasets import load_dataset
 import multiprocess as mp
 import os
 import numpy as np
 from tqdm import tqdm
-
+from data import WikipediaFr
 import random
 
 def train():
@@ -17,13 +16,16 @@ def train():
     # Initialize the tokenizer
     tokenizer = ByteLevelBPETokenizer()
 
-    # Load the dataset
-    dataset = load_dataset("wikimedia/wikipedia", "20231101.fr")
-
-    # Get 10% of the training split
-    texts = dataset["train"].select(range(len(dataset["train"]) // 10))["text"]
+    # Load the first Kaggle Wikipedia file
+    wiki_data = WikipediaFr("data/wikipediafr/frwiki_namespace_0_0.jsonl")
+    
+    # Get all articles as text
+    print("Extracting articles from the dataset...")
+    texts = wiki_data.get_all_articles()
+    print(f"Found {len(texts)} articles")
 
     # Train on your dataset while adding special tokens
+    print("Training tokenizer...")
     tokenizer.train_from_iterator(
         texts, 
         vocab_size=32768, 
@@ -32,9 +34,10 @@ def train():
     )
 
     # Save the tokenizer
-    # ls french_tokenizer/
-    # gabgpt-merges.txt  gabgpt-vocab.json
-    tokenizer.save_model("wiki_tokenizer",prefix="gabgpt")
+    print("Saving tokenizer...")
+    os.makedirs("wiki_tokenizer", exist_ok=True)
+    tokenizer.save_model("wiki_tokenizer", prefix="gabgpt")
+    print("Tokenizer saved in wiki_tokenizer/")
 
 def use_special_tokens():
     # Define special tokens
@@ -186,6 +189,12 @@ def tokenize_corpus(dataset, tokenizer_dir, output_dir,shard_size=1048577):
         #    np.save(filename, all_tokens_np[:token_count])
 
 if __name__ == "__main__":
+
+
+    train()
+    import sys
+    sys.exit()
+    
     #r_dataset = reddit_dataset()
     #tokenize_corpus(r_dataset, "data/tokenizer", "data/tokenized/reddit", shard_size=1048577)
 

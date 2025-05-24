@@ -84,7 +84,7 @@ class WikipediaFr:
 
     def display_paragraphs(self, max_articles)-> None:
         """
-        max_articlesum number of articles to process
+        max_articles: number of articles to process
         """
         # Extract paragraphs from articles
         print("\nExtracting paragraphs from articles:")
@@ -107,6 +107,9 @@ class WikipediaFr:
                 print(f"   Text: {paragraph}")
 
     def get_all_articles(self)->list:
+        """
+        Returns a list of all articles in the DataFrame
+        """
         all_articles = []
         for _, row in self.df.iterrows():
             all_articles.append(self.get_article_paragraphs(row))
@@ -192,12 +195,29 @@ if __name__ == "__main__":
     # Uncomment to create a sample dataset
     #create_sample_dataset('data/frwiki_namespace_0_0.jsonl', 'data/sample.jsonl', 100)
 
-    #wikisample = WikipediaFr("data/sample.jsonl")
-    #wikisample.display_paragraphs(5)
+    wikisample = WikipediaFr("data/sample.jsonl")
+    wikisample.display_paragraphs(3)
 
-    #all_articles = wikisample.get_all_articles()
-    #print(f"\n\nNumber of articles: {len(all_articles)}")
-    #print(f"\n\nFifth article: {all_articles[5]}")
+    all_articles = wikisample.get_all_articles()
+    print(f"\n\nNumber of articles: {len(all_articles)}")
+    print(f"\n\nFifth article: {all_articles[5]}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     """
     data = read_jsonl("data/sample.jsonl")
@@ -218,7 +238,7 @@ if __name__ == "__main__":
 
     #mc4 = Mc4Fr()
     #mc4.analyse()
-    oscar = OscarFr()
-    oscar.analyse(20)
+    #oscar = OscarFr()
+    #oscar.analyse(20)
 
 
