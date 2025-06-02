@@ -11,7 +11,24 @@ Les paragraphes sont dans des sections.
 "sections": [{"type": "section", "name": "Abstract", "has_parts": ["type": "paragraph", "value": "Esochí etc.. ", "links": [{"url": ""}]]}]
 ```
 
-OSCAR
+Sur le premier fichier jsonl 222815 article dont 219378 qui contiennent du texte
+Processing frwiki_namespace_0_1.jsonl
+228626it [00:52, 4319.86it/s] 
+Processing articles: 100%|██████████████████████████████████████████████████████████████| 228626/228626 [00:28<00:00, 8028.42it/s]
+Total articles processed: 225138
+Processing frwiki_namespace_0_2.jsonl
+222434it [02:03, 1793.83it/s] 
+Processing articles: 100%|█████████████████████████████████████████████████████████████| 222434/222434 [00:15<00:00, 13946.37it/s]
+Total articles processed: 219107
+Processing frwiki_namespace_0_3.jsonl
+229869it [00:47, 4867.66it/s] 
+Processing articles: 100%|█████████████████████████████████████████████████████████████| 229869/229869 [00:17<00:00, 13266.65it/s]
+Total articles processed: 226240
+Processing frwiki_namespace_0_4.jsonl
+228082it [03:54, 972.76it/s]  
+Processing articles: 100%|█████████████████████████████████████████████████████████████| 228082/228082 [00:16<00:00, 14142.49it/s]
+Total articles processed: 224689
+# OSCAR
 
 # install
 uv init

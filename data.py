@@ -3,6 +3,7 @@ from tqdm import tqdm
 import pandas as pd
 from datasets import load_dataset
 import datasets
+import sys
 
 class WikipediaFr:
     def __init__(self, file_path):
@@ -154,6 +155,22 @@ class WikipediaFr:
                         })
         
         return pd.DataFrame(all_data)
+        
+    def create_simplified_dataset(self, output_file):
+        """Create a simplified dataset with only text content and save to JSONL file.
+        
+        Args:
+            output_file: Path to save the simplified dataset
+        """
+        total = 0
+        with open(output_file, 'w', encoding='utf-8') as f:
+            for _, row in tqdm(self.df.iterrows(), total=len(self.df), desc="Processing articles"):
+                text = self.get_article_paragraphs(row)
+                if text.strip():  # Only include non-empty articles
+                    total += 1
+                    simplified_entry = {"text": text}
+                    f.write(json.dumps(simplified_entry, ensure_ascii=False) + '\n')
+        print(f"Total articles processed: {total}")
 
 class Mc4Fr:
     def __init__(self):
@@ -177,12 +194,14 @@ class OscarFr:
     def __init__(self):
         print("Loading dataset...")
         datasets.logging.set_verbosity_debug()
-        self.dataset = load_dataset("oscar", "unshuffled_deduplicated_fr", streaming=True)
+        self.dataset = load_dataset("oscar", "unshuffled_deduplicated_fr", streaming=True, trust_remote_code=True)
         print("Dataset loaded.")
     
     def analyse(self,nb_samples=5):
         # Get the train split and create a single iterator
         train_data = self.dataset["train"]
+        # Note: Cannot get size of streaming dataset
+        print("Streaming dataset - size unknown")
         train_iter = iter(train_data)
         
         print("Sample from OSCAR dataset:")
@@ -195,28 +214,23 @@ if __name__ == "__main__":
     # Uncomment to create a sample dataset
     #create_sample_dataset('data/frwiki_namespace_0_0.jsonl', 'data/sample.jsonl', 100)
 
-    wikisample = WikipediaFr("data/sample.jsonl")
-    wikisample.display_paragraphs(3)
+    #oscar = OscarFr()
+    #oscar.analyse(20)
+    kaggle_prefix = "frwiki_namespace_0_"
+    target_prefix = "frwiki_text_0_"
+    extension = ".jsonl"
+    indexexs = [3,4]
+    for index in indexexs:
+        print(f"Processing {kaggle_prefix}{index}{extension}")
+        wikisample = WikipediaFr(f"data/{kaggle_prefix}{index}{extension}")
+        wikisample.create_simplified_dataset(f"data/{target_prefix}{index}{extension}")
+   
+
+    sys.exit(0)
 
     all_articles = wikisample.get_all_articles()
     print(f"\n\nNumber of articles: {len(all_articles)}")
     print(f"\n\nFifth article: {all_articles[5]}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     """
