@@ -219,7 +219,7 @@ if __name__ == "__main__":
     kaggle_prefix = "frwiki_namespace_0_"
     target_prefix = "frwiki_text_0_"
     extension = ".jsonl"
-    indexexs = [3,4]
+    indexexs = [14,15]
     for index in indexexs:
         print(f"Processing {kaggle_prefix}{index}{extension}")
         wikisample = WikipediaFr(f"data/{kaggle_prefix}{index}{extension}")

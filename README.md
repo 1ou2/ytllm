@@ -91,3 +91,57 @@ pip install flash-attn --no-build-isolation
 
 Flash Attention expects (Batch, Time, Heads, Head_size)
 Regular attention expects (Batch, Heads, Time, Head_size)
+
+
+# hugging face
+Dataset statistics:
+Train set: 2539940 examples
+Validation set: 133682 examples
+
+Dataset Card for French Wikipedia Text Corpus
+Dataset Description
+
+The French Wikipedia Text Corpus is a comprehensive dataset derived from French Wikipedia articles. It is specifically designed for training language models (LLMs). The dataset contains the text of paragraphs from Wikipedia articles, with sections, footnotes, and titles removed to provide a clean and continuous text stream.
+Dataset Details
+Features
+
+    text: A single attribute containing the full text of Wikipedia articles as a continuous chunk of text.
+
+Languages
+
+The dataset is in French.
+Dataset Creation
+
+The dataset was created by extracting and processing text from French Wikipedia articles. The processing involved removing article sections, footnotes, and titles to ensure that the text is in a format suitable for training language models.
+Intended Uses
+
+This dataset is intended for use in training and evaluating language models. The clean and continuous text format makes it particularly suitable for models that require large volumes of coherent text data.
+Example Usage
+
+from datasets import load_dataset
+
+# Load the dataset
+dataset = load_dataset('your_username/french_wikipedia_text_corpus')
+
+# Access the training data
+train_data = dataset['train']
+
+# Print an example
+print(train_data[0]['text'])
+
+Citation Information
+
+If you use this dataset in your research, please cite it as follows:
+
+@misc{french_wikipedia_text_corpus,
+  author = {Your Name},
+  title = {French Wikipedia Text Corpus},
+  year = {2023},
+  publisher = {Hugging Face},
+  journal = {Hugging Face Datasets},
+  howpublished = {\url{https://huggingface.co/datasets/your_username/french_wikipedia_text_corpus}}
+}
+
+License
+
+This dataset is licensed under the CC BY-SA 3.0 license, in accordance with Wikipedia's content license.
