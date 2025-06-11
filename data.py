@@ -210,7 +210,26 @@ class OscarFr:
             sample = next(train_iter)
             print(sample["text"])
 
+class MyHgDataset:
+    def __init__(self):
+
+        # Load the dataset
+        self.dataset = load_dataset('1ou2/fr_wiki_paragraphs')
+
+    def analyse(self):
+        # Access the train split
+        valid_data = self.dataset['validation']
+        print(f"Len valid: {len(valid_data)}")
+
+        # Print the first 5 examples
+        for i in range(5):
+            print(valid_data[i])
+
 if __name__ == "__main__":
+    hgd = MyHgDataset()
+    hgd.analyse()
+    sys.exit(0)
+
     # Uncomment to create a sample dataset
     #create_sample_dataset('data/frwiki_namespace_0_0.jsonl', 'data/sample.jsonl', 100)
 

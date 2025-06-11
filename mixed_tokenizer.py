@@ -1,48 +1,69 @@
 """
 Train a tokenizer on a mix of French datasets (Wikipedia and Oscar).
 """
-from tokenizers import ByteLevelBPETokenizer
+
 import os
 import random
 import json
+import glob
+import multiprocess as mp
+import numpy as np
 from tqdm import tqdm
 from data import WikipediaFr
 from datasets import load_dataset
-import glob
+from tokenizers import ByteLevelBPETokenizer
 
-def sample_wikipedia_data(wiki_files, sample_size=100000, max_per_file=None):
+def sample_news_data(sample_size=100000):
+    """
+    Sample texts from News dataset.
+    
+    Args:
+        sample_size: Total number of samples to collect
+        
+    Returns:
+        List of text samples
+    """
+    print("Loading Wikipedia text dataset...")
+    news_dataset = load_dataset("1ou2/fr_news_articles", streaming=True)
+    train_data = news_dataset["train"]
+    train_iter = iter(train_data)
+    
+    samples = []
+    for _ in tqdm(range(sample_size), desc="Sampling News dataset"):
+        try:
+            sample = next(train_iter)
+            samples.append(sample["text"])
+        except StopIteration:
+            print("Reached end of News dataset")
+            break
+    
+    return samples
+
+def sample_wikipedia_data(sample_size=100000):
     """
     Sample texts from Wikipedia dataset.
     
     Args:
-        wiki_files: List of Wikipedia JSONL files
         sample_size: Total number of samples to collect
-        max_per_file: Maximum samples to take from each file (None for no limit)
-    
+       
     Returns:
         List of text samples
     """
-    all_samples = []
-    samples_per_file = max_per_file or (sample_size // len(wiki_files) + 1)
+    print("Loading Wikipedia text dataset...")
+    wiki_dataset = load_dataset("1ou2/fr_wiki_paragraphs", streaming=True)
+    train_data = wiki_dataset["train"]
+    train_iter = iter(train_data)
     
-    for file_path in tqdm(wiki_files, desc="Sampling Wikipedia files"):
-        wiki_data = WikipediaFr(file_path)
-        articles = wiki_data.get_all_articles()
-        
-        # If we have more articles than needed, randomly sample
-        if len(articles) > samples_per_file:
-            sampled_articles = random.sample(articles, samples_per_file)
-        else:
-            sampled_articles = articles
-            
-        all_samples.extend(sampled_articles)
-        
-        # Break if we've collected enough samples
-        if len(all_samples) >= sample_size:
+    samples = []
+    for _ in tqdm(range(sample_size), desc="Sampling Wikipedia dataset"):
+        try:
+            sample = next(train_iter)
+            samples.append(sample["text"])
+        except StopIteration:
+            print("Reached end of Wikipedia dataset")
             break
     
-    # Final trim to exact sample size
-    return all_samples[:sample_size]
+    return samples
 
 def sample_oscar_data(sample_size=100000):
     """
@@ -72,7 +93,7 @@ def sample_oscar_data(sample_size=100000):
 
 def train_mixed_tokenizer(
     wiki_ratio=0.7,
-    oscar_ratio=0.3,
+    news_ratio=0.3,
     total_samples=500000,
     vocab_size=32768,
     min_frequency=2,
@@ -97,36 +118,27 @@ def train_mixed_tokenizer(
     
     # Calculate samples from each source
     wiki_samples = int(total_samples * wiki_ratio)
-    oscar_samples = int(total_samples * oscar_ratio)
+    news_samples = int(total_samples * news_ratio)
     
     # Adjust if rounding caused mismatch
-    if wiki_samples + oscar_samples != total_samples:
-        wiki_samples = total_samples - oscar_samples
+    if wiki_samples + news_samples != total_samples:
+        wiki_samples = total_samples - news_samples
     
-    print(f"Sampling strategy: {wiki_samples} Wikipedia samples, {oscar_samples} Oscar samples")
+    print(f"Sampling strategy: {wiki_samples} Wikipedia samples, {news_samples} news samples")
     
-    # Get Wikipedia files
-    wiki_files = glob.glob("data/frwiki_text_0_*.jsonl")
-    if not wiki_files:
-        wiki_files = glob.glob("data/frwiki_namespace_0_*.jsonl")
-    
-    if not wiki_files:
-        raise FileNotFoundError("No Wikipedia files found in data directory")
-    
-    print(f"Found {len(wiki_files)} Wikipedia files: {wiki_files}")
     
     # Sample from Wikipedia
     print("Sampling from Wikipedia...")
-    wiki_texts = sample_wikipedia_data(wiki_files, wiki_samples)
+    wiki_texts = sample_wikipedia_data(wiki_samples)
     print(f"Collected {len(wiki_texts)} Wikipedia samples")
     
     # Sample from Oscar
-    print("Sampling from Oscar...")
-    oscar_texts = sample_oscar_data(oscar_samples)
-    print(f"Collected {len(oscar_texts)} Oscar samples")
+    print("Sampling from News...")
+    news_texts = sample_news_data(news_samples)
+    print(f"Collected {len(news_texts)} News samples")
     
     # Combine and shuffle
-    all_texts = wiki_texts + oscar_texts
+    all_texts = wiki_texts + news_texts
     random.shuffle(all_texts)
     print(f"Total combined samples: {len(all_texts)}")
     
@@ -151,7 +163,7 @@ def train_mixed_tokenizer(
     # Save metadata about the training
     metadata = {
         "wiki_samples": len(wiki_texts),
-        "oscar_samples": len(oscar_texts),
+        "news_samples": len(news_texts),
         "total_samples": len(all_texts),
         "vocab_size": vocab_size,
         "min_frequency": min_frequency,
@@ -163,14 +175,127 @@ def train_mixed_tokenizer(
     
     return tokenizer
 
-if __name__ == "__main__":
+
+def tokenize_corpus(dataset, tokenizer_dir, output_dir,shard_size=1048577,write_last_shard=False):
+    """
+    Tokenize the corpus using the trained tokenizer and save the tokens to disk.
+    data_set : data to tokenize
+    tokenizer_dir = location of vocab.json mand merges.txt
+    output_dir
+    shard_size : 2^20+1
+    """
+    # Define special tokens
+    special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
+    print(f"Using custom tokenizer from {tokenizer_dir}")
+    vocab_file = os.path.join(tokenizer_dir, "gabgpt-vocab.json")
+    merges_file = os.path.join(tokenizer_dir, "gabgpt-merges.txt")
+    print(f"vocab file: {vocab_file}")
+    print(f"merges file: {merges_file}")
+    # Load the trained tokenizer
+    tokenizer = ByteLevelBPETokenizer(
+        vocab_file,
+        merges_file
+    )
+    eot = tokenizer.token_to_id("<|endoftext|>")
+    print(f"eot: {eot}")
+
+    
+    os.makedirs(output_dir, exist_ok=True)
+
+
+    def tokenize(article):
+        # all documents start with end of sequence token
+        tokens = [eot]
+        tokens.extend(tokenizer.encode(article["text"]).ids)
+
+        # convert to a uint16 numpy array - 2 bits per token
+        return np.array(tokens, dtype=np.uint16)
+
+    nprocs = max(1, mp.cpu_count() - 1)
+    print(f"Using {nprocs} processes")
+
+    with mp.Pool(nprocs) as pool:
+        shard_index = 0
+        # pre-allocate memory for tokens in a shard
+        all_tokens_np = np.empty((shard_size,),dtype=np.uint16)
+        token_count = 0
+        progress_bar = None
+
+        for tokens in pool.imap(tokenize, dataset,chunksize=16):
+            if token_count + len(tokens) < shard_size:
+                # add tokens to current shard
+                all_tokens_np[token_count:token_count + len(tokens)] = tokens
+                token_count += len(tokens)
+                if progress_bar is None:
+                    progress_bar = tqdm(total=shard_size, desc=f"Tokenizing shard {shard_index}")
+                progress_bar.update(len(tokens))
+            else:
+                filename = os.path.join(output_dir, f"shard_{shard_index:06d}.npy")
+                # split the document into whatever fits in the shard
+                remainder = shard_size - token_count
+                all_tokens_np[token_count:token_count + remainder] = tokens[:remainder]
+                # save the shard
+                np.save(filename, all_tokens_np)
+                shard_index += 1
+                progress_bar = None
+                # populate the shard with the remaining tokens
+                all_tokens_np[0:len(tokens)-remainder] = tokens[remainder:]
+                token_count = len(tokens) - remainder
+        
+        # write the last shard
+        if write_last_shard and token_count > 0:
+            filename = os.path.join(output_dir, f"shard_{shard_index:06d}.npy")
+            np.save(filename, all_tokens_np[:token_count])
+
+def use_special_tokens():
+    # Define special tokens
+    special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
+
+    # Load the trained tokenizer
+    tokenizer = ByteLevelBPETokenizer(
+        "french_tokenizer/gabgpt-vocab.json",
+        "french_tokenizer/gabgpt-merges.txt"
+    )
+
+    # Add special tokens to the loaded tokenizer
+    tokenizer.add_special_tokens(special_tokens)
+    txt = "est\n\n\n\r\nest<|endoftext|>"
+    print(txt)
+    encoded = tokenizer.encode(txt)
+    print(encoded.ids)
+    decoded_text = tokenizer.decode(encoded.ids)
+    print(decoded_text)
+    print(tokenizer.encode(decoded_text).ids)
+    # print also special tokens
+    eot = tokenizer.token_to_id("<|endoftext|>")
+    print(f"{eot=}")
+
+def test_training():
     # Example usage with default parameters
     train_mixed_tokenizer(
         wiki_ratio=0.7,  # 70% Wikipedia (higher quality)
-        oscar_ratio=0.3,  # 30% Oscar
+        news_ratio=0.3,  # 30% Oscar
         total_samples=500000,  # 500K samples total
         vocab_size=32768,
         min_frequency=2,
         output_dir="french_tokenizer",
         prefix="gabgpt"
     )
+if __name__ == "__main__":
+    # test use of special tokens
+    use_special_tokens()
+
+    # tokenize news corpus
+    #news = load_dataset("1ou2/fr_news_articles", streaming=True)["train"].shuffle()
+    #tokenize_corpus(dataset=news, tokenizer_dir="french_tokenizer", output_dir="data/tokenized/news", shard_size=1048577)
+    #print("done news")
+
+    #wikipedia = load_dataset("1ou2/fr_wiki_paragraphs", streaming=True)["train"].shuffle()
+    #tokenize_corpus(dataset=wikipedia, tokenizer_dir="french_tokenizer", output_dir="data/tokenized/wikipedia", shard_size=1048577)
+    #print("done wikipedia")
+
+    from book import get_chapters
+    #zoo = get_chapters("data/texts/zoo.txt")
+    #tokenize_corpus(dataset=zoo, tokenizer_dir="french_tokenizer", output_dir="data/tokenized/zoo", shard_size=1048577,write_last_shard=True)
+    jeu = get_chapters("data/texts/jeu.txt")
+    tokenize_corpus(dataset=jeu, tokenizer_dir="french_tokenizer", output_dir="data/tokenized/jeu", shard_size=1048577,write_last_shard=True)

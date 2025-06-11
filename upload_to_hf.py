@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-Script to upload French Wikipedia dataset to Hugging Face.
-This script reads JSONL files from the data directory and creates a dataset for uploading to Hugging Face.
+Script to upload datasets to Hugging Face.
+This script can handle:
+1. JSONL files from the French Wikipedia dataset
+2. Text files from the news articles dataset
 """
 
 import os
@@ -44,6 +46,40 @@ def create_hf_dataset(data_dir, file_pattern="frwiki_text_*.jsonl"):
     
     return dataset_dict
 
+def create_news_dataset(data_dir):
+    """
+    Create a Hugging Face dataset from news text files.
+    Each line in the files represents a complete news article.
+    
+    Args:
+        data_dir: Directory containing the news text files (train.txt, valid.txt, test.txt)
+        
+    Returns:
+        Hugging Face DatasetDict object
+    """
+    train_path = os.path.join(data_dir, "train.txt")
+    valid_path = os.path.join(data_dir, "valid.txt")
+    test_path = os.path.join(data_dir, "test.txt")
+    
+    # Check if files exist
+    for path in [train_path, valid_path, test_path]:
+        if not os.path.exists(path):
+            raise ValueError(f"Required file not found: {path}")
+    
+    print(f"Found all required news files in {data_dir}")
+    
+    # Create dataset dictionary with the text files
+    data_files = {
+        "train": train_path,
+        "validation": valid_path,
+        "test": test_path
+    }
+    
+    # Load dataset with text format and rename the column to 'article'
+    dataset = load_dataset("text", data_files=data_files)
+    
+    return dataset
+
 def upload_to_huggingface(dataset, dataset_name, token=None):
     """
     Upload the dataset to Hugging Face.
@@ -62,20 +98,39 @@ def upload_to_huggingface(dataset, dataset_name, token=None):
 
 if __name__ == "__main__":
     # Configuration
-    DATA_DIR = "data"
-    DATASET_NAME = "fr_wiki_paragraphs"  # Change this to your desired name
     load_dotenv()
     hg_token = os.getenv("HUGGINGFACE_TOKEN")
-    # Create Hugging Face dataset
-    dataset = create_hf_dataset(DATA_DIR)
+    
+    # Choose which dataset to process
+    dataset_type = "news"  # Change to "wiki" for the French Wikipedia dataset
+    upload_to_hub = True  # Set to True when ready to upload
+    
+    if dataset_type == "wiki":
+        # Process French Wikipedia dataset
+        DATA_DIR = "data"
+        DATASET_NAME = "fr_wiki_paragraphs"
+        dataset = create_hf_dataset(DATA_DIR)
+    else:
+        # Process news dataset
+        DATA_DIR = "data/news"
+        DATASET_NAME = "fr_news_articles"  # Change this to your desired name
+        dataset = create_news_dataset(DATA_DIR)
     
     # Print dataset info
     print("\nDataset statistics:")
-    print(f"Train set: {len(dataset['train'])} examples")
-    print(f"Validation set: {len(dataset['validation'])} examples")
+    for split in dataset:
+        print(f"{split.capitalize()} set: {len(dataset[split])} examples")
     
-    # Upload to Hugging Face
-    # Uncomment the line below and add your token to upload
-    upload_to_huggingface(dataset, DATASET_NAME, token=hg_token)
+    # Show sample data from each split
+    print("\nSample data:")
+    for split in dataset:
+        print(f"\n{split.capitalize()} sample:")
+        print(dataset[split][0])
+    
+    # Upload to Hugging Face if enabled
+    if upload_to_hub:
+        upload_to_huggingface(dataset, DATASET_NAME, token=hg_token)
+    else:
+        print("\nUpload to Hugging Face is disabled. Set upload_to_hub=True to enable.")
     
     print("Done!")
