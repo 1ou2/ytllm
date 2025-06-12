@@ -146,7 +146,11 @@ def preprocess_text2(text):
     # Join all processed lines
     return '\n'.join(processed_lines)
 
-def preprocess_text(text):
+def clean_text(text:str)->str:
+    """Returns a cleaned text version of gutenberg raw text
+    - remove carriage returns used after column 70 that are used for formatting purpose only
+    - convert -- to — (tiret quadratin)
+    - remove _ that are used for emphasis"""
     lines = text.split('\n')
     processed_lines = []
     current_paragraph = []
@@ -258,18 +262,6 @@ def is_special_format(line):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 def preprocess():
     # Define files to check
     files_to_check = list(Path("data/raw/gutenberg").glob("*.txt"))
@@ -283,7 +275,9 @@ def preprocess():
         startline = 0
         endline = -1
         with open(file_path, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
+            raw_text = f.read()
+            text = clean_text(raw_text)
+            lines = text.split('\n')
             # only keep lines that are not empty
             lines = [line for line in lines if line.strip() != ""]
 
@@ -317,7 +311,7 @@ def preprocess():
                 # looking for line : *** END OF THE PROJECT GUTENBERG EBOOK
                 for i, line in enumerate(lines[startline:]):
                     if line.startswith("***"):
-                        endline = i
+                        endline = i+startline
                         break
 
 
@@ -326,7 +320,7 @@ def preprocess():
             basename = file_path.name
             preprocessed_path = Path(preprocessed_dir) / basename
             with open(preprocessed_path, 'w', encoding='utf-8') as f:
-                f.writelines(lines[startline:endline])               
+                f.write('\n'.join(lines[startline:endline]))            
 
 
 def test_cleaning():
@@ -396,7 +390,7 @@ Autre texte court.
 
 if __name__ == "__main__":
     
-    test_cleaning()
+    #test_cleaning()
 
     data_dir = "./data/raw/gutenberg"
     if not os.path.exists(data_dir):
