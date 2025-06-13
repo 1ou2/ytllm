@@ -84,68 +84,6 @@ def save_dumas_id(book_ids):
             f.write(f"{book_id}\n")
 
 
-def preprocess_text2(text):
-    # Split the text into lines
-    lines = text.split('\n')
-    
-    # Initialize variables
-    processed_lines = []
-    current_paragraph = []
-    
-    for i, line in enumerate(lines):
-        line = line.strip()
-        
-        # Skip empty lines but mark paragraph boundaries
-        if not line:
-            if current_paragraph:
-                processed_lines.append(' '.join(current_paragraph))
-                current_paragraph = []
-            processed_lines.append('')
-            continue
-        
-        # Format dialogue with proper French typography
-        line = format_french_dialogue(line)
-        # remove _ that are used for emphasis 
-        line = line.replace('_','')
-        
-        # Check for dialogue lines (starting with —)
-        if line.startswith('—'):
-            # Finish the current paragraph if any
-            if current_paragraph:
-                processed_lines.append(' '.join(current_paragraph))
-                current_paragraph = []
-            # Add the dialogue line as is
-            processed_lines.append(line)
-            continue
-        
-        # For normal text lines, check if they should be joined
-        if current_paragraph:
-            # Check if this is a continuation of the previous line
-            if should_join_with_previous(current_paragraph[-1], line):
-                # Join with the previous line
-                current_paragraph[-1] = current_paragraph[-1] + ' ' + line
-                continue
-        
-        # Check for intentionally short lines (not continuations)
-        # Only treat as separate if it's a complete sentence or special format
-        if len(line) < 40 and (line.endswith(('.', '!', '?')) or is_special_format(line)):
-            # Finish the current paragraph if any
-            if current_paragraph:
-                processed_lines.append(' '.join(current_paragraph))
-                current_paragraph = []
-            # Add the short line as is
-            processed_lines.append(line)
-        else:
-            # Add to the current paragraph
-            current_paragraph.append(line)
-    
-    # Don't forget to add the last paragraph
-    if current_paragraph:
-        processed_lines.append(' '.join(current_paragraph))
-    
-    # Join all processed lines
-    return '\n'.join(processed_lines)
-
 def clean_text(text:str)->str:
     """Returns a cleaned text version of gutenberg raw text
     - remove carriage returns used after column 70 that are used for formatting purpose only
@@ -171,31 +109,38 @@ def clean_text(text:str)->str:
         # Remove emphasis underscores
         line = line.replace('_', '')
 
+
         # Check if line starts with '—' (a new paragraph boundary)
         if line.startswith('—'):
             # Finish current paragraph if any
             if current_paragraph:
                 processed_lines.append(' '.join(current_paragraph))
                 current_paragraph = []
-            # Add the dialogue line as is (treated like normal text)
-            #processed_lines.append(line)
-            #continue
+            # short dialog
+            if len(line) < 40 and (line.endswith(('.', '!', '?'))):
+                processed_lines.append(line)
+                continue
+            else:
+                current_paragraph.append(line)
+                continue
 
-        # For non-dialogue lines, check if they should be joined
-        if current_paragraph:
-            if should_join_with_previous(current_paragraph[-1], line):
-                current_paragraph[-1] = current_paragraph[-1] + ' ' + line
-                #continue
-
-        # Handle short lines or sentence endings
+        # Handle short lines or sentence endings first
         if len(line) < 40 and (line.endswith(('.', '!', '?')) or is_special_format(line)):
             if current_paragraph:
+                current_paragraph.append(line)
                 processed_lines.append(' '.join(current_paragraph))
                 current_paragraph = []
             else:
                 # If there's no current paragraph, add the line as is
                 processed_lines.append(line)
+            continue
+            
 
+
+        # Check if line should be joined with previous line
+        if current_paragraph and should_join_with_previous(current_paragraph[-1], line):
+            current_paragraph[-1] = current_paragraph[-1] + ' ' + line
+            continue
         else:
             current_paragraph.append(line)
 
@@ -220,6 +165,10 @@ def format_french_dialogue(line):
         else:
             # If followed immediately by a character, add a non-breaking space
             line = '—' + nbsp + line[2:]
+
+    # Some dialogs start with «--
+    if line.startswith('«--'):
+        line = '—' + nbsp + line[3:]
     
     # Replace double dash within the line
     parts = line.split(' --')
@@ -252,19 +201,19 @@ def should_join_with_previous(prev_line, current_line):
 
 def is_special_format(line):
     """Check if the line has special formatting that should be preserved."""
-    # Add any special format checks here
-    return False  # For now, no special formats other than those already handled
-
-
-
-
-
+    if line.lower().startswith('chapitre'):
+        return True
+    if re.match(r"^[IVXLC]+\.?$", line.strip()):
+        return True
+    
+    return False
 
 
 
 def preprocess():
     # Define files to check
     files_to_check = list(Path("data/raw/gutenberg").glob("*.txt"))
+    files_to_check = list(Path("data/test").glob("*.txt"))
     preprocessed_dir = Path("data/preprocessed/gutenberg")
     # create preprocessed dir if it doesn't exist
     if not os.path.exists(preprocessed_dir):
@@ -277,6 +226,7 @@ def preprocess():
         with open(file_path, 'r', encoding='utf-8') as f:
             raw_text = f.read()
             text = clean_text(raw_text)
+            print(text)
             lines = text.split('\n')
             # only keep lines that are not empty
             lines = [line for line in lines if line.strip() != ""]
@@ -310,10 +260,20 @@ def preprocess():
 
                 # looking for line : *** END OF THE PROJECT GUTENBERG EBOOK
                 for i, line in enumerate(lines[startline:]):
-                    if line.startswith("***"):
-                        endline = i+startline
+                    if line.lower().startswith("*** end") or line.startswith("End of "):
+                        if endline == -1:
+                            endline = i+startline
+                        else:
+                            endline = min(i+startline, endline)
+                        
+                # analyse lines backward looking for the word FIN
+                # process maximum 10% of the lines
+                max_lines = int(len(lines[startline:endline]) * 0.1)
+                for i, line in enumerate(reversed(lines[startline:endline][-max_lines:])):
+                    if line.startswith("FIN"):
+                        endline = endline - i -1
                         break
-
+                
 
             # write all lines after startline to file
             # get basename of file and write to "preprocessed" dir
@@ -371,33 +331,34 @@ Armand tira un rouleau de dessous son oreiller, et l'y replaça
 immédiatement.
 Autre texte court.
 """
-    #processed_text = preprocess_text(sample)
-    #print(processed_text)
-    #sys.exit(0)
+    processed_text = clean_text(sample)
+    # FIXME : — ok — Et toi ?
+    print(processed_text)
+    sys.exit(0)
 
     data_dir = "./data/raw/gutenberg/"
     file = "pg2419.txt"
     output_dir = "./data/test/"
     with open(f"{data_dir}{file}", encoding="utf-8") as f:
         raw_text = f.read()
-        clean_text = preprocess_text(raw_text)
+        text = clean_text(raw_text)
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         with open(f"{output_dir}{file}",mode="w",encoding="utf-8") as t:
-            t.write(clean_text)
+            t.write(text)
     sys.exit(0)
 
-
-if __name__ == "__main__":
-    
-    #test_cleaning()
-
+def download_dumas_books():
+    """Download all books from dumas"""
     data_dir = "./data/raw/gutenberg"
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
-    book_ids = get_dumas_id("./data/resources/dumas.txt")
+    dumas_id = get_dumas_id("./data/resources/dumas.txt")
+    for book_id in dumas_id:
+        download_gutenberg_book(book_id, "./data/raw/gutenberg")
+
+if __name__ == "__main__":
     
-    for book_id in book_ids:
-        download_gutenberg_book(book_id, data_dir)
+    test_cleaning()
 
     preprocess()
