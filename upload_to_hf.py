@@ -46,6 +46,38 @@ def create_hf_dataset(data_dir, file_pattern="frwiki_text_*.jsonl"):
     
     return dataset_dict
 
+def create_gutenberg_dataset(data_dir):
+    """
+    Create a Hugging Face dataset from Gutenberg JSONL files.
+    Each entry in the JSONL file contains metadata, chapter_title, and text fields.
+
+    Args:
+        data_dir: Directory containing the Gutenberg JSONL files
+
+    Returns:
+        Hugging Face DatasetDict object
+    """
+    file_paths = sorted(glob.glob(os.path.join(data_dir, "*.jsonl")))
+
+    if not file_paths:
+        raise ValueError(f"No JSONL files found in {data_dir}")
+
+    print(f"Found {len(file_paths)} files to process")
+
+    # Load all files as a single dataset with JSON format
+    dataset = load_dataset('json', data_files=file_paths)
+
+    # Split into train and validation (95% train, 5% validation)
+    splits = dataset['train'].train_test_split(test_size=0.05)
+
+    # Create dataset dictionary
+    dataset_dict = DatasetDict({
+        'train': splits['train'],
+        'validation': splits['test']
+    })
+
+    return dataset_dict
+
 def create_news_dataset(data_dir):
     """
     Create a Hugging Face dataset from news text files.
@@ -102,7 +134,7 @@ if __name__ == "__main__":
     hg_token = os.getenv("HUGGINGFACE_TOKEN")
     
     # Choose which dataset to process
-    dataset_type = "news"  # Change to "wiki" for the French Wikipedia dataset
+    dataset_type = "gutenberg"  # Options: "wiki", "news", "gutenberg"
     upload_to_hub = True  # Set to True when ready to upload
     
     if dataset_type == "wiki":
@@ -110,11 +142,16 @@ if __name__ == "__main__":
         DATA_DIR = "data"
         DATASET_NAME = "fr_wiki_paragraphs"
         dataset = create_hf_dataset(DATA_DIR)
-    else:
+    elif dataset_type == "news":
         # Process news dataset
         DATA_DIR = "data/news"
         DATASET_NAME = "fr_news_articles"  # Change this to your desired name
         dataset = create_news_dataset(DATA_DIR)
+    elif dataset_type == "gutenberg":
+        # Process Gutenberg dataset
+        DATA_DIR = "data/gutenberg"
+        DATASET_NAME = "fr_gutenberg_chapters"  # Change this to your desired name
+        dataset = create_gutenberg_dataset(DATA_DIR)
     
     # Print dataset info
     print("\nDataset statistics:")

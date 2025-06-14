@@ -3,86 +3,7 @@ from pathlib import Path
 import re
 import chardet
 import sys
-
-
-# get book files from project gutenberg
-monte_cristo = [17989,17990,17991,17992]
-non_fiction = [70312,51516,32948,16234,69621,53536,39884,19854,16237,37053]
-
-def detect_encoding(filename):
-    with open(filename, 'rb') as file:
-        raw_data = file.read()
-        result = chardet.detect(raw_data)
-        return result['encoding']
-
-
-def test_encoding():
-    text = """Les deux frŠres
-
-Le 20 ao–t 1672, la ville de la Haye, si vivante, si"""
-    # French special characters (accented 
-    # letters, etc.) were entered as DOS upper-  ASCII characters.
-    test_string = "frŠres"
-    for encoding in ["utf-8",'cp850', 'cp437', 'iso-8859-1',"UTF-8-SIG",'utf-8-sig']:
-        try:
-            bytes_data = text.encode('latin1')  # Preserve the byte values
-            decoded = bytes_data.decode(encoding)
-            print(f"{encoding}: {decoded}")
-        except:
-            print(f"{encoding}: failed")
-    
-def convert_to_utf8(input_file, output_file):
-    # First try CP850 (DOS Latin-1) as it's most likely
-    encodings_to_try = ['cp850', 'cp437', 'iso-8859-1','utf-8-sig',"cp1252"]
-    
-    with open(input_file, 'rb') as file:
-        content = file.read()
-        
-    # Try different encodings
-    for encoding in encodings_to_try:
-        try:
-            decoded_text = content.decode(encoding)
-            # If successful, write with UTF-8 encoding
-            with open(output_file, 'w', encoding='utf-8') as file:
-                file.write(decoded_text)
-            print(f"Successfully converted using {encoding} to UTF-8")
-            return True
-        except UnicodeDecodeError:
-            continue
-    
-    print("Could not find correct encoding")
-    return False
-
-
-def download_gutenberg_book(book_id,data_dir):
-    gutenberg_url = f"https://www.gutenberg.org/cache/epub/{book_id}/pg{book_id}.txt"
-    filename = f"pg{book_id}.txt"
-    # check if file already exists
-    if os.path.exists(f"{data_dir}/{filename}"):
-        print(f"File {filename} already exists")
-        return
-    os.system(f"wget {gutenberg_url} -P {data_dir}")
-   
-def get_dumas_id(filename):
-    # read lines of dumas.txt files
-    with open(filename, "r") as f:
-        lines = f.readlines()
-    # get the book ids
-    book_ids = []
-    for line in lines:
-        # check if line is an integer
-        if line.strip().isdigit():
-            book_ids.append(int(line.strip()))
-    return sorted(book_ids)
-
-def save_dumas_id(book_ids):
-    data_dir = "./data/resources"
-    if not os.path.exists(data_dir):
-        os.makedirs(data_dir)
-    with open("./data/resources/dumas.txt", "w") as f:
-        for book_id in book_ids:
-            f.write(f"{book_id}\n")
-
+import json
 
 def clean_text(text:str)->str:
     """Returns a cleaned text version of gutenberg raw text
@@ -154,8 +75,10 @@ def clean_text(text:str)->str:
 
 def format_french_dialogue(line):
     """Format dialogue with proper French typography."""
-    # Non-breaking space in Unicode
-    nbsp = '\u00A0'
+    # initially i wanted to follow french typography rules
+    # but i changed my mind !
+    nbsp = '\u00A0' # Non-breaking space in Unicode
+    nbsp = " " # use normal space
     
     # Replace double dash at the beginning of a line with em dash
     if line.startswith('--'):
@@ -213,152 +136,274 @@ def is_special_format(line):
 def preprocess():
     # Define files to check
     files_to_check = list(Path("data/raw/gutenberg").glob("*.txt"))
-    files_to_check = list(Path("data/test").glob("*.txt"))
+    #files_to_check = list(Path("data/test").glob("*.txt"))
     preprocessed_dir = Path("data/preprocessed/gutenberg")
     # create preprocessed dir if it doesn't exist
     if not os.path.exists(preprocessed_dir):
         os.makedirs(preprocessed_dir)
 
     for file_path in files_to_check:
-        print(f"Preprocessing {file_path}...")
-        startline = 0
-        endline = -1
-        with open(file_path, 'r', encoding='utf-8') as f:
-            raw_text = f.read()
-            text = clean_text(raw_text)
-            print(text)
-            lines = text.split('\n')
-            # only keep lines that are not empty
-            lines = [line for line in lines if line.strip() != ""]
+        lines = preprocess_file(file_path)
+        text = '\n'.join(lines)
+        # write all lines after startline to file
+        # get basename of file and write to "preprocessed" dir
+        basename = file_path.name
+        preprocessed_path = Path(preprocessed_dir) / basename
+        with open(preprocessed_path, 'w', encoding='utf-8') as f:
+            f.write(text)    
 
-            # looking for line : *** START OF THE PROJECT GUTENBERG EBOOK
-            for i, line in enumerate(lines):
-                if line.startswith("***"):
-                    startline = i +1
-                    break
-
-            if startline != 0:
-                # after what should be the start line we still have other comments in the subsequent lines
-                headers = ["produced", "distributed", "proofreading","etext","file","by","http","is","mobipocket"
-                "online","available","e-text","the", "Bibliothèque",
-                "from","(http","of","at","you","before","whatsoever", "Text", "and the", "we",
-                "this", "is", "made","encoded", "note:"]
-                for i, line in enumerate(lines[startline:]):
-                    if line.strip() == "":
-                        startline += 1
-                    else:
-                        start_with_header = False
-                        # check if line starts with any of the headers
-                        for header in headers:
-                            if line.lower().startswith(header):
-                                startline += 1
-                                start_with_header = True
-                        # did not find a line starting with a header, nor an empty line
-                        # we should be at the start of the book
-                        if not start_with_header:
-                            break
-
-                # looking for line : *** END OF THE PROJECT GUTENBERG EBOOK
-                for i, line in enumerate(lines[startline:]):
-                    if line.lower().startswith("*** end") or line.startswith("End of "):
-                        if endline == -1:
-                            endline = i+startline
-                        else:
-                            endline = min(i+startline, endline)
-                        
-                # analyse lines backward looking for the word FIN
-                # process maximum 10% of the lines
-                max_lines = int(len(lines[startline:endline]) * 0.1)
-                for i, line in enumerate(reversed(lines[startline:endline][-max_lines:])):
-                    if line.startswith("FIN"):
-                        endline = endline - i -1
-                        break
-                
-
-            # write all lines after startline to file
-            # get basename of file and write to "preprocessed" dir
-            basename = file_path.name
-            preprocessed_path = Path(preprocessed_dir) / basename
-            with open(preprocessed_path, 'w', encoding='utf-8') as f:
-                f.write('\n'.join(lines[startline:endline]))            
-
-
-def test_cleaning():
-
-    # Example usage
-    text = """Nous avons dit que ce tilbury, destiné à une personne, en charriait
-d'ordinaire douze ou quinze; cela, nous le comprenons bien, demande
-une explication. Un vieux proverbe français dit: «Quand il y en a
-pour un, il y en a pour deux.» Mais je ne connais aucun proverbe dans
-aucune langue qui dise: «Quand il y en a pour un, il y en a pour
-quinze.»
-
-Il en est cependant ainsi du corricolo, tant, dans les civilisations
-avancées, chaque chose est détournée de sa destination primitive!"""
-
-    #processed_text = preprocess_text(text)
-    #print(processed_text)
-
-    sample = """
---Oui. Oh! je l'ai vue le jour même de mon premier retour.
-
---Vous a-t-elle remis les papiers que Marguerite lui avait laissés pour
-vous?
-D'abord, et presque toujours, un gros moine est assis au milieu, et
-forme le centre de l'agglomération humaine que le corricolo emporte
-comme un de ces tourbillons d'âmes que Dante vit suivant un grand.
-Maintenant, mettez au dessous l'un de l'autre, moine, paysannes,
-maris, conducteurs, lazzaroni, gamins et enfans; additionnez le tout,
-ajoutez le nourrisson oublié, et vous aurez votre compte. Total,
-quinze personnes.
---Bonjour, dit-il.
--- ok
---Et toi ?
-Il répondit: --Je vais bien.
-_Ceci est en italique._
-Texte court ici.
---Je comprends cela, dis-je à Armand, et je suis tout à vous; avez-vous
-vu Julie Duprat?
-
---Oui. Oh! je l'ai vue le jour même de mon premier retour.
-
---Vous a-t-elle remis les papiers que Marguerite lui avait laissés pour
-vous?
-
---Les voici.
-
-Armand tira un rouleau de dessous son oreiller, et l'y replaça
-immédiatement.
-Autre texte court.
-"""
-    processed_text = clean_text(sample)
-    # FIXME : — ok — Et toi ?
-    print(processed_text)
-    sys.exit(0)
-
-    data_dir = "./data/raw/gutenberg/"
-    file = "pg2419.txt"
-    output_dir = "./data/test/"
-    with open(f"{data_dir}{file}", encoding="utf-8") as f:
+def preprocess_file(file_path):
+    """ Preprocess a file by cleaning header footer, removing formating issues.
+    Args :
+    - file_path : path to input gutenberg text file
+    Returns : a list of lines
+    """
+    print(f"Preprocessing {file_path}...")
+    startline = 0
+    endline = -1
+    with open(file_path, 'r', encoding='utf-8') as f:
         raw_text = f.read()
         text = clean_text(raw_text)
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
-        with open(f"{output_dir}{file}",mode="w",encoding="utf-8") as t:
-            t.write(text)
-    sys.exit(0)
+        lines = text.split('\n')
+        # only keep lines that are not empty
+        lines = [line for line in lines if line.strip() != ""]
 
-def download_dumas_books():
-    """Download all books from dumas"""
-    data_dir = "./data/raw/gutenberg"
-    if not os.path.exists(data_dir):
-        os.makedirs(data_dir)
-    dumas_id = get_dumas_id("./data/resources/dumas.txt")
-    for book_id in dumas_id:
-        download_gutenberg_book(book_id, "./data/raw/gutenberg")
+        # looking for line : *** START OF THE PROJECT GUTENBERG EBOOK
+        for i, line in enumerate(lines):
+            if line.startswith("***"):
+                startline = i +1
+                break
+
+        if startline != 0:
+            # after what should be the start line we still have other comments in the subsequent lines
+            headers = ["produced", "distributed", "proofreading","etext","file","by","http","is","mobipocket"
+            "online","available","e-text","the", "Bibliothèque",
+            "from","(http","of","at","you","before","whatsoever", "Text", "and the", "we",
+            "this", "is", "made","encoded", "note:"]
+            for i, line in enumerate(lines[startline:]):
+                if line.strip() == "":
+                    startline += 1
+                else:
+                    start_with_header = False
+                    # check if line starts with any of the headers
+                    for header in headers:
+                        if line.lower().startswith(header):
+                            startline += 1
+                            start_with_header = True
+                    # did not find a line starting with a header, nor an empty line
+                    # we should be at the start of the book
+                    if not start_with_header:
+                        break
+
+            # looking for line : *** END OF THE PROJECT GUTENBERG EBOOK
+            for i, line in enumerate(lines[startline:]):
+                if line.lower().startswith("*** end") or line.startswith("End of "):
+                    if endline == -1:
+                        endline = i+startline
+                    else:
+                        endline = min(i+startline, endline)
+                    
+            # analyse lines backward looking for the word FIN
+            # process maximum 10% of the lines
+            max_lines = int(len(lines[startline:endline]) * 0.1)
+            for i, line in enumerate(reversed(lines[startline:endline][-max_lines:])):
+                if line.startswith("FIN"):
+                    endline = endline - i -1
+                    break
+            
+
+        return lines[startline:endline]
+
+def extract_chapters(lines, marker_lines, marker_indexes, filter_func=None):
+    """Extract chapters from text based on marker lines and indexes.
+    
+    Args:
+        lines: All lines from the file
+        marker_lines: Lines that mark the start of chapters
+        marker_indexes: Indexes of the marker lines in the original text
+        filter_func: Optional function to filter out unwanted markers
+        
+    Returns:
+        List of chapters (each chapter is a list of lines)
+    """
+    chapters = []
+    chapter_titles = []
+    # Filter markers if needed
+    if filter_func:
+        filtered_lines = []
+        filtered_indexes = []
+        for i, line in enumerate(marker_lines):
+            if filter_func(line):
+                filtered_lines.append(line)
+                filtered_indexes.append(marker_indexes[i])
+        marker_lines = filtered_lines
+        marker_indexes = filtered_indexes
+    
+    # Extract chapters between markers
+    if marker_indexes:
+        start = marker_indexes[0]
+        for index in marker_indexes[1:]:
+            # Only append if the next index is more than 2 lines away
+            if index - start > 2:
+                chapters.append(lines[start+1:index])
+                chapter_titles.append(marker_lines[marker_indexes.index(start)])
+            start = index
+        
+        # Handle the last chapter (from last marker to end of file)
+        last_index = marker_indexes[-1]
+        if len(lines) - last_index > 2:  # Only if there's meaningful content
+            chapters.append(lines[last_index+1:])
+            chapter_titles.append(marker_lines[marker_indexes.index(last_index)])
+            
+    return chapters, chapter_titles
+
+def process():
+    """Analyse a set of files containing book content coming from the gutenberg project
+    Check if we can extract chapters from the book
+    """
+    processed_dir = Path("data/processed/gutenberg")
+    if not os.path.exists(processed_dir):
+        os.makedirs(processed_dir)
+
+    files_to_check = list(Path("data/preprocessed/gutenberg").glob("*.txt"))
+    #files_to_check = list(Path("data/test").glob("*.txt"))
+    for file_path in files_to_check:
+        process_file(file_path, processed_dir)
+
+def process_file(file_path, processed_dir):
+    print(f"Analysing {file_path}...")
+    lines = []
+    with open(file_path, "r",encoding='utf-8') as f:
+        lines = f.readlines()
+        lines = [line.strip() for line in lines]
+
+        chapter_lines, chapters = process_text(lines)
+        if len(chapters) > 0:
+            # write chapters to file
+            basename = file_path.name
+            processed_path = Path(processed_dir) / basename
+            with open(processed_path, "w", encoding='utf-8') as f:
+                for c in chapters:
+                    f.write("\n".join(c) + "\n\n")
+
+
+def process_text(lines):
+    """
+    Args:
+    - lines : list of text line coming from a book
+    Returns : (chapter_lines, chapters)
+    chapter_lines : a list of the title of the chapter
+    chapters : a list of chapters (text)
+    """
+    # Search for lines starting with "CHAPITRE"
+    chapter_lines = []
+    chapter_indexes = []
+    for i, line in enumerate(lines):
+        if line.lower().startswith("chapitre"):
+            # check if the word chapitre appears several times in the entry : it is probably the table of content and should be removed
+            if line.lower().count("chapitre") == 1:
+                chapter_lines.append(line)
+                chapter_indexes.append(i)
+
+    # search for lines starting with a Roman numeral  such as I II III IV
+    # Line can only contain a combinaison of these letters plus the dot "."
+    roman_lines = []
+    roman_indexes = []
+    for i, line in enumerate(lines):
+        if re.match(r"^[IVXLC]+\.?$", line.strip()):
+            roman_lines.append(line)
+            roman_indexes.append(i)
+        
+    if len(chapter_indexes) == 0 and len(roman_indexes) == 0:
+        print(f"Could not find a pattern in the file")
+        # Could not find a pattern.
+        # Try chapters with roman numerals followed by text
+        # E.g.: I Followed by text
+        for i, line in enumerate(lines):
+            if re.match(r"^[IVXLC]+\.?($|\s)", line.strip()):
+                roman_lines.append(line)
+                roman_indexes.append(i)
+    
+    # Could not find a pattern
+    if len(chapter_indexes) == 0 and len(roman_indexes) == 0:
+        print(f"Could not find a pattern in the file")
+        return [], []
+        
+    chapters = []
+    chapter_titles = []
+    if len(chapter_lines) < 3 and len(roman_lines) > 3:
+        # Filter function for roman lines
+        def roman_filter(line):
+            if ("I " in line and "II " in line and "III " in line):
+                return False
+            if (" I." in line and " II." in line and " III." in line):
+                return False
+
+            return True
+            
+        chapters, chapter_titles = extract_chapters(lines, roman_lines, roman_indexes, roman_filter)
+
+    elif len(chapter_lines) > 3 and len(roman_lines) < 3:
+        # Filter function for chapter lines
+        def chapter_filter(line):
+            return line.lower().count("chapitre") <= 1
+            
+        chapters, chapter_titles = extract_chapters(lines, chapter_lines, chapter_indexes, chapter_filter)
+    else:
+        print(f"Found {len(chapter_lines)} chapters and {len(roman_lines)} roman numerals")
+        return [],[]
+
+    
+    return chapter_titles, chapters
+
+def get_metadata(file_path):
+    """Get metadata from the file name"""
+    metadata = {}
+    # Extract metadata from file name
+    file_name = file_path.name
+    metadata["file_name"] = file_name
+
+    with open(file_path, "r", encoding='utf-8') as f:
+        lines = f.readlines()
+        lines = [line.strip() for line in lines]
+
+        # Search for lines starting with "CHAPITRE"
+        for line in lines:
+            if line.startswith("Title:"):
+                metadata["title"] = line.split(":")[1].strip()
+            elif line.startswith("Author:"):
+                metadata["author"] = line.split(":")[1].strip()
+            elif line.startswith("Release Date:"):
+                metadata["release_date"] = line.split(":")[1].strip()
+            elif line.startswith("Language:"):
+                metadata["language"] = line.split(":")[1].strip()
+            elif line.startswith("Character set encoding:"):
+                metadata["encoding"] = line.split(":")[1].strip()
+
+
+    return metadata
+
 
 if __name__ == "__main__":
     
-    test_cleaning()
+    # Define files to check
+    raw_files= list(Path("data/raw/gutenberg").glob("*.txt"))
+    data_file = "data/gutenberg.jsonl"
 
-    preprocess()
+    with open(data_file, "w", encoding='utf-8') as f:
+        for file in raw_files:
+            metadata = get_metadata(file)
+            clean_lines = preprocess_file(file)
+            chapter_titles, chapters = process_text(clean_lines)
+            assert len(chapter_titles) == len(chapters), f"Number of chapters and titles do not match for {file}"
+            if len(chapter_titles) == 0:
+                print(f"No chapters found in {file}")
+                continue
+            gutenberg_entry = {
+                "metadata": metadata
+            }
+            for i, chapter in enumerate(chapters):
+                gutenberg_entry["chapter_title"] = chapter_titles[i]
+                gutenberg_entry["text"] = "\n".join(chapter)
+                f.write(json.dumps(gutenberg_entry, ensure_ascii=False) + "\n")
+
