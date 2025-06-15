@@ -162,3 +162,13 @@ books : 18
 news : 459
 wikipedia : 1352
 
+# taille du modèle
+
+Pour 250M
+vocab_size = 32768
+context_length = 1024
+embed_dim = 1024
+n_layers = 16
+n_heads = 16
+
+
