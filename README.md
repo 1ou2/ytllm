@@ -149,3 +149,16 @@ If you use this dataset in your research, please cite it as follows:
 This dataset is licensed under the CC BY-SA 3.0 license, in accordance with Wikipedia's content license.
 
 
+# gutenberg
+https://dev.gutenberg.org/browse/scores/top-fr.php
+
+pour arsène lupin séparateur est ------
+
+Filtre auteur FR
+{'Mérimée', 'Zola', 'Musset', 'Leroux', 'Verne', 'Leblanc', 'Diderot', 'Dumas', 'Proust', 'Voltaire', 'Gautier', 'Stendhal', 'France', 'Balzac', 'Montesquieu', 'Maupassant', 'Daudet'}
+
+# datasources
+books : 18
+news : 459
+wikipedia : 1352
+

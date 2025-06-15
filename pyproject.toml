@@ -12,5 +12,7 @@ dependencies = [
     "pandas>=2.2.3",
     "python-dotenv>=1.1.0",
     "tokenizers>=0.21.1",
+    "torch>=2.7.1",
     "tqdm>=4.67.1",
+    "transformer-engine>=2.4.0",
 ]

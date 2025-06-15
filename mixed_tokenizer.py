@@ -334,13 +334,13 @@ if __name__ == "__main__":
     #test_training()
 
     # tokenize news corpus
-    news = load_dataset("1ou2/fr_news_articles", streaming=True)["train"].shuffle()
-    tokenize_corpus(dataset=news, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/news", shard_size=1048577)
-    print("done news")
+    #news = load_dataset("1ou2/fr_news_articles", streaming=True)["train"].shuffle()
+    #tokenize_corpus(dataset=news, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/news", shard_size=1048577)
+    #print("done news")
 
-    #wikipedia = load_dataset("1ou2/fr_wiki_paragraphs", streaming=True)["train"].shuffle()
-    #tokenize_corpus(dataset=wikipedia, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/wikipedia", shard_size=1048577)
-    #print("done wikipedia")
+    wikipedia = load_dataset("1ou2/fr_wiki_paragraphs", streaming=True)["train"].shuffle()
+    tokenize_corpus(dataset=wikipedia, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/wikipedia", shard_size=1048577)
+    print("done wikipedia")
 
     #from book import get_chapters
     #zoo = get_chapters("data/texts/zoo.txt")
