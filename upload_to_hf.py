@@ -50,6 +50,7 @@ def create_gutenberg_dataset(data_dir):
     """
     Create a Hugging Face dataset from Gutenberg JSONL files.
     Each entry in the JSONL file contains metadata, chapter_title, and text fields.
+    All data is kept in the train split only.
 
     Args:
         data_dir: Directory containing the Gutenberg JSONL files
@@ -67,13 +68,9 @@ def create_gutenberg_dataset(data_dir):
     # Load all files as a single dataset with JSON format
     dataset = load_dataset('json', data_files=file_paths)
 
-    # Split into train and validation (95% train, 5% validation)
-    splits = dataset['train'].train_test_split(test_size=0.05)
-
-    # Create dataset dictionary
+    # Create dataset dictionary with only a train split (no validation)
     dataset_dict = DatasetDict({
-        'train': splits['train'],
-        'validation': splits['test']
+        'train': dataset['train']
     })
 
     return dataset_dict
@@ -145,12 +142,12 @@ if __name__ == "__main__":
     elif dataset_type == "news":
         # Process news dataset
         DATA_DIR = "data/news"
-        DATASET_NAME = "fr_news_articles"  # Change this to your desired name
+        DATASET_NAME = "fr_news_articles"  
         dataset = create_news_dataset(DATA_DIR)
     elif dataset_type == "gutenberg":
         # Process Gutenberg dataset
         DATA_DIR = "data/gutenberg"
-        DATASET_NAME = "fr_gutenberg_chapters"  # Change this to your desired name
+        DATASET_NAME = "french-classic-fiction-chapters"  
         dataset = create_gutenberg_dataset(DATA_DIR)
     
     # Print dataset info

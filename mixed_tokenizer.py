@@ -65,6 +65,32 @@ def sample_wikipedia_data(sample_size=100000):
     
     return samples
 
+def sample_book_data(sample_size=100000):
+    """
+    Sample texts from Gutenberg dataset.
+
+    Args:
+        sample_size: Total number of samples to collect
+
+    Returns:
+        List of text samples
+    """
+    print("Loading Gutenberg dataset...")
+    gutenberg_dataset = load_dataset("1ou2/french-classic-fiction-chapters",  streaming=True)
+    train_data = gutenberg_dataset["train"]
+    train_iter = iter(train_data)
+
+    samples = []
+    for _ in tqdm(range(sample_size), desc="Sampling Gutenberg dataset"):
+        try:
+            sample = next(train_iter)
+            samples.append(sample["text"])
+        except StopIteration:
+            print("Reached end of Gutenberg dataset")
+            break
+
+    return samples
+
 def sample_oscar_data(sample_size=100000):
     """
     Sample texts from Oscar dataset in streaming mode.
@@ -92,20 +118,22 @@ def sample_oscar_data(sample_size=100000):
     return samples
 
 def train_mixed_tokenizer(
-    wiki_ratio=0.7,
-    news_ratio=0.3,
+    wiki_ratio=0.74,
+    news_ratio=0.25,
+    books_ratio=0.01,
     total_samples=500000,
     vocab_size=32768,
     min_frequency=2,
-    output_dir="french_tokenizer",
+    output_dir="fr_mixed_tokenizer",
     prefix="gabgpt"
 ):
     """
-    Train a tokenizer on a mix of Wikipedia and Oscar datasets.
+    Train a tokenizer on a mix of Wikipedia, News, and Books datasets.
     
     Args:
-        wiki_ratio: Proportion of samples to take from Wikipedia
-        oscar_ratio: Proportion of samples to take from Oscar
+        wiki_ratio: Proportion of samples to take from Wikipedia (default: 0.74)
+        news_ratio: Proportion of samples to take from News (default: 0.25)
+        books_ratio: Proportion of samples to take from Books (default: 0.01)
         total_samples: Total number of samples to use for training
         vocab_size: Size of the vocabulary
         min_frequency: Minimum frequency for a token to be included
@@ -116,29 +144,45 @@ def train_mixed_tokenizer(
     special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>",
                      "<|gab1|>", "<|gab2|>", "<|gab3|>", "<|gab4|>", "<|gab5|>"]
     
+    # Validate ratios
+    total_ratio = wiki_ratio + news_ratio + books_ratio
+    if abs(total_ratio - 1.0) > 0.0001:  # Allow for small floating point errors
+        print(f"Warning: Ratios sum to {total_ratio}, not 1.0. Normalizing...")
+        wiki_ratio = wiki_ratio / total_ratio
+        news_ratio = news_ratio / total_ratio
+        books_ratio = books_ratio / total_ratio
+    
     # Calculate samples from each source
     wiki_samples = int(total_samples * wiki_ratio)
     news_samples = int(total_samples * news_ratio)
+    books_samples = int(total_samples * books_ratio)
     
     # Adjust if rounding caused mismatch
-    if wiki_samples + news_samples != total_samples:
-        wiki_samples = total_samples - news_samples
+    if wiki_samples + news_samples + books_samples != total_samples:
+        # Add any remaining samples to Wikipedia as it's the largest dataset
+        wiki_samples = total_samples - news_samples - books_samples
     
-    print(f"Sampling strategy: {wiki_samples} Wikipedia samples, {news_samples} news samples")
-    
+    print(f"Sampling strategy: {wiki_samples} Wikipedia samples ({wiki_ratio:.1%}), "
+          f"{news_samples} News samples ({news_ratio:.1%}), "
+          f"{books_samples} Books samples ({books_ratio:.1%})")
     
     # Sample from Wikipedia
     print("Sampling from Wikipedia...")
     wiki_texts = sample_wikipedia_data(wiki_samples)
     print(f"Collected {len(wiki_texts)} Wikipedia samples")
     
-    # Sample from Oscar
+    # Sample from News
     print("Sampling from News...")
     news_texts = sample_news_data(news_samples)
     print(f"Collected {len(news_texts)} News samples")
     
+    # Sample from Books
+    print("Sampling from Books...")
+    books_texts = sample_book_data(books_samples)
+    print(f"Collected {len(books_texts)} Books samples")
+    
     # Combine and shuffle
-    all_texts = wiki_texts + news_texts
+    all_texts = wiki_texts + news_texts + books_texts
     random.shuffle(all_texts)
     print(f"Total combined samples: {len(all_texts)}")
     
@@ -164,6 +208,7 @@ def train_mixed_tokenizer(
     metadata = {
         "wiki_samples": len(wiki_texts),
         "news_samples": len(news_texts),
+        "books_samples": len(books_texts),
         "total_samples": len(all_texts),
         "vocab_size": vocab_size,
         "min_frequency": min_frequency,
@@ -253,8 +298,8 @@ def use_special_tokens():
 
     # Load the trained tokenizer
     tokenizer = ByteLevelBPETokenizer(
-        "french_tokenizer/gabgpt-vocab.json",
-        "french_tokenizer/gabgpt-merges.txt"
+        "fr_mixed_tokenizer/gabgpt-vocab.json",
+        "fr_mixed_tokenizer/gabgpt-merges.txt"
     )
 
     # Add special tokens to the loaded tokenizer
@@ -273,29 +318,37 @@ def use_special_tokens():
 def test_training():
     # Example usage with default parameters
     train_mixed_tokenizer(
-        wiki_ratio=0.7,  # 70% Wikipedia (higher quality)
-        news_ratio=0.3,  # 30% Oscar
-        total_samples=500000,  # 500K samples total
+        wiki_ratio=0.74,  # 74% Wikipedia (higher quality)
+        news_ratio=0.25,  # 25% news
+        books_ratio=0.01, # 1% books
+        total_samples=100000,  # 100K samples total
         vocab_size=32768,
         min_frequency=2,
-        output_dir="french_tokenizer",
+        output_dir="fr_mixed_tokenizer",
         prefix="gabgpt"
     )
 if __name__ == "__main__":
     # test use of special tokens
-    use_special_tokens()
+    #use_special_tokens()
+
+    #test_training()
 
     # tokenize news corpus
-    #news = load_dataset("1ou2/fr_news_articles", streaming=True)["train"].shuffle()
-    #tokenize_corpus(dataset=news, tokenizer_dir="french_tokenizer", output_dir="data/tokenized/news", shard_size=1048577)
-    #print("done news")
+    news = load_dataset("1ou2/fr_news_articles", streaming=True)["train"].shuffle()
+    tokenize_corpus(dataset=news, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/news", shard_size=1048577)
+    print("done news")
 
     #wikipedia = load_dataset("1ou2/fr_wiki_paragraphs", streaming=True)["train"].shuffle()
-    #tokenize_corpus(dataset=wikipedia, tokenizer_dir="french_tokenizer", output_dir="data/tokenized/wikipedia", shard_size=1048577)
+    #tokenize_corpus(dataset=wikipedia, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/wikipedia", shard_size=1048577)
     #print("done wikipedia")
 
-    from book import get_chapters
+    #from book import get_chapters
     #zoo = get_chapters("data/texts/zoo.txt")
-    #tokenize_corpus(dataset=zoo, tokenizer_dir="french_tokenizer", output_dir="data/tokenized/zoo", shard_size=1048577,write_last_shard=True)
-    jeu = get_chapters("data/texts/jeu.txt")
-    tokenize_corpus(dataset=jeu, tokenizer_dir="french_tokenizer", output_dir="data/tokenized/jeu", shard_size=1048577,write_last_shard=True)
+    #tokenize_corpus(dataset=zoo, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/zoo", shard_size=1048577,write_last_shard=True)
+    #jeu = get_chapters("data/texts/jeu.txt")
+    #tokenize_corpus(dataset=jeu, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/jeu", shard_size=1048577,write_last_shard=True)
+
+
+    #gutenberg = load_dataset("1ou2/french-classic-fiction-chapters", streaming=True)["train"].shuffle()
+    #tokenize_corpus(dataset=gutenberg, tokenizer_dir="fr_mixed_tokenizer", output_dir="data/tokenized/gutenberg", shard_size=1048577, write_last_shard=True)
+    

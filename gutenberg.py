@@ -315,7 +315,7 @@ def process_text(lines):
             roman_indexes.append(i)
         
     if len(chapter_indexes) == 0 and len(roman_indexes) == 0:
-        print(f"Could not find a pattern in the file")
+        #print(f"Could not find a pattern in the file")
         # Could not find a pattern.
         # Try chapters with roman numerals followed by text
         # E.g.: I Followed by text
@@ -326,7 +326,7 @@ def process_text(lines):
     
     # Could not find a pattern
     if len(chapter_indexes) == 0 and len(roman_indexes) == 0:
-        print(f"Could not find a pattern in the file")
+        #print(f"Could not find a pattern in the file")
         return [], []
         
     chapters = []
@@ -350,7 +350,7 @@ def process_text(lines):
             
         chapters, chapter_titles = extract_chapters(lines, chapter_lines, chapter_indexes, chapter_filter)
     else:
-        print(f"Found {len(chapter_lines)} chapters and {len(roman_lines)} roman numerals")
+        #print(f"Found {len(chapter_lines)} chapters and {len(roman_lines)} roman numerals")
         return [],[]
 
     
@@ -387,23 +387,54 @@ def get_metadata(file_path):
 if __name__ == "__main__":
     
     # Define files to check
-    raw_files= list(Path("data/raw/gutenberg").glob("*.txt"))
-    data_file = "data/gutenberg.jsonl"
-
-    with open(data_file, "w", encoding='utf-8') as f:
-        for file in raw_files:
-            metadata = get_metadata(file)
-            clean_lines = preprocess_file(file)
-            chapter_titles, chapters = process_text(clean_lines)
-            assert len(chapter_titles) == len(chapters), f"Number of chapters and titles do not match for {file}"
-            if len(chapter_titles) == 0:
-                print(f"No chapters found in {file}")
-                continue
-            gutenberg_entry = {
-                "metadata": metadata
-            }
-            for i, chapter in enumerate(chapters):
-                gutenberg_entry["chapter_title"] = chapter_titles[i]
-                gutenberg_entry["text"] = "\n".join(chapter)
-                f.write(json.dumps(gutenberg_entry, ensure_ascii=False) + "\n")
+    raw_files = list(Path("data/raw/gutenberg").glob("*.txt"))
+    output_dir = Path("data/gutenberg")
+    
+    # Create output directory if it doesn't exist
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    # Parameters for splitting files
+    chapters_per_file = 1000  # Number of chapters per output file
+    current_file_index = 0
+    current_chapter_count = 0
+    current_file = None
+    
+    # Process all files
+    for file in raw_files:
+        metadata = get_metadata(file)
+        clean_lines = preprocess_file(file)
+        chapter_titles, chapters = process_text(clean_lines)
+        assert len(chapter_titles) == len(chapters), f"Number of chapters and titles do not match for {file}"
+        
+        if len(chapter_titles) == 0:
+            print(f"No chapters found in {file}")
+            continue
+            
+        gutenberg_entry = {
+            "metadata": metadata
+        }
+        
+        for i, chapter in enumerate(chapters):
+            # Open a new file if needed
+            if current_file is None or current_chapter_count >= chapters_per_file:
+                if current_file:
+                    current_file.close()
+                current_file_index += 1
+                current_chapter_count = 0
+                output_file = output_dir / f"gutenberg_{current_file_index:03d}.jsonl"
+                print(f"Creating new output file: {output_file}")
+                current_file = open(output_file, "w", encoding='utf-8')
+            
+            # Write chapter to current file
+            gutenberg_entry["chapter_title"] = chapter_titles[i]
+            gutenberg_entry["text"] = "\n".join(chapter)
+            current_file.write(json.dumps(gutenberg_entry, ensure_ascii=False) + "\n")
+            current_chapter_count += 1
+    
+    # Close the last file if it's open
+    if current_file:
+        current_file.close()
+        
+    print(f"Processing complete. Created {current_file_index} output files.")
 

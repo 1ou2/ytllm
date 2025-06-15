@@ -107,7 +107,11 @@ def download_hugo_books():
     hugo_id = get_book_ids("./data/resources/hugo.txt")
     download_gutenberg_books(hugo_id, data_dir)
 
-
+def download_french_authors_books():
+    """Download all books from french authors"""
+    data_dir = "./data/raw/gutenberg"
+    french_authors_id = get_book_ids("./data/resources/auteurs-fr.txt")
+    download_gutenberg_books(french_authors_id, data_dir)
 
 def test_cleaning():
 
@@ -174,3 +178,5 @@ Autre texte court.
     sys.exit(0)
 
 
+if __name__ == "__main__":
+    download_french_authors_books()
