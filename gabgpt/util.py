@@ -5,7 +5,7 @@ import configparser
 import ast
 import os
 import math
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 def load_config(config_file="config.txt"):
     config = configparser.ConfigParser()
@@ -106,7 +106,7 @@ def plot_loss(stat_file):
     plt.xlabel("Step")
     plt.ylabel("Loss")
     plt.legend()
-    #plt.show()
+    plt.show()
     plt.savefig("loss-epoch-0.png")
 
 def plot_lr(stat_file):
