@@ -1,0 +1,19 @@
+{
+  "wiki_samples": 74000,
+  "news_samples": 25000,
+  "books_samples": 1000,
+  "total_samples": 100000,
+  "vocab_size": 32768,
+  "min_frequency": 2,
+  "special_tokens": [
+    "<|endoftext|>",
+    "<|user|>",
+    "<|bot|>",
+    "<|sys|>",
+    "<|gab1|>",
+    "<|gab2|>",
+    "<|gab3|>",
+    "<|gab4|>",
+    "<|gab5|>"
+  ]
+}
