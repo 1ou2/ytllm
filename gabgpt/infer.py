@@ -121,7 +121,7 @@ model = GPTModel(GPT_CONFIG)
 model.to(device)
 
 
-checkpoint = get_last_checkpoint("checkpoints")
+checkpoint = get_last_checkpoint("hyperbolic")
 if checkpoint is not None:
     start_epoch, start_step, loss, train_state = load_checkpoint(checkpoint, model, None, None,device=device)
     print(f"Loaded checkpoint: epoch {start_epoch}, step {start_step}, loss {loss}")

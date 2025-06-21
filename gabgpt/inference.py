@@ -325,7 +325,7 @@ def generate_text(model,tokenizer,text, max_length):
         tokens = xgen[i, :max_length].tolist()
         decoded = tokenizer.decode(tokens)
         print(f"---\n{decoded}\n---")
-        print(f"{tokens=}")
+        #print(f"{tokens=}")
 
 def load_model(path):
     # 1. create model
@@ -350,8 +350,10 @@ if __name__ == "__main__":
 
     model = load_model(FILES["checkpoint_dir"])
     
-    generate_text(model, tokenizer, "<|endoftext|>",100)
-    evaluate(model)
+    #generate_text(model, tokenizer, "<|endoftext|>",100)
+    #print("done")
+    generate_text(model, tokenizer, "La Seine est un fleuve qui",100)
+    #evaluate(model)
 
 
 

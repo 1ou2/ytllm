@@ -103,14 +103,15 @@ class MultiHeadAttention(nn.Module):
             mask = causal_mask  # [1, 1, seq_len, seq_len]
 
         # --- Use PyTorch's efficient attention if available ---
-        if torch.backends.cuda.sdp_kernel(enable_flash=True, enable_math=False, enable_mem_efficient=False):
-            x = F.scaled_dot_product_attention(
-                q, k, v,
-                attn_mask=mask,
-                dropout_p=self.dropout.p if self.training else 0.0,
-                is_causal=False  # Mask already includes causality
-            )
-        else:
+        try:
+            with torch.nn.attention.sdpa_kernel(enable_flash=True, enable_math=False, enable_mem_efficient=False):
+                x = F.scaled_dot_product_attention(
+                    q, k, v,
+                    attn_mask=mask,
+                    dropout_p=self.dropout.p if self.training else 0.0,
+                    is_causal=False  # Mask already includes causality
+                )
+        except (AttributeError, RuntimeError):
             attn = (q @ k.transpose(-2, -1)) / math.sqrt(self.head_dim)
             attn = attn + mask  # Additive mask: -inf for masked positions
             attn = F.softmax(attn, dim=-1)

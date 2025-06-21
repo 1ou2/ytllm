@@ -5,7 +5,78 @@ import configparser
 import ast
 import os
 import math
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
+import torch
+import numpy as np
+
+def load_tokens(filename):
+    npt = np.load(filename)
+    npt = npt.astype(np.int32) # added after video
+    ptt = torch.tensor(npt, dtype=torch.long)
+    return ptt
+
+class DataLoaderLite:
+    def __init__(self, B, T, split, token_dir):
+        assert split in ["train", "valid"]
+        self.B = B
+        self.T = T
+        self.split = split
+        self.shards = []
+        self.token_dir = token_dir
+        self.update_shard_list()
+        self.reset()
+
+    def update_shard_list(self):
+        self.shards = sorted([os.path.join(self.token_dir, f) for f in os.listdir(self.token_dir) if f.endswith(".npy")])
+
+        if self.split == "train":
+            # remove the last shard
+            if len(self.shards) > 1:
+                # last shard may not be full
+                self.shards.pop()
+
+        print(f"found {len(self.shards)} shards for split {self.split}")
+
+    def get_state(self):
+        return {
+            "shard_index": self.current_shard_index,
+            "token_index": self.current_token_index,
+        }
+
+    def set_state(self, state):
+        self.reset()
+        self.current_shard_index = state["shard_index"]
+        self.current_token_index = state["token_index"]
+
+    def reset(self):
+        self.current_shard_index = 0
+        # each process has a different offset in the shard
+        # so that they don't overlap
+        self.current_token_index = self.B * self.T 
+        self.tokens = load_tokens(self.shards[self.current_shard_index])
+
+    def next_batch(self):
+        """Returns 2 batches of tokens of shape (B, T) - input batch and target batch"""
+        # get B*T tokens + 1 because we need to predict the next token
+        buffer = self.tokens[self.current_token_index: self.current_token_index + self.B * self.T+1]
+        # get all tokens except the last one
+        x = (buffer[:-1]).view(self.B, self.T)
+        # target tokens are the ones that follow the input tokens
+        # shift the tokens by 1 to the left
+        y = (buffer[1:]).view(self.B, self.T)
+
+        # advance index
+        self.current_token_index += self.B * self.T 
+        # check if we need to load the next shard
+        if self.current_token_index + (self.B * self.T+ 1) > len(self.tokens):
+            # cycle through the shards, enables to continue get batches for more than one epoch
+            self.current_shard_index = (self.current_shard_index + 1) % len(self.shards)
+            self.tokens = load_tokens(self.shards[self.current_shard_index])
+            # each process has a different offset in the shard
+            # so that they don't overlap
+            self.current_token_index = self.B * self.T 
+        
+        return x, y
 
 def load_config(config_file="config.txt"):
     config = configparser.ConfigParser()

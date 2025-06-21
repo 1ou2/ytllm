@@ -2,9 +2,20 @@ import torch.nn as nn
 from torch.nn import functional as F
 from dataclasses import dataclass
 import torch
+
 # ----------------------------------------------------------------------
 # GPT Model
 # ----------------------------------------------------------------------
+
+@dataclass
+class GPTConfig:
+    block_size: int = 1024 # max sequence length
+    vocab_size: int = 32768 # number of tokens: custom tokenizer used
+    n_layer: int = 12 # number of layers
+    n_head: int = 12 # number of heads
+    n_embd: int = 768 # embedding dimension
+    dropout: float = 0.1 # dropout rate
+
 class RotaryPositionalEmbedding(nn.Module):
     def __init__(self, dim: int, max_seq_len: int = 4096):
         # dim: dimension of the embedding vectors
@@ -76,6 +87,7 @@ class CausalSelfAttention(nn.Module):
         self.dropout_rate = config.dropout
         # dropout of residual connection
         self.resid_dropout = nn.Dropout(config.dropout)
+        self.rotary = RotaryPositionalEmbedding(config.n_embd // config.n_head, config.block_size)
 
     def forward(self, x):
         B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
@@ -84,9 +96,14 @@ class CausalSelfAttention(nn.Module):
         # e.g. in GPT-2 (124M), n_head=12, hs=64, so nh*hs=C=768 channels in the Transformer
         qkv = self.c_attn(x)
         q, k, v = qkv.split(self.n_embd, dim=2)
+        hs = C // self.n_head
         k = k.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
         q = q.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
         v = v.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+
+        # apply rotary embeddings
+        q, k = self.rotary(q, k)
+
         y = F.scaled_dot_product_attention(q, k, v, dropout_p=self.dropout_rate if self.training else 0,is_causal=True) # flash attention
         y = y.transpose(1, 2).contiguous().view(B, T, C) # re-assemble all head outputs side by side
         # output projection
@@ -123,15 +140,6 @@ class Block(nn.Module):
         x = x + self.attn(self.ln_1(x))
         x = x + self.ff(self.ln_2(x))
         return x
-    
-@dataclass
-class GPTConfig:
-    block_size: int = 1024 # max sequence length
-    vocab_size: int = 32768 # number of tokens: custom tokenizer used
-    n_layer: int = 12 # number of layers
-    n_head: int = 12 # number of heads
-    n_embd: int = 768 # embedding dimension
-    dropout: float = 0.1 # dropout rate
 
 
 class GPT(nn.Module):
@@ -140,7 +148,6 @@ class GPT(nn.Module):
         super().__init__()
         self.config = config
         self.wte = nn.Embedding(config.vocab_size, config.n_embd)
-        self.wpe = nn.Embedding(config.block_size, config.n_embd)
         self.drop_emb = nn.Dropout(config.dropout)
         self.transformer = nn.ModuleDict(dict(
             h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
@@ -172,11 +179,7 @@ class GPT(nn.Module):
         # idx is of shape (B, T)
         B, T = idx.size()
         assert T <= self.config.block_size, f"Cannot forward sequence of length {T}, block size is only {self.config.block_size}"
-        # forward the token and posisition embeddings
-        pos = torch.arange(0, T, dtype=torch.long, device=idx.device) # shape (T)
-        pos_emb = self.wpe(pos) # position embeddings of shape (T, n_embd)
-        tok_emb = self.wte(idx) # token embeddings of shape (B, T, n_embd)
-        x = tok_emb + pos_emb
+        x = self.wte(idx) # token embeddings of shape (B, T, n_embd)
         x = self.drop_emb(x)
         # forward the blocks of the transformer
         for block in self.transformer.h:
