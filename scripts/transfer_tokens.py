@@ -1,6 +1,8 @@
 import os 
 import sys
 from dotenv import load_dotenv
+import random
+
 token_root_dir = "data/tokenized/"
 token_dirs = ["gutenberg", "news", "wikipedia"]
 target_dir = "data/shards/"
@@ -41,9 +43,49 @@ def download_shards():
         # download shards from s3
         os.system(f"wget {remote_path}")
 
+def shuffle_shards(shard_dir="data/shards/train"):
+    # get all shards
+    shards = os.listdir(shard_dir)
+    # shuffle shards
+    random.shuffle(shards)
+
+    # First pass: rename to temporary names
+    for i, shard in enumerate(shards):
+        temp_name = f"temp_{i:06d}.npy"
+        os.rename(os.path.join(shard_dir, shard), os.path.join(shard_dir, temp_name))
+    
+    # Second pass: rename to final names
+    for i in range(len(shards)):
+        temp_name = f"temp_{i:06d}.npy"
+        final_name = f"shard_{i:06d}.npy"
+        os.rename(os.path.join(shard_dir, temp_name), os.path.join(shard_dir, final_name))
+
+def dummy_shards():
+    # create 100 shards containing a single number
+    os.makedirs("data/shards/test", exist_ok=True)
+    for i in range(100):
+        with open(f"data/shards/test/shard_{i:06d}.npy", "w") as f:
+            f.write(str(i))
+
 if __name__ == "__main__":
-    #cp_shards(token_dirs, target_dir)
-    #package_shards()
-    download_shards()
+
+    # argument parsing
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "package":
+            package_shards()
+        elif sys.argv[1] == "download":
+            download_shards()
+        elif sys.argv[1] == "shuffle":
+            shuffle_shards("data/shards/test")
+        elif sys.argv[1] == "dummy":
+            dummy_shards()
+        else:
+            print("Unknown argument")
+            sys.exit(1)
+        sys.exit(0)
+    else:
+        print("No argument provided")
+        sys.exit(1)
+
 
 
