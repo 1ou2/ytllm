@@ -1,0 +1,11 @@
+beautifulsoup4
+chardet
+datasets
+ebooklib
+pandas
+python-dotenv
+tokenizers
+torch
+tqdm
+numpy
+requests
