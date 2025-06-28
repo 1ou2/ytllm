@@ -8,7 +8,7 @@ import torch.nn as nn
 from torch.nn import functional as F
 import random
 import numpy as np
-from model import GPT, GPTConfig
+from qwen3_model import Qwen3, GPTConfig
 
     
 # ----------------------------------------------------------------------
@@ -197,7 +197,11 @@ nb_shards = TRAINING["n_shards"]
 batch_size = TRAINING["batch_size"]
 # this batch size will probably not fit in memory
 # we will use gradient accumulation to simulate this batch
-grad_accum_steps = batch_size // (B * T * ddp_world_size)
+if B * T * ddp_world_size > batch_size:
+    logger.log_print(f"WARNING: batch_size {batch_size} is smaller than micro_batch_size {B} * context_length {T} * ddp_world_size {ddp_world_size}")
+    grad_accum_steps = 1
+else:
+    grad_accum_steps = batch_size // (B * T * ddp_world_size)
 # we are sample +1 token for y
 # tokens_per_shard = 1048577 = 2^20+1
 epoch_train_steps = ((TRAINING["tokens_per_shard"]-1) // (batch_size)) * nb_shards
@@ -234,9 +238,12 @@ train_loader = IndexedDataLoader(B, T, split="train", nb_shards=nb_shards, token
 
 # custom learning rate function
 from util import get_lr
+print(f"n heads : {GPT_CONFIG['n_head']}")
 
+config = GPTConfig(n_head=GPT_CONFIG["n_head"],n_embd=GPT_CONFIG["n_embd"],block_size=GPT_CONFIG["block_size"],
+                    n_layer=GPT_CONFIG["n_layer"],vocab_size=GPT_CONFIG["vocab_size"],dropout=GPT_CONFIG["dropout"])
 # 1. create model
-model = GPT(GPTConfig())
+model = Qwen3(config)
 # 2. move to the correct GPU
 model.to(device)
 
