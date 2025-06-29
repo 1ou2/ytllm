@@ -65,21 +65,18 @@ def get_lr(step, epoch_steps,epoch=0):
     min_lr = max_lr * 0.1
     warm_up = epoch_steps // 20 # 5%
 
-    if epoch > 0:
-        return min_lr
-
-    # slow learning rate after one epoch
-    if step > epoch_steps:
-        return min_lr
+    # Continue cosine decay across multiple epochs
+    total_steps = epoch * epoch_steps + step
     
-    # go lineary from min_lr to max_lr
-    if step < warm_up:
-        return min_lr + (max_lr - min_lr) * step / warm_up
-    
-    # go from max_lr to min_lr using a cosine function to smooth out the learning rate
-    decay_ratio = (step - warm_up) / (epoch_steps - warm_up)
-    coefficient = 0.5 * (1 + math.cos(math.pi * decay_ratio))
-    return min_lr + (max_lr - min_lr) * coefficient
+    if total_steps < warm_up:
+        # Warmup phase
+        return min_lr + (max_lr - min_lr) * total_steps / warm_up
+    else:
+        # Cosine decay over multiple epochs (not just one)
+        total_decay_steps = epoch_steps * 2  # Decay over 2 epochs instead of 1
+        decay_ratio = min(1.0, (total_steps - warm_up) / (total_decay_steps - warm_up))
+        coefficient = 0.5 * (1 + math.cos(math.pi * decay_ratio))
+        return min_lr + (max_lr - min_lr) * coefficient
 
 
 def plot_loss(stat_file):
@@ -129,5 +126,7 @@ def plot_lr(stat_file):
 
 if __name__ == "__main__":
     
-    plot_loss("docs/concepts/training/e0-stats.txt")
+    #plot_loss("docs/concepts/training/e0-stats.txt")
 
+    epoch = 0
+    epoch_steps = 4000
