@@ -263,7 +263,8 @@ else:
     # the step saved was finished, so we need to increment it
     start_step += 1
     learning_rate = get_lr(start_step,epoch_train_steps,start_epoch)
-    train_loader.set_state(train_loader_state,fill_processed=True)
+    # do not restore data loader
+    #train_loader.set_state(train_loader_state,fill_processed=True)
     shard_index = train_loader.get_shard_index()
     if master_process:
         logger.log_print(f"Checkpoint loaded : {checkpoint}")
@@ -295,7 +296,7 @@ step = start_step
 start_time = time.time()
 t0 = time.time()
 for epoch in range(start_epoch,HYPERS["epochs"]):
-    logger.log_print(f"Starting at epoch: {epoch}")
+    logger.log_print(f"Starting at epoch: {epoch} - epoch train steps = {epoch_train_steps}")
     for step in range(start_step, epoch_train_steps):
         if step > start_step + TRAINING["max_steps"]:
             break
@@ -401,7 +402,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             save_checkpoint(model, optimizer, train_loader, epoch, step, loss_accum.item(), FILES["checkpoint_dir"])
 
     logger.log_print(f"epoch {epoch} done, resetting train loader and starting at step 0")
-    train_loader = IndexedDataLoader(B, T, split="train", nb_shards=nb_shards, token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+    #train_loader = IndexedDataLoader(B, T, split="train", nb_shards=nb_shards, token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
 
     start_step = 0
 
