@@ -121,7 +121,8 @@ class IndexedDataLoader:
         if self.current_shard_index != -1:
             self.processed_shards.append(self.current_shard_index)
             # Remove the current shard from the pool
-            self.shard_pool.pop(0)
+            if self.current_shard_index in self.shard_pool:
+                self.shard_pool.remove(self.current_shard_index)
 
         # Check if we have any more shards to process
         if len(self.shard_pool) == 0:
@@ -158,7 +159,7 @@ class IndexedDataLoader:
         index = shard_name.split("_")[1].split(".")[0]
         return int(index)
 
-    def set_state(self, state,fill_processed=False):
+    def __set_state(self, state,fill_processed=False):
         """ Set the state of the dataloader
         Used to resume after a checkpoint
         state : dict of the state 
@@ -178,6 +179,43 @@ class IndexedDataLoader:
             if fill_processed and self.current_shard_index > 0:
                 self.processed_shards = list(range(self.current_shard_index))
 
+
+    def set_state(self, state, fill_processed=False):
+        """ Set the state of the dataloader
+        Used to resume after a checkpoint
+        state : dict of the state 
+        fill_processed : if the processed shards we not saved, assume we processed all shards up until current shard index
+        """
+        # Set processed shards first
+        if "processed_shards" in state:
+            self.processed_shards = state["processed_shards"]
+        elif fill_processed and "shard_index" in state and state["shard_index"] > 0:
+            # assume shards were processed in order
+            self.processed_shards = list(range(state["shard_index"]))
+        
+        # Update shard pool based on processed shards
+        self.update_shard_pool()
+        
+        # Set the current shard and token index
+        if "shard_index" in state:
+            self.current_shard_index = state["shard_index"]
+            # CRITICAL: Load the correct shard's tokens
+            if self.current_shard_index != -1:
+                self.tokens = load_tokens(self.get_shard_name(self.current_shard_index))
+        else:
+            # If no shard index provided, start from first available shard
+            if len(self.shard_pool) > 0:
+                self.current_shard_index = self.shard_pool[0]
+                self.tokens = load_tokens(self.get_shard_name(self.current_shard_index))
+            else:
+                self.current_shard_index = -1
+        
+        # Set token index
+        if "token_index" in state:
+            self.current_token_index = state["token_index"]
+        else:
+            # Default offset for this process
+            self.current_token_index = self.B * self.T * self.process_rank
 
     def reset(self):
         if len(self.shard_pool) == 0:

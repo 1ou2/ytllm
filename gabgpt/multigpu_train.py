@@ -269,6 +269,7 @@ else:
     if master_process:
         logger.log_print(f"Checkpoint loaded : {checkpoint}")
         logger.log_print(f"| epoch: {start_epoch} | step: {start_step} | shard: {shard_index} | loss: {saved_loss} |")
+        logger.log_print(f"Resumed - Shard: {train_loader.get_shard_index()}, Token: {train_loader.current_token_index}")
 
 optimizer = raw_model.configure_optimizers(weight_decay=0.1, learning_rate=learning_rate, device_type=device_type)
 if checkpoint is not None:
