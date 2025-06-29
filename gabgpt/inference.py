@@ -199,6 +199,7 @@ def load_model(path):
     checkpoint = get_last_checkpoint(path)
     
     if checkpoint is not None:
+        print(f"checkpoint loaded : {checkpoint}")
         load_checkpoint(checkpoint, model, device=device)
 
     return model

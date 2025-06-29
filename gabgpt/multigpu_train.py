@@ -399,6 +399,8 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
         if (step > start_step) and master_process and (step +1) %  TRAINING["checkpoint_interval"]  == 0:
             save_checkpoint(model, optimizer, train_loader, epoch, step, loss_accum.item(), FILES["checkpoint_dir"])
 
+    train_loader.reset()
+
 # save final checkpoint
 if master_process:
     end_time = time.time()

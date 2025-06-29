@@ -155,8 +155,7 @@ class IndexedDataLoader:
         return os.path.join(self.token_dir, sname)
 
     def get_index(self, shard_name)->int:
-        index = shard_name.split("_")[1].split(".")[0]
-        return int(index)
+        return self.current_shard_index
 
     def set_state(self, state,fill_processed=False):
         """ Set the state of the dataloader
