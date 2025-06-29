@@ -285,7 +285,7 @@ if use_compile:
 if master_process:
     logger.log_print(f"epoch: {start_epoch} | step: {start_step} | shard: {shard_index}")
     logger.log_print(f"total steps: {epoch_train_steps * HYPERS['epochs']} | grad accum steps: {grad_accum_steps} | warmup_steps: {warmup_steps}")
-    logger.log_print(f"B: {B} | T: {T} | W: {ddp_world_size} : {B * T * ddp_world_size} tokens | Batch per shards: {(TRAINING["tokens_per_shard"]-1)// TRAINING["batch_size"]}")
+    logger.log_print(f"B: {B} | T: {T} | W: {ddp_world_size} : {B * T * ddp_world_size} tokens | Batch per shards: {(TRAINING['tokens_per_shard']-1)// TRAINING['batch_size']}")
 
 assert start_step < epoch_train_steps, f"start_step {start_step} >= nb_train_steps {epoch_train_steps}"
 #assert TRAINING["checkpoint_interval"] % ((TRAINING["tokens_per_shard"]-1)// TRAINING["batch_size"]) == 0, f"checkpoint_interval {TRAINING['checkpoint_interval']} not divisible by number of batch per shards"
