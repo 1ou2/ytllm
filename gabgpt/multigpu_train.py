@@ -238,7 +238,6 @@ train_loader = IndexedDataLoader(B, T, split="train", nb_shards=nb_shards, token
 
 # custom learning rate function
 from util import get_lr
-print(f"n heads : {GPT_CONFIG['n_head']}")
 
 config = GPTConfig(n_head=GPT_CONFIG["n_head"],n_embd=GPT_CONFIG["n_embd"],block_size=GPT_CONFIG["block_size"],
                     n_layer=GPT_CONFIG["n_layer"],vocab_size=GPT_CONFIG["vocab_size"],dropout=GPT_CONFIG["dropout"])
@@ -402,7 +401,8 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             save_checkpoint(model, optimizer, train_loader, epoch, step, loss_accum.item(), FILES["checkpoint_dir"])
 
     logger.log_print(f"epoch {epoch} done, resetting train loader and starting at step 0")
-    train_loader.reset()
+    train_loader = IndexedDataLoader(B, T, split="train", nb_shards=nb_shards, token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+
     start_step = 0
 
 # save final checkpoint
