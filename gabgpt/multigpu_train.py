@@ -412,7 +412,7 @@ if master_process:
     Tokens/s: {(B*T*(step - start_step)*ddp_world_size)/(end_time - start_time)}
     Loss: {loss_accum.item()}
     Total Tokens: {B}*{T}*{step} = {B*T*step}
-    Shard index: {train_loader.get_index()}
+    Shard index: {train_loader.current_shard_index}
     """
     logger.log_print(wrapup_message)
     logger.close()
