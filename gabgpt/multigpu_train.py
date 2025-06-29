@@ -295,6 +295,7 @@ step = start_step
 start_time = time.time()
 t0 = time.time()
 for epoch in range(start_epoch,HYPERS["epochs"]):
+    logger.log_print(f"Starting at epoch: {epoch}")
     for step in range(start_step, epoch_train_steps):
         if step > start_step + TRAINING["max_steps"]:
             break
@@ -399,7 +400,9 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
         if (step > start_step) and master_process and (step +1) %  TRAINING["checkpoint_interval"]  == 0:
             save_checkpoint(model, optimizer, train_loader, epoch, step, loss_accum.item(), FILES["checkpoint_dir"])
 
+    logger.log_print(f"epoch {epoch} done, resetting")}")
     train_loader.reset()
+    start_step = 0
 
 # save final checkpoint
 if master_process:
