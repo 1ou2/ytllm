@@ -174,3 +174,9 @@ n_layers = 16
 n_heads = 16
 
 
+# Datasets
+Fineweb2 https://huggingface.co/datasets/HuggingFaceFW/fineweb-2
+https://arxiv.org/pdf/2506.20920
+
+# Optimisation
+NeoBert : https://arxiv.org/pdf/2502.19587

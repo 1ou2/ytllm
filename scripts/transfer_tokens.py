@@ -38,10 +38,11 @@ def download_shards():
     if remote_dir is None or not remote_dir:
         raise ValueError("remote dir AWS_DIR not found")
 
-    for suffix in ["aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq"]:
-        remote_path = f"https://s3.us-west-2.amazonaws.com/{remote_dir}/tokens_part{suffix}"
+    for suffix in ["aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as"]:
+        remote_path = f"https://s3.us-west-2.amazonaws.com/{remote_dir}/shards_{suffix}"
         # download shards from s3
         os.system(f"wget {remote_path}")
+        break
 
 def shuffle_shards(shard_dir="data/shards/train"):
     # get all shards
