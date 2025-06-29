@@ -65,6 +65,9 @@ def get_lr(step, epoch_steps,epoch=0):
     min_lr = max_lr * 0.1
     warm_up = epoch_steps // 20 # 5%
 
+    if epoch > 0:
+        return min_lr
+
     # Continue cosine decay across multiple epochs
     total_steps = epoch * epoch_steps + step
     
