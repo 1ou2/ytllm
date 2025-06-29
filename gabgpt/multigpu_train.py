@@ -263,7 +263,7 @@ else:
     train_loader_state, start_epoch, start_step, saved_loss = load_parameters(checkpoint)
     # the step saved was finished, so we need to increment it
     start_step += 1
-    learning_rate = get_lr(start_step,start_epoch)
+    learning_rate = get_lr(start_step,epoch_train_steps,start_epoch)
     train_loader.set_state(train_loader_state,fill_processed=True)
     shard_index = train_loader.get_shard_index()
     if master_process:
@@ -306,10 +306,10 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             tokens_processed = B * T * ddp_world_size * TRAINING["log_interval"]
             tokens_per_sec = tokens_processed / dt
 
-            logger.log_print(f"step {step:5d} | loss: {loss_accum.item():.6f} | lr: {get_lr(step,epoch):.7f} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
+            logger.log_print(f"step {step:5d} | loss: {loss_accum.item():.6f} | lr: {get_lr(step,epoch_train_steps,epoch):.7f} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
             
             # Write stats in CSV format for easy parsing
-            stats_msg = f"{epoch},{step},{loss_accum.item()},{get_lr(step,epoch)},0\n"
+            stats_msg = f"{epoch},{step},{loss_accum.item()},{get_lr(step,epoch_train_steps,epoch)},0\n"
             stats_file.write(stats_msg)
             stats_file.flush()
             t0 = time.time()
@@ -367,7 +367,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             if master_process:
                 logger.log_print(f"step {step:5d} | validation loss: {val_loss_accum.item():.4f} |")
                 # Write stats in CSV format for easy parsing
-                stats_msg = f"{epoch},{step},{val_loss_accum.item()},{get_lr(step,epoch)},1\n"
+                stats_msg = f"{epoch},{step},{val_loss_accum.item()},{get_lr(step,epoch_train_steps,epoch)},1\n"
                 stats_file.write(stats_msg)
                 stats_file.flush()
 
@@ -390,7 +390,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             dist.all_reduce(loss_accum, op=dist.ReduceOp.AVG)
     
         norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-        lr = get_lr(step, epoch_train_steps)
+        lr = get_lr(step, epoch_train_steps,epoch=epoch)
         for param_group in optimizer.param_groups:
             param_group['lr'] = lr
         optimizer.step()
