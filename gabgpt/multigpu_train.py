@@ -275,8 +275,6 @@ optimizer = raw_model.configure_optimizers(weight_decay=0.1, learning_rate=learn
 if checkpoint is not None:
     load_checkpoint(checkpoint, model, optimizer, device=device)
 
-
-
 # 4. compile
 use_compile = TRAINING["use_compile"] 
 if use_compile:
