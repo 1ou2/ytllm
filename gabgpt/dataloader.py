@@ -19,13 +19,11 @@ class SingleFileDataLoader:
         self.device_type = device_type
         self.device = device
 
-    def get_batch(self, split):
+    def get_batch(self, filename):
         # We recreate np.memmap every batch to avoid a memory leak, as per
         # https://stackoverflow.com/questions/45132940/numpy-memmap-memory-usage-want-to-iterate-once/61472122#61472122
-        if split == 'train':
-            data = np.memmap(os.path.join(self.data_dir, 'train.bin'), dtype=np.uint16, mode='r')
-        else:
-            data = np.memmap(os.path.join(self.data_dir, 'val.bin'), dtype=np.uint16, mode='r')
+
+        data = np.memmap(os.path.join(self.data_dir, filename), dtype=np.uint16, mode='r')
         ix = torch.randint(len(data) - self.block_size, (self.batch_size,))
         x = torch.stack([torch.from_numpy((data[i:i+self.block_size]).astype(np.int64)) for i in ix])
         y = torch.stack([torch.from_numpy((data[i+1:i+1+self.block_size]).astype(np.int64)) for i in ix])

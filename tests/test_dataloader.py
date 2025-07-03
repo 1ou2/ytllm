@@ -74,6 +74,7 @@ def test_single_file_dataloader():
     
     # Initialize SingleFileDataLoader
     data_dir = "tmp/"  # assuming .bin files are here
+    data_dir = "data/tokenized/wikipedia/"
     block_size = 1024
     batch_size = 1
     device = torch.device('cpu')
@@ -88,7 +89,7 @@ def test_single_file_dataloader():
     
     try:
         # Get one batch
-        x, y = loader.get_batch('train')
+        x, y = loader.get_batch("shard_000003.npy")
         
         print(f"SingleFile - Batch shape: {x.shape}")
         print(f"SingleFile - Target shape: {y.shape}")

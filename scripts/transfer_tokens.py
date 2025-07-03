@@ -53,6 +53,20 @@ def download_shards(max_nb_shards=1000):
         if max_nb_shards == 0:
             break
 
+def combine_shards(input_dir:str=".", file_prefix:str="shards_"):
+    """Combine shards into a single file"""
+    # get all shards
+    shards = os.listdir(input_dir)
+    # sort shards
+    shards.sort()
+    # combine shards
+    output_file = input_dir + "/shards.tar"
+    # use cat system command, as shards were created using split
+    all_shards = " ".join([input_dir + "/" + shard for shard in shards])
+    print(f"Combining files : {all_shards}")
+    os.system(f"cat {all_shards} > {output_file}")
+    print(f"Output: {output_file}")
+
 def shuffle_shards(shard_dir="data/shards/train"):
     # get all shards
     shards = os.listdir(shard_dir)
@@ -155,6 +169,10 @@ if __name__ == "__main__":
             input_dir = sys.argv[2] if len(sys.argv) > 2 else "data/shards/test"
             output_file = sys.argv[3] if len(sys.argv) > 3 else "data/shards/test.bin"
             concatenate_npy_shards(input_dir, output_file)
+        elif sys.argv[1] == "combine":
+            input_dir = sys.argv[2] if len(sys.argv) > 2 else "."
+            file_prefix = sys.argv[3] if len(sys.argv) > 3 else "shards_"
+            combine_shards(input_dir,file_prefix)
         elif sys.argv[1] == "dummy":
             dummy_shards()
         else:
