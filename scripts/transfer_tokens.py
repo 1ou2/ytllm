@@ -2,6 +2,9 @@ import os
 import sys
 from dotenv import load_dotenv
 import random
+import numpy as np
+import glob
+from tqdm import tqdm
 
 token_root_dir = "data/tokenized/"
 token_dirs = ["gutenberg", "news", "wikipedia"]
@@ -31,18 +34,24 @@ def package_shards():
     # split the tarball into 10 shards
     os.system("split -b 200M data/shards.tar tokens_part")
 
-def download_shards():
+def download_shards(max_nb_shards=1000):
+    """Download shards from AWS
+    Args
+    max_nb_shards: maximum number of shards to download"""
     load_dotenv()
     remote_dir = os.getenv("AWS_DIR")
     # raise error if remote_dir not set
     if remote_dir is None or not remote_dir:
         raise ValueError("remote dir AWS_DIR not found")
 
+
     for suffix in ["aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as"]:
         remote_path = f"https://s3.us-west-2.amazonaws.com/{remote_dir}/shards_{suffix}"
         # download shards from s3
         os.system(f"wget {remote_path}")
-        break
+        max_nb_shards -= 1
+        if max_nb_shards == 0:
+            break
 
 def shuffle_shards(shard_dir="data/shards/train"):
     # get all shards
@@ -68,6 +77,69 @@ def dummy_shards():
         with open(f"data/shards/test/shard_{i:06d}.npy", "w") as f:
             f.write(str(i))
 
+
+def concatenate_npy_shards(input_dir, output_file, dtype=np.uint16):
+    """
+    Concatenate multiple .npy files into a single binary file.
+    
+    Args:
+        input_dir: Directory containing .npy files
+        output_file: Output binary file path
+        dtype: Data type for output (np.uint16 for nanoGPT)
+    """
+    
+    # Find all .npy files
+    print(os.path.join(input_dir))
+    npy_files = glob.glob(os.path.join(input_dir, "*.npy"))
+    npy_files.sort()  # Ensure consistent ordering
+    
+    print(f"Found {len(npy_files)} .npy files")
+    
+    if len(npy_files) == 0:
+        raise ValueError(f"No .npy files found in {input_dir}")
+    
+    # Check first file to understand the data
+    first_array = np.load(npy_files[0])
+    print(f"First file shape: {first_array.shape}")
+    print(f"First file dtype: {first_array.dtype}")
+    print(f"Expected total tokens: {len(npy_files) * len(first_array):,}")
+    
+    # Memory-efficient concatenation using memory mapping
+    total_tokens = 0
+    
+    # First pass: count total tokens
+    print("Counting total tokens...")
+    for npy_file in tqdm(npy_files):
+        arr = np.load(npy_file)
+        total_tokens += len(arr)
+    
+    print(f"Total tokens: {total_tokens:,}")
+    
+    # Create memory-mapped output file
+    print(f"Creating output file: {output_file}")
+    output_array = np.memmap(output_file, dtype=dtype, mode='w+', shape=(total_tokens,))
+    
+    # Second pass: copy data
+    print("Copying data...")
+    offset = 0
+    for npy_file in tqdm(npy_files):
+        arr = np.load(npy_file)
+        
+        # Convert to target dtype if needed
+        if arr.dtype != dtype:
+            arr = arr.astype(dtype)
+        
+        # Copy to output
+        output_array[offset:offset + len(arr)] = arr
+        offset += len(arr)
+    
+    # Ensure data is written to disk
+    del output_array
+    
+    print(f"Successfully created {output_file}")
+    print(f"Final size: {total_tokens:,} tokens ({total_tokens * np.dtype(dtype).itemsize / 1e9:.2f} GB)")
+
+
 if __name__ == "__main__":
 
     # argument parsing
@@ -75,9 +147,14 @@ if __name__ == "__main__":
         if sys.argv[1] == "package":
             package_shards()
         elif sys.argv[1] == "download":
-            download_shards()
+            max_shards = int(sys.argv[2]) if len(sys.argv) > 2 else 1000
+            download_shards(max_shards)
         elif sys.argv[1] == "shuffle":
             shuffle_shards("data/shards/test")
+        elif sys.argv[1] == "concatenate":
+            input_dir = sys.argv[2] if len(sys.argv) > 2 else "data/shards/test"
+            output_file = sys.argv[3] if len(sys.argv) > 3 else "data/shards/test.bin"
+            concatenate_npy_shards(input_dir, output_file)
         elif sys.argv[1] == "dummy":
             dummy_shards()
         else:
@@ -86,6 +163,13 @@ if __name__ == "__main__":
         sys.exit(0)
     else:
         print("No argument provided")
+        print("Usage: python transfer_tokens.py <package|download|shuffle|concatenate>")
+        print("Example: python transfer_tokens.py package")
+        # add usage with additional args for download and concatenate
+        print("*download* max_nb_shards: optional arg max nb of shards downloaded")
+        print("Example: python transfer_tokens.py download 3")
+        print("*concatenate* input_dir output_file: optional args input_dir and output_file")
+        print("Example: python transfer_tokens.py concatenate data/shards/test data/shards/test.bin")
         sys.exit(1)
 
 
