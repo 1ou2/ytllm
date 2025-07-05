@@ -87,6 +87,7 @@ nb_dataset_tokens = int(TRAINING["nb_dataset_tokens"])  # dataset token size = 1
 tokens_per_iter = gradient_accumulation_steps * ddp_world_size * batch_size * block_size
 # Calculate max_iters based on dataset size and tokens per iteration
 max_iters = (nb_epochs * nb_dataset_tokens) // tokens_per_iter
+iters_per_epoch = nb_dataset_tokens // tokens_per_iter  # iterations per epoch
 warmup_iters = max_iters // 20 # how many steps to warm up for
 lr_decay_iters = max_iters  # should be ~= max_iters per Chinchilla
 
@@ -256,12 +257,26 @@ def get_lr(it):
     coeff = 0.5 * (1.0 + math.cos(math.pi * decay_ratio)) # coeff ranges 0..1
     return min_lr + coeff * (learning_rate - min_lr)
 
+# Function to save epoch checkpoint
+def save_epoch_checkpoint(epoch, iter_num, best_val_loss, raw_model, optimizer):
+    if master_process:
+        checkpoint = {
+            'model': raw_model.state_dict(),
+            'optimizer': optimizer.state_dict(),
+            'iter_num': iter_num,
+            'best_val_loss': best_val_loss,
+            'epoch': epoch,
+        }
+        epoch_checkpoint_path = os.path.join(out_dir, f'ckpt-epoch-{epoch}.pt')
+        logger.log_print(f"saving epoch {epoch} checkpoint to {epoch_checkpoint_path}")
+        torch.save(checkpoint, epoch_checkpoint_path)
 
 # training loop
 X, Y = get_batch('train') # fetch the very first batch
 t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
 raw_model = model.module if ddp else model # unwrap DDP container if needed
+last_saved_epoch = 0  # Track the last saved epoch to avoid duplicate saves
 
 while True:
 
@@ -269,6 +284,12 @@ while True:
     lr = get_lr(iter_num) if decay_lr else learning_rate
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
+
+    # Check if we've completed an epoch and save checkpoint
+    current_epoch = iter_num // iters_per_epoch
+    if current_epoch > last_saved_epoch and iter_num > 0:
+        save_epoch_checkpoint(current_epoch, iter_num, best_val_loss, raw_model, optimizer)
+        last_saved_epoch = current_epoch
 
     # evaluate the loss on train/val sets and write checkpoints
     if iter_num % eval_interval == 0 and master_process:
@@ -332,6 +353,16 @@ while True:
 
     # termination conditions
     if iter_num > max_iters:
+        if master_process:
+            # save final checkpoint
+            checkpoint = {
+                'model': raw_model.state_dict(),
+                'optimizer': optimizer.state_dict(),
+                'iter_num': iter_num,
+                'best_val_loss': best_val_loss,
+            }
+            logger.log_print(f"saving final checkpoint to {out_dir}")
+            torch.save(checkpoint, os.path.join(out_dir, 'ckpt-final.pt'))
         break
 
 if ddp:
