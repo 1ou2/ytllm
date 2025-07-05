@@ -25,7 +25,7 @@ from qwen3_model import Qwen3, GPTConfig
 from tokenizers import ByteLevelBPETokenizer
 from util import load_config, LogPrinter
 
-GPT_CONFIG, HYPERS, FILES, TRAINING = load_config(config_file="config-dev.txt")
+GPT_CONFIG, HYPERS, FILES, TRAINING = load_config(config_file="config.txt")
 
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
@@ -347,7 +347,7 @@ while True:
         # scale up to undo the division above, approximating the true total loss (exact would have been a sum)
         lossf = loss.item() * gradient_accumulation_steps
         token_per_second = int(tokens_per_iter / dt)
-        logger.log_print(f"iter {iter_num}: loss {lossf:.4f}, lr {lr:.2e}, time {dt*1000:.2f}ms, tok/s {token_per_second}")
+        logger.log_print(f"iter {iter_num:5d}: loss {lossf:.4f}, lr {lr:.2e}, time {dt*1000:.2f}ms, tok/s {token_per_second}")
     iter_num += 1
     local_iter_num += 1
 
