@@ -44,14 +44,17 @@ def load_config(config_file="config.txt"):
     return GPT_CONFIG, HYPERS, FILES, TRAINING
 
 class LogPrinter:
-    def __init__(self, log_file):
+    def __init__(self, log_file,ddp_rank):
         # check if parent directory exists
         parent_dir = os.path.dirname(log_file)
         if not os.path.exists(parent_dir):
             os.makedirs(parent_dir)
         self.log_file = open(log_file,"a")
+        self.ddp_rank = ddp_rank
 
-    def log_print(self, msg):
+    def log_print(self, msg, master_process_only=True):
+        if master_process_only and self.ddp_rank != 0:
+            return
         print(msg)
         self.log_file.write(msg + "\n")
         self.log_file.flush()

@@ -73,8 +73,8 @@ def test_single_file_dataloader():
     tokenizer.add_special_tokens(special_tokens)
     
     # Initialize SingleFileDataLoader
-    data_dir = "tmp/"  # assuming .bin files are here
-    data_dir = "data/tokenized/wikipedia/"
+    data_dir = "data/tmp"  # assuming .bin files are here
+    #data_dir = "data/tokenized/wikipedia/"
     block_size = 1024
     batch_size = 1
     device = torch.device('cpu')
@@ -89,14 +89,14 @@ def test_single_file_dataloader():
     
     try:
         # Get one batch
-        x, y = loader.get_batch("shard_000003.npy")
+        x, y = loader.get_batch("train.npy")
         
         print(f"SingleFile - Batch shape: {x.shape}")
         print(f"SingleFile - Target shape: {y.shape}")
         
         # Print first sequence tokens
         tokens = x[0].tolist()
-        print(f"\nSingleFile : {tokens}")
+        #print(f"\nSingleFile : {tokens}")
         # check if 0 is in the tokens and print a warning
 
         
@@ -139,6 +139,6 @@ def test_tokenizer_special_tokens():
         print(f"{token} -> {ids} -> '{decoded}'")
 
 if __name__ == "__main__":
-    test_tokenizer_special_tokens()
+    #test_tokenizer_special_tokens()
     print("\n" + "="*50 + "\n")
     test_single_file_dataloader()

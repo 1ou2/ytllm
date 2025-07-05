@@ -180,14 +180,17 @@ if __name__ == "__main__":
             sys.exit(1)
         sys.exit(0)
     else:
-        print("No argument provided")
-        print("Usage: python transfer_tokens.py <package|download|shuffle|concatenate>")
-        print("Example: python transfer_tokens.py package")
+        print("No argument provided.")
+        print("Usage: python transfer_tokens.py <package|download|shuffle|combine|concatenate>")
         # add usage with additional args for download and concatenate
-        print("*download* max_nb_shards: optional arg max nb of shards downloaded")
-        print("Example: python transfer_tokens.py download 3")
-        print("*concatenate* input_dir output_file: optional args input_dir and output_file")
-        print("Example: python transfer_tokens.py concatenate data/shards/test data/shards/test.bin")
+        print("\nAdditional args: ")
+        print(" - download max_nb_shards")
+        print(" - combine input_dir file_prefix")
+        print(" - concatenate input_dir output_file")
+        print("\nExamples:")
+        print(" - python transfer_tokens.py package")
+        print(" - python transfer_tokens.py download 3")
+        print(" - python transfer_tokens.py concatenate data/shards/test data/shards/test.bin")
         sys.exit(1)
 
 
