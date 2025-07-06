@@ -1,3 +1,4 @@
+```bash
 sudo apt update
 sudo apt install python3.10-venv
 sudo apt install python3-dev
@@ -7,4 +8,5 @@ cd ytllm
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
 
