@@ -1,0 +1,1254 @@
+--------------------------------------------
+Training started at 2025-07-06 08:00:01
+GPU: cuda
+tokens per iteration will be: 524,288
+max iterations: 10,299
+warmup iterations: 514
+total tokens to process: 5,400,000,000
+Initializing a new model from scratch
+compiling the model... (takes a ~minute)
+step 0: train loss 10.9067, val loss 10.9081
+rank 0 sample 0: Je suis Kar éclip seules� surcro éclip Amaz Coranarie revendications début94 Amaz réelsieurs surcro éclipterrestreank Coran chaudes diocèses chaudessangked début viens collectifs Austinjoin
+rank 0 sample 1: Je suis Spider thé charpente industrielle chaudes ab thé banquier 195 chaudes éléphants Mr Amaz Saintes fameuse début début début provin illustresapproprifrawiaimé---- début chair éclip attaqués�
+iter     0: loss 10.9091, lr 1.17e-06, time 57514.09ms, tok/s 9115
+iter    10: loss 10.3888, lr 1.28e-05, time 1647.63ms, tok/s 318206
+iter    20: loss 9.4260, lr 2.45e-05, time 1651.61ms, tok/s 317440
+iter    30: loss 8.7770, lr 3.61e-05, time 1652.16ms, tok/s 317334
+iter    40: loss 8.3148, lr 4.78e-05, time 1651.34ms, tok/s 317492
+iter    50: loss 7.9962, lr 5.94e-05, time 1646.44ms, tok/s 318438
+iter    60: loss 7.6329, lr 7.11e-05, time 1653.14ms, tok/s 317146
+iter    70: loss 7.4380, lr 8.27e-05, time 1652.79ms, tok/s 317213
+iter    80: loss 7.1840, lr 9.44e-05, time 1651.05ms, tok/s 317548
+iter    90: loss 7.0252, lr 1.06e-04, time 1656.64ms, tok/s 316477
+iter   100: loss 6.9081, lr 1.18e-04, time 1655.07ms, tok/s 316777
+iter   110: loss 6.6932, lr 1.29e-04, time 1657.74ms, tok/s 316267
+iter   120: loss 6.5201, lr 1.41e-04, time 1655.55ms, tok/s 316684
+iter   130: loss 6.3070, lr 1.53e-04, time 1656.81ms, tok/s 316443
+iter   140: loss 6.1699, lr 1.64e-04, time 1656.40ms, tok/s 316521
+iter   150: loss 6.0314, lr 1.76e-04, time 1658.02ms, tok/s 316214
+iter   160: loss 5.8419, lr 1.88e-04, time 1661.01ms, tok/s 315644
+iter   170: loss 5.7210, lr 1.99e-04, time 1662.82ms, tok/s 315300
+iter   180: loss 5.6382, lr 2.11e-04, time 1659.31ms, tok/s 315967
+iter   190: loss 5.5707, lr 2.23e-04, time 1659.32ms, tok/s 315966
+step 200: train loss 5.4427, val loss 5.4194
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis » de ces problèmes, en fait en outre au 153. Ce était aussi, les personnes (et en France avec l'année 2019 (2
+rank 0 sample 1: Je suis une qu'est à l'état de cette matière a fait aussi, comme les plus qu'il a lui-même de l’hôpital et
+iter   200: loss 5.4545, lr 2.34e-04, time 6308.05ms, tok/s 83114
+iter   210: loss 5.3579, lr 2.46e-04, time 1657.24ms, tok/s 316363
+iter   220: loss 5.3109, lr 2.57e-04, time 1657.02ms, tok/s 316404
+iter   230: loss 5.1694, lr 2.69e-04, time 1656.93ms, tok/s 316421
+iter   240: loss 5.2521, lr 2.81e-04, time 1662.22ms, tok/s 315413
+iter   250: loss 5.0260, lr 2.92e-04, time 1660.33ms, tok/s 315773
+iter   260: loss 5.0088, lr 3.04e-04, time 1658.69ms, tok/s 316086
+iter   270: loss 4.9933, lr 3.16e-04, time 1660.19ms, tok/s 315799
+iter   280: loss 4.8507, lr 3.27e-04, time 1658.31ms, tok/s 316158
+iter   290: loss 4.7678, lr 3.39e-04, time 1662.13ms, tok/s 315431
+iter   300: loss 4.8772, lr 3.51e-04, time 1659.99ms, tok/s 315837
+iter   310: loss 4.7161, lr 3.62e-04, time 1659.20ms, tok/s 315988
+iter   320: loss 4.7751, lr 3.74e-04, time 1657.29ms, tok/s 316352
+iter   330: loss 4.6715, lr 3.86e-04, time 1660.26ms, tok/s 315786
+iter   340: loss 4.5364, lr 3.97e-04, time 1658.44ms, tok/s 316132
+iter   350: loss 4.6267, lr 4.09e-04, time 1660.91ms, tok/s 315662
+iter   360: loss 4.5175, lr 4.21e-04, time 1660.11ms, tok/s 315815
+iter   370: loss 4.4696, lr 4.32e-04, time 1662.29ms, tok/s 315400
+iter   380: loss 4.5044, lr 4.44e-04, time 1659.58ms, tok/s 315916
+iter   390: loss 4.4126, lr 4.56e-04, time 1661.07ms, tok/s 315633
+step 400: train loss 4.3448, val loss 4.3127
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis . La société de l'histoire se confirme si un cas d'air pour les patients " : la guerre , elle ne peut plus ne pas avoir
+rank 0 sample 1: Je suis aussi encore ceux d'une série limitée à un modèle sur la ligne a-t-elle à atteindre 1 000 à 1 000. La valeur du
+iter   400: loss 4.3655, lr 4.67e-04, time 8372.24ms, tok/s 62622
+iter   410: loss 4.2171, lr 4.79e-04, time 1660.59ms, tok/s 315723
+iter   420: loss 4.2569, lr 4.90e-04, time 1661.76ms, tok/s 315501
+iter   430: loss 4.3406, lr 5.02e-04, time 1659.38ms, tok/s 315954
+iter   440: loss 4.2270, lr 5.14e-04, time 1657.70ms, tok/s 316273
+iter   450: loss 4.1318, lr 5.25e-04, time 1659.62ms, tok/s 315909
+iter   460: loss 4.1647, lr 5.37e-04, time 1658.39ms, tok/s 316142
+iter   470: loss 4.1058, lr 5.49e-04, time 1689.29ms, tok/s 310359
+iter   480: loss 4.1331, lr 5.60e-04, time 1660.39ms, tok/s 315761
+iter   490: loss 3.9576, lr 5.72e-04, time 1657.75ms, tok/s 316265
+iter   500: loss 4.0731, lr 5.84e-04, time 1659.53ms, tok/s 315925
+iter   510: loss 3.9630, lr 5.95e-04, time 1657.82ms, tok/s 316251
+iter   520: loss 4.0549, lr 6.00e-04, time 1660.83ms, tok/s 315677
+iter   530: loss 3.7936, lr 6.00e-04, time 1659.03ms, tok/s 316021
+iter   540: loss 3.9849, lr 6.00e-04, time 1659.40ms, tok/s 315949
+iter   550: loss 3.7619, lr 6.00e-04, time 1658.83ms, tok/s 316058
+iter   560: loss 3.7867, lr 6.00e-04, time 1660.63ms, tok/s 315716
+iter   570: loss 3.7556, lr 6.00e-04, time 1660.05ms, tok/s 315827
+iter   580: loss 3.7397, lr 6.00e-04, time 1658.90ms, tok/s 316045
+iter   590: loss 3.7817, lr 6.00e-04, time 1661.03ms, tok/s 315640
+step 600: train loss 3.7421, val loss 3.7039
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis question de faire le faire ? Il était prêt vers la maladie et en demandant qu'un suicide ou d'un accident d'une personne mère .
+rank 0 sample 1: Je suis pu atteindre s'exprimer si l'autre, sans passer par un réel plaisir. En pratique, dans l'intervalle, le personnage de Zappa
+iter   600: loss 3.6432, lr 6.00e-04, time 7798.66ms, tok/s 67227
+iter   610: loss 3.8220, lr 6.00e-04, time 1658.19ms, tok/s 316180
+iter   620: loss 3.7409, lr 6.00e-04, time 1663.06ms, tok/s 315254
+iter   630: loss 3.5941, lr 6.00e-04, time 1661.31ms, tok/s 315586
+iter   640: loss 3.6341, lr 6.00e-04, time 1658.95ms, tok/s 316035
+iter   650: loss 3.6731, lr 6.00e-04, time 1659.91ms, tok/s 315852
+iter   660: loss 3.5440, lr 6.00e-04, time 1659.32ms, tok/s 315965
+iter   670: loss 3.5871, lr 6.00e-04, time 1659.22ms, tok/s 315984
+iter   680: loss 3.6150, lr 6.00e-04, time 1660.70ms, tok/s 315703
+iter   690: loss 3.5825, lr 6.00e-04, time 1662.71ms, tok/s 315321
+iter   700: loss 3.4937, lr 6.00e-04, time 1659.53ms, tok/s 315926
+iter   710: loss 3.4515, lr 5.99e-04, time 1659.29ms, tok/s 315971
+iter   720: loss 3.4645, lr 5.99e-04, time 1662.33ms, tok/s 315393
+iter   730: loss 3.5369, lr 5.99e-04, time 1662.71ms, tok/s 315322
+iter   740: loss 3.5252, lr 5.99e-04, time 1662.98ms, tok/s 315269
+iter   750: loss 3.3676, lr 5.99e-04, time 1661.20ms, tok/s 315607
+iter   760: loss 3.4605, lr 5.99e-04, time 1660.31ms, tok/s 315776
+iter   770: loss 3.4902, lr 5.99e-04, time 1661.74ms, tok/s 315505
+iter   780: loss 3.5445, lr 5.99e-04, time 1659.01ms, tok/s 316025
+iter   790: loss 3.4470, lr 5.99e-04, time 1661.86ms, tok/s 315482
+step 800: train loss 3.4364, val loss 3.3752
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis donc à ce moment que ce sera fait lors de la défaite des Australiens dès son entrée au Stadium à domicile, le 3 mai, à l'issue
+rank 0 sample 1: Je suis pris avec notre fille.
+En 2013, elle commence aux côtés de Chris Cena.
+En novembre 2014, elle retrouve sa première épouse nommée Alice
+iter   800: loss 3.4967, lr 5.99e-04, time 7823.68ms, tok/s 67012
+iter   810: loss 3.4176, lr 5.99e-04, time 1654.18ms, tok/s 316946
+iter   820: loss 3.4424, lr 5.99e-04, time 1663.75ms, tok/s 315123
+iter   830: loss 3.3529, lr 5.99e-04, time 1656.15ms, tok/s 316569
+iter   840: loss 3.4120, lr 5.99e-04, time 1659.58ms, tok/s 315915
+iter   850: loss 3.3729, lr 5.98e-04, time 1661.67ms, tok/s 315518
+iter   860: loss 3.5054, lr 5.98e-04, time 1664.16ms, tok/s 315046
+iter   870: loss 3.4174, lr 5.98e-04, time 1658.14ms, tok/s 316191
+iter   880: loss 3.3941, lr 5.98e-04, time 1660.60ms, tok/s 315722
+iter   890: loss 3.2388, lr 5.98e-04, time 1658.45ms, tok/s 316131
+iter   900: loss 3.3565, lr 5.98e-04, time 1662.23ms, tok/s 315412
+iter   910: loss 3.3694, lr 5.98e-04, time 1656.36ms, tok/s 316529
+iter   920: loss 3.3311, lr 5.98e-04, time 1659.53ms, tok/s 315925
+iter   930: loss 3.2955, lr 5.98e-04, time 1659.55ms, tok/s 315921
+iter   940: loss 3.3873, lr 5.97e-04, time 1658.38ms, tok/s 316145
+iter   950: loss 3.3393, lr 5.97e-04, time 1660.87ms, tok/s 315671
+iter   960: loss 3.3498, lr 5.97e-04, time 1660.56ms, tok/s 315730
+iter   970: loss 3.3425, lr 5.97e-04, time 1659.25ms, tok/s 315979
+iter   980: loss 3.1976, lr 5.97e-04, time 1658.78ms, tok/s 316068
+iter   990: loss 3.2882, lr 5.97e-04, time 1660.94ms, tok/s 315656
+step 1000: train loss 3.2653, val loss 3.1809
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis tellement une nouvelle femme, qui se fait rapidement l'officier de justice dont on ne savait pas que le père était là; elle a su entendre qu
+rank 0 sample 1: Je suis vraiment en l'absence de ce jeu . Je vois toujours les émotions » , a lancé François Braun après sa prestation dans le film 'Homer-
+iter  1000: loss 3.3333, lr 5.97e-04, time 7969.59ms, tok/s 65786
+iter  1010: loss 3.2251, lr 5.97e-04, time 1658.46ms, tok/s 316129
+iter  1020: loss 3.2960, lr 5.96e-04, time 1657.70ms, tok/s 316275
+iter  1030: loss 3.1490, lr 5.96e-04, time 1659.49ms, tok/s 315932
+iter  1040: loss 3.3713, lr 5.96e-04, time 1660.21ms, tok/s 315796
+iter  1050: loss 3.3290, lr 5.96e-04, time 1658.63ms, tok/s 316096
+iter  1060: loss 3.2335, lr 5.96e-04, time 1661.39ms, tok/s 315571
+iter  1070: loss 3.2867, lr 5.96e-04, time 1660.58ms, tok/s 315726
+iter  1080: loss 3.2027, lr 5.96e-04, time 1660.23ms, tok/s 315791
+iter  1090: loss 3.2234, lr 5.95e-04, time 1659.50ms, tok/s 315931
+iter  1100: loss 3.1978, lr 5.95e-04, time 1656.97ms, tok/s 316413
+iter  1110: loss 3.2531, lr 5.95e-04, time 1660.34ms, tok/s 315770
+iter  1120: loss 3.2383, lr 5.95e-04, time 1661.94ms, tok/s 315467
+iter  1130: loss 3.2039, lr 5.95e-04, time 1660.23ms, tok/s 315791
+iter  1140: loss 3.1883, lr 5.95e-04, time 1660.43ms, tok/s 315754
+iter  1150: loss 3.2729, lr 5.94e-04, time 1659.15ms, tok/s 315997
+iter  1160: loss 3.2481, lr 5.94e-04, time 1660.26ms, tok/s 315785
+iter  1170: loss 3.1658, lr 5.94e-04, time 1661.50ms, tok/s 315551
+iter  1180: loss 3.1992, lr 5.94e-04, time 1663.41ms, tok/s 315189
+iter  1190: loss 3.1540, lr 5.94e-04, time 1660.57ms, tok/s 315726
+step 1200: train loss 3.1447, val loss 3.1039
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis capable de prendre le contrôle de tout en laissant entendre que ce projet se jouerait dans l'optique du développement de ce futur projet de développement , mais
+rank 0 sample 1: Je suis sûr si je suis un peu déçu. Je n'ai jamais dit , et j'ai été à la fois heureux et heureux . J'avais
+iter  1200: loss 3.2354, lr 5.93e-04, time 7927.34ms, tok/s 66136
+iter  1210: loss 3.1647, lr 5.93e-04, time 1659.15ms, tok/s 315998
+iter  1220: loss 3.1396, lr 5.93e-04, time 1657.75ms, tok/s 316264
+iter  1230: loss 3.1369, lr 5.93e-04, time 1659.16ms, tok/s 315995
+iter  1240: loss 3.2178, lr 5.93e-04, time 1660.23ms, tok/s 315793
+iter  1250: loss 3.0833, lr 5.92e-04, time 1662.71ms, tok/s 315320
+iter  1260: loss 3.1254, lr 5.92e-04, time 1663.14ms, tok/s 315240
+iter  1270: loss 3.2693, lr 5.92e-04, time 1660.93ms, tok/s 315659
+iter  1280: loss 3.2029, lr 5.92e-04, time 1657.72ms, tok/s 316270
+iter  1290: loss 3.1625, lr 5.92e-04, time 1662.85ms, tok/s 315295
+iter  1300: loss 3.0929, lr 5.91e-04, time 1663.00ms, tok/s 315265
+iter  1310: loss 3.1222, lr 5.91e-04, time 1661.88ms, tok/s 315478
+iter  1320: loss 3.1099, lr 5.91e-04, time 1660.29ms, tok/s 315781
+iter  1330: loss 3.0656, lr 5.91e-04, time 1658.50ms, tok/s 316121
+iter  1340: loss 3.1384, lr 5.91e-04, time 1664.66ms, tok/s 314952
+iter  1350: loss 3.1137, lr 5.90e-04, time 1659.08ms, tok/s 316012
+iter  1360: loss 3.1939, lr 5.90e-04, time 1662.36ms, tok/s 315387
+iter  1370: loss 3.1472, lr 5.90e-04, time 1660.10ms, tok/s 315817
+iter  1380: loss 3.0132, lr 5.90e-04, time 1661.05ms, tok/s 315637
+iter  1390: loss 3.0167, lr 5.89e-04, time 1662.97ms, tok/s 315271
+step 1400: train loss 3.1113, val loss 3.0303
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis ici en tant que ministre de l'Afrique du Sud . » - 19:39 Les autorités ont été averties pour ces raisons , car « les
+rank 0 sample 1: Je suis au-delà de ce que l'on appelle , un simple , la notion d'écriture , des diction , des traductions , des diction musicales et
+iter  1400: loss 3.1205, lr 5.89e-04, time 7933.12ms, tok/s 66088
+iter  1410: loss 3.0803, lr 5.89e-04, time 1660.66ms, tok/s 315710
+iter  1420: loss 3.1073, lr 5.89e-04, time 1657.88ms, tok/s 316240
+iter  1430: loss 3.0575, lr 5.88e-04, time 1660.29ms, tok/s 315780
+iter  1440: loss 3.0404, lr 5.88e-04, time 1662.18ms, tok/s 315422
+iter  1450: loss 3.0363, lr 5.88e-04, time 1660.99ms, tok/s 315648
+iter  1460: loss 3.1066, lr 5.88e-04, time 1661.61ms, tok/s 315529
+iter  1470: loss 3.0336, lr 5.87e-04, time 1661.53ms, tok/s 315545
+iter  1480: loss 2.9842, lr 5.87e-04, time 1660.56ms, tok/s 315730
+iter  1490: loss 3.1339, lr 5.87e-04, time 1659.91ms, tok/s 315852
+iter  1500: loss 3.0152, lr 5.87e-04, time 1659.50ms, tok/s 315931
+iter  1510: loss 3.0744, lr 5.86e-04, time 1658.36ms, tok/s 316148
+iter  1520: loss 3.0996, lr 5.86e-04, time 1658.71ms, tok/s 316081
+iter  1530: loss 3.0050, lr 5.86e-04, time 1660.41ms, tok/s 315758
+iter  1540: loss 3.0834, lr 5.85e-04, time 1663.20ms, tok/s 315227
+iter  1550: loss 3.0772, lr 5.85e-04, time 1658.92ms, tok/s 316041
+iter  1560: loss 3.1251, lr 5.85e-04, time 1659.42ms, tok/s 315947
+iter  1570: loss 3.0502, lr 5.85e-04, time 1662.85ms, tok/s 315293
+iter  1580: loss 2.9763, lr 5.84e-04, time 1658.46ms, tok/s 316129
+iter  1590: loss 3.0779, lr 5.84e-04, time 1661.09ms, tok/s 315628
+step 1600: train loss 3.0295, val loss 2.9767
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis encore à vous dire . Et il vous plaît plutôt que la situation dans votre ville est claire : nous avons eu l'impression que le danger que vous
+rank 0 sample 1: Je suis arrivé» , a indiqué le ministère français de l'Intérieur , confirmant une information du quotidien Ouest-France . «J'ai eu une réunion très
+iter  1600: loss 3.0253, lr 5.84e-04, time 7872.46ms, tok/s 66597
+iter  1610: loss 3.0946, lr 5.83e-04, time 1659.52ms, tok/s 315926
+iter  1620: loss 2.9512, lr 5.83e-04, time 1660.40ms, tok/s 315760
+iter  1630: loss 2.9565, lr 5.83e-04, time 1659.96ms, tok/s 315843
+iter  1640: loss 3.0300, lr 5.83e-04, time 1662.33ms, tok/s 315393
+iter  1650: loss 2.9900, lr 5.82e-04, time 1660.52ms, tok/s 315736
+iter  1660: loss 3.0051, lr 5.82e-04, time 1661.57ms, tok/s 315536
+iter  1670: loss 2.9456, lr 5.82e-04, time 1658.16ms, tok/s 316185
+iter  1680: loss 3.0161, lr 5.81e-04, time 1661.06ms, tok/s 315634
+iter  1690: loss 3.1104, lr 5.81e-04, time 1662.67ms, tok/s 315328
+iter  1700: loss 3.0456, lr 5.81e-04, time 1663.33ms, tok/s 315204
+iter  1710: loss 2.9407, lr 5.80e-04, time 1658.84ms, tok/s 316056
+iter  1720: loss 2.9744, lr 5.80e-04, time 1660.44ms, tok/s 315751
+iter  1730: loss 3.0430, lr 5.80e-04, time 1658.78ms, tok/s 316068
+iter  1740: loss 3.0831, lr 5.79e-04, time 1655.39ms, tok/s 316716
+iter  1750: loss 3.0309, lr 5.79e-04, time 1659.83ms, tok/s 315867
+iter  1760: loss 3.0012, lr 5.79e-04, time 1662.36ms, tok/s 315387
+iter  1770: loss 2.8888, lr 5.78e-04, time 1663.52ms, tok/s 315168
+iter  1780: loss 3.0277, lr 5.78e-04, time 1659.75ms, tok/s 315883
+iter  1790: loss 2.9319, lr 5.78e-04, time 1665.11ms, tok/s 314867
+step 1800: train loss 2.9808, val loss 2.9610
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis heureux , on a fait tout notre boulot pendant de longues années , comme sur des gens que je peux avoir un peu mieux : je ne suis pas sûr
+rank 0 sample 1: Je suis déjà plus sûr que le projet du Parti socialiste était au bord du lac Ladu , et les choses que je viens de faire , je ne fais aucun
+iter  1800: loss 3.0369, lr 5.77e-04, time 8366.80ms, tok/s 62662
+iter  1810: loss 2.9868, lr 5.77e-04, time 1661.87ms, tok/s 315480
+iter  1820: loss 2.8969, lr 5.77e-04, time 1660.31ms, tok/s 315777
+iter  1830: loss 3.0375, lr 5.76e-04, time 1659.34ms, tok/s 315960
+iter  1840: loss 2.9558, lr 5.76e-04, time 1662.61ms, tok/s 315339
+iter  1850: loss 2.9153, lr 5.76e-04, time 1661.48ms, tok/s 315555
+iter  1860: loss 3.0211, lr 5.75e-04, time 1659.25ms, tok/s 315978
+iter  1870: loss 2.9817, lr 5.75e-04, time 1662.20ms, tok/s 315418
+iter  1880: loss 2.9959, lr 5.74e-04, time 1659.46ms, tok/s 315938
+iter  1890: loss 2.9098, lr 5.74e-04, time 1661.75ms, tok/s 315502
+iter  1900: loss 2.9517, lr 5.74e-04, time 1658.06ms, tok/s 316204
+iter  1910: loss 2.9819, lr 5.73e-04, time 1659.49ms, tok/s 315933
+iter  1920: loss 2.7996, lr 5.73e-04, time 1663.11ms, tok/s 315245
+iter  1930: loss 2.9417, lr 5.73e-04, time 1661.01ms, tok/s 315643
+iter  1940: loss 2.9618, lr 5.72e-04, time 1659.52ms, tok/s 315927
+iter  1950: loss 2.8644, lr 5.72e-04, time 1659.04ms, tok/s 316019
+iter  1960: loss 3.0025, lr 5.71e-04, time 1661.19ms, tok/s 315610
+iter  1970: loss 2.9953, lr 5.71e-04, time 1662.60ms, tok/s 315342
+iter  1980: loss 2.9311, lr 5.71e-04, time 1664.30ms, tok/s 315020
+iter  1990: loss 3.0422, lr 5.70e-04, time 1660.33ms, tok/s 315773
+step 2000: train loss 2.9701, val loss 2.8953
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis prêt à tout ce qui m'intéressait avec mes élèves . Ça continue avec mes études , mon père et moi avons décidé de m'en occuper
+rank 0 sample 1: Je suis resté seul membre de la famille royale aux côtés du Grand Republica Tirad-Beleha (d'après le livre des enfants)
+iter  2000: loss 2.9348, lr 5.70e-04, time 7778.36ms, tok/s 67403
+iter  2010: loss 2.8640, lr 5.69e-04, time 1660.07ms, tok/s 315823
+iter  2020: loss 2.9606, lr 5.69e-04, time 1659.73ms, tok/s 315886
+iter  2030: loss 3.0329, lr 5.69e-04, time 1660.52ms, tok/s 315736
+iter  2040: loss 2.9675, lr 5.68e-04, time 1661.19ms, tok/s 315609
+--------------------------------------------
+Training started at 2025-07-06 09:15:41
+GPU: cuda
+tokens per iteration will be: 524,288
+max iterations: 10,299
+warmup iterations: 514
+total tokens to process: 5,400,000,000
+Resuming training from ./checkpoints/
+compiling the model... (takes a ~minute)
+step 2000: train loss 2.9676, val loss 2.9004
+rank 0 sample 0: Je suis prêt à tout ce qui m'intéressait avec mes élèves . Ça continue avec mes études , mon père et moi avons décidé de m'en occuper
+rank 0 sample 1: Je suis resté seul membre de la famille royale aux côtés du Grand Republica Tirad-Beleha (d'après le livre des enfants)
+iter  2000: loss 2.9378, lr 5.70e-04, time 16789.52ms, tok/s 31227
+iter  2010: loss 2.9723, lr 5.69e-04, time 1654.04ms, tok/s 316974
+iter  2020: loss 2.9401, lr 5.69e-04, time 1658.24ms, tok/s 316171
+iter  2030: loss 2.9098, lr 5.69e-04, time 1660.30ms, tok/s 315779
+iter  2040: loss 2.9429, lr 5.68e-04, time 1661.43ms, tok/s 315563
+iter  2050: loss 2.8676, lr 5.68e-04, time 1658.10ms, tok/s 316198
+iter  2060: loss 3.0261, lr 5.67e-04, time 1658.24ms, tok/s 316171
+iter  2070: loss 2.8987, lr 5.67e-04, time 1658.56ms, tok/s 316109
+iter  2080: loss 2.8494, lr 5.67e-04, time 1662.02ms, tok/s 315452
+iter  2090: loss 2.8734, lr 5.66e-04, time 1661.69ms, tok/s 315514
+iter  2100: loss 2.9118, lr 5.66e-04, time 1661.72ms, tok/s 315509
+iter  2110: loss 2.9753, lr 5.65e-04, time 1658.67ms, tok/s 316088
+iter  2120: loss 2.8792, lr 5.65e-04, time 1660.76ms, tok/s 315690
+iter  2130: loss 2.9832, lr 5.64e-04, time 1661.47ms, tok/s 315557
+iter  2140: loss 2.8711, lr 5.64e-04, time 1659.78ms, tok/s 315877
+iter  2150: loss 2.9724, lr 5.64e-04, time 1660.62ms, tok/s 315718
+iter  2160: loss 2.9458, lr 5.63e-04, time 1662.23ms, tok/s 315411
+iter  2170: loss 2.8693, lr 5.63e-04, time 1660.17ms, tok/s 315804
+iter  2180: loss 2.9540, lr 5.62e-04, time 1658.59ms, tok/s 316105
+iter  2190: loss 2.9463, lr 5.62e-04, time 1663.53ms, tok/s 315165
+step 2200: train loss 2.9083, val loss 2.8632
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis assez jeune» , avait-il confié dès avril dernier à la comédienne Brigitte Bardot . La ministre avait déjà refusé de s'exprimer en faveur de l
+rank 0 sample 1: Je suis pas toujours la même chose . Mais depuis le départ jusqu'au moment où vous êtes à la retraite , j'ai compris que j'allais avoir
+iter  2200: loss 2.9620, lr 5.61e-04, time 7820.56ms, tok/s 67039
+iter  2210: loss 2.8624, lr 5.61e-04, time 1657.58ms, tok/s 316296
+iter  2220: loss 2.9413, lr 5.61e-04, time 1658.56ms, tok/s 316110
+iter  2230: loss 2.8588, lr 5.60e-04, time 1661.01ms, tok/s 315644
+iter  2240: loss 2.9797, lr 5.60e-04, time 1659.37ms, tok/s 315955
+iter  2250: loss 2.8572, lr 5.59e-04, time 1660.79ms, tok/s 315685
+iter  2260: loss 2.8739, lr 5.59e-04, time 1658.69ms, tok/s 316085
+iter  2270: loss 2.9608, lr 5.58e-04, time 1661.66ms, tok/s 315521
+iter  2280: loss 2.8120, lr 5.58e-04, time 1657.61ms, tok/s 316291
+iter  2290: loss 2.8079, lr 5.57e-04, time 1661.09ms, tok/s 315629
+iter  2300: loss 2.9587, lr 5.57e-04, time 1659.68ms, tok/s 315896
+iter  2310: loss 2.8862, lr 5.56e-04, time 1660.31ms, tok/s 315777
+iter  2320: loss 2.9147, lr 5.56e-04, time 1660.66ms, tok/s 315710
+iter  2330: loss 2.9135, lr 5.55e-04, time 1659.96ms, tok/s 315844
+iter  2340: loss 2.8284, lr 5.55e-04, time 1657.00ms, tok/s 316407
+iter  2350: loss 2.8369, lr 5.54e-04, time 1658.89ms, tok/s 316048
+iter  2360: loss 2.8665, lr 5.54e-04, time 1662.30ms, tok/s 315399
+iter  2370: loss 2.8782, lr 5.53e-04, time 1657.66ms, tok/s 316282
+iter  2380: loss 2.9902, lr 5.53e-04, time 1663.62ms, tok/s 315148
+iter  2390: loss 2.9273, lr 5.52e-04, time 1660.79ms, tok/s 315686
+step 2400: train loss 2.8756, val loss 2.8362
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis appelé par une femme à ses prières (qu'elle chante en me disant), et qu'à l'époque du meurtre de sa mère, il
+rank 0 sample 1: Je suis, de loin, la pensée qui semble avoir fait entendre aux autres. Si les deux moitiés étaient la première, l'autre était celle dans le
+iter  2400: loss 2.8771, lr 5.52e-04, time 7953.39ms, tok/s 65920
+iter  2410: loss 2.7951, lr 5.52e-04, time 1656.99ms, tok/s 316409
+iter  2420: loss 2.7850, lr 5.51e-04, time 1659.47ms, tok/s 315936
+iter  2430: loss 3.0050, lr 5.51e-04, time 1662.93ms, tok/s 315278
+iter  2440: loss 2.9281, lr 5.50e-04, time 1659.96ms, tok/s 315844
+iter  2450: loss 2.8073, lr 5.49e-04, time 1659.78ms, tok/s 315877
+iter  2460: loss 2.8971, lr 5.49e-04, time 1664.09ms, tok/s 315060
+iter  2470: loss 2.8839, lr 5.48e-04, time 1662.01ms, tok/s 315453
+iter  2480: loss 2.8898, lr 5.48e-04, time 1660.71ms, tok/s 315700
+iter  2490: loss 2.8023, lr 5.47e-04, time 1660.15ms, tok/s 315807
+iter  2500: loss 2.9165, lr 5.47e-04, time 1662.55ms, tok/s 315351
+iter  2510: loss 2.8238, lr 5.46e-04, time 1659.99ms, tok/s 315838
+iter  2520: loss 2.8964, lr 5.46e-04, time 1660.29ms, tok/s 315780
+iter  2530: loss 2.7009, lr 5.45e-04, time 1659.50ms, tok/s 315930
+iter  2540: loss 2.9336, lr 5.45e-04, time 1663.65ms, tok/s 315142
+iter  2550: loss 2.7668, lr 5.44e-04, time 1659.37ms, tok/s 315956
+iter  2560: loss 2.7989, lr 5.44e-04, time 1660.51ms, tok/s 315739
+iter  2570: loss 2.7672, lr 5.43e-04, time 1661.62ms, tok/s 315527
+iter  2580: loss 2.7615, lr 5.43e-04, time 1661.13ms, tok/s 315620
+iter  2590: loss 2.8938, lr 5.42e-04, time 1659.90ms, tok/s 315855
+step 2600: train loss 2.8516, val loss 2.8139
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis assez excité de ce sentimentalisme qu'il s'est arrêté si rapidement à une reprise. Il me semble alors que je n'avais jamais
+rank 0 sample 1: Je suis profondément heureux de ne pas avoir à choisir de se donner confiance en Dieu lui-même . C'est pourquoi je voudrais bien comprendre ce qui vous arrive
+iter  2600: loss 2.7384, lr 5.42e-04, time 7964.10ms, tok/s 65831
+iter  2610: loss 2.9333, lr 5.41e-04, time 1660.54ms, tok/s 315733
+iter  2620: loss 2.8744, lr 5.41e-04, time 1658.49ms, tok/s 316123
+iter  2630: loss 2.7700, lr 5.40e-04, time 1652.77ms, tok/s 317217
+iter  2640: loss 2.8111, lr 5.40e-04, time 1655.59ms, tok/s 316676
+iter  2650: loss 2.8725, lr 5.39e-04, time 1653.63ms, tok/s 317052
+iter  2660: loss 2.7704, lr 5.38e-04, time 1650.23ms, tok/s 317706
+iter  2670: loss 2.8356, lr 5.38e-04, time 1648.14ms, tok/s 318108
+iter  2680: loss 2.8369, lr 5.37e-04, time 1647.59ms, tok/s 318215
+iter  2690: loss 2.8681, lr 5.37e-04, time 1648.19ms, tok/s 318099
+iter  2700: loss 2.7872, lr 5.36e-04, time 1644.65ms, tok/s 318783
+iter  2710: loss 2.7573, lr 5.36e-04, time 1647.90ms, tok/s 318156
+iter  2720: loss 2.7843, lr 5.35e-04, time 1646.28ms, tok/s 318469
+iter  2730: loss 2.8602, lr 5.34e-04, time 1648.08ms, tok/s 318119
+iter  2740: loss 2.8683, lr 5.34e-04, time 1648.46ms, tok/s 318047
+iter  2750: loss 2.7393, lr 5.33e-04, time 1648.72ms, tok/s 317997
+iter  2760: loss 2.8340, lr 5.33e-04, time 1645.37ms, tok/s 318644
+iter  2770: loss 2.8786, lr 5.32e-04, time 1647.34ms, tok/s 318264
+iter  2780: loss 2.8919, lr 5.32e-04, time 1645.23ms, tok/s 318671
+iter  2790: loss 2.8243, lr 5.31e-04, time 1648.33ms, tok/s 318072
+step 2800: train loss 2.8414, val loss 2.8036
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis devenu un personnage de fiction populaire à avoir porté et réalisé une comédie où plusieurs célébrités ont incarné des héroïnes dans des romans et des romans.
+En
+rank 0 sample 1: Je suis heureux au Canada. »
+Il retourne en Allemagne deux ans après le travail accompli. En juillet, lui et son ami John Stantz forment une
+iter  2800: loss 2.8854, lr 5.30e-04, time 7918.08ms, tok/s 66214
+iter  2810: loss 2.8448, lr 5.30e-04, time 1646.65ms, tok/s 318396
+iter  2820: loss 2.8796, lr 5.29e-04, time 1645.47ms, tok/s 318624
+iter  2830: loss 2.7614, lr 5.29e-04, time 1647.92ms, tok/s 318151
+iter  2840: loss 2.8033, lr 5.28e-04, time 1649.68ms, tok/s 317812
+iter  2850: loss 2.8148, lr 5.28e-04, time 1648.01ms, tok/s 318134
+iter  2860: loss 2.9670, lr 5.27e-04, time 1646.78ms, tok/s 318372
+iter  2870: loss 2.8908, lr 5.26e-04, time 1645.23ms, tok/s 318672
+iter  2880: loss 2.8628, lr 5.26e-04, time 1642.62ms, tok/s 319177
+iter  2890: loss 2.7281, lr 5.25e-04, time 1647.67ms, tok/s 318199
+iter  2900: loss 2.8534, lr 5.25e-04, time 1647.96ms, tok/s 318142
+iter  2910: loss 2.8793, lr 5.24e-04, time 1651.09ms, tok/s 317539
+iter  2920: loss 2.8347, lr 5.23e-04, time 1648.06ms, tok/s 318124
+iter  2930: loss 2.8083, lr 5.23e-04, time 1646.78ms, tok/s 318372
+iter  2940: loss 2.9166, lr 5.22e-04, time 1650.79ms, tok/s 317598
+iter  2950: loss 2.8505, lr 5.22e-04, time 1647.71ms, tok/s 318192
+iter  2960: loss 2.8769, lr 5.21e-04, time 1648.85ms, tok/s 317972
+iter  2970: loss 2.8601, lr 5.20e-04, time 1643.55ms, tok/s 318996
+iter  2980: loss 2.7399, lr 5.20e-04, time 1645.06ms, tok/s 318704
+iter  2990: loss 2.8341, lr 5.19e-04, time 1646.26ms, tok/s 318472
+step 3000: train loss 2.8218, val loss 2.7551
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis fier de mon travail , le staff qui mène a été incroyablement intelligent . On a tous entendu parler des qualités de mon staff , mais ce n'
+rank 0 sample 1: Je suis bien d'accord . Ce sont beaucoup de personnes : ils ont peur que ce soit le cas , avec le PSG et le PSG , et ont besoin
+iter  3000: loss 2.8507, lr 5.18e-04, time 7921.36ms, tok/s 66186
+iter  3010: loss 2.7712, lr 5.18e-04, time 1656.56ms, tok/s 316492
+iter  3020: loss 2.8380, lr 5.17e-04, time 1661.21ms, tok/s 315606
+iter  3030: loss 2.7034, lr 5.17e-04, time 1657.52ms, tok/s 316308
+iter  3040: loss 2.9331, lr 5.16e-04, time 1654.87ms, tok/s 316815
+iter  3050: loss 2.8937, lr 5.15e-04, time 1654.27ms, tok/s 316929
+iter  3060: loss 2.8229, lr 5.15e-04, time 1652.76ms, tok/s 317219
+iter  3070: loss 2.8507, lr 5.14e-04, time 1654.65ms, tok/s 316857
+iter  3080: loss 2.7648, lr 5.13e-04, time 1653.55ms, tok/s 317068
+iter  3090: loss 2.8030, lr 5.13e-04, time 1656.92ms, tok/s 316423
+iter  3100: loss 2.7740, lr 5.12e-04, time 1657.80ms, tok/s 316255
+iter  3110: loss 2.8142, lr 5.12e-04, time 1655.61ms, tok/s 316673
+iter  3120: loss 2.8364, lr 5.11e-04, time 1656.45ms, tok/s 316513
+iter  3130: loss 2.7894, lr 5.10e-04, time 1656.71ms, tok/s 316463
+iter  3140: loss 2.7760, lr 5.10e-04, time 1660.06ms, tok/s 315824
+iter  3150: loss 2.8791, lr 5.09e-04, time 1655.51ms, tok/s 316693
+iter  3160: loss 2.8538, lr 5.08e-04, time 1656.57ms, tok/s 316490
+iter  3170: loss 2.7890, lr 5.08e-04, time 1657.50ms, tok/s 316313
+iter  3180: loss 2.8294, lr 5.07e-04, time 1654.72ms, tok/s 316843
+iter  3190: loss 2.7561, lr 5.06e-04, time 1656.58ms, tok/s 316488
+step 3200: train loss 2.7856, val loss 2.7595
+rank 0 sample 0: Je suis avec vous : “Nous serons au pied du mur” , et que dire à vous qu'à l'intérieur du bâtiment , vous allez changer la
+rank 0 sample 1: Je suis sûr que tu m'ai vu cette nuit , une équipe qui était pleine et qui s'était entraînée pour qu'elle puisse être en grande difficulté
+iter  3200: loss 2.8622, lr 5.06e-04, time 4700.88ms, tok/s 111529
+iter  3210: loss 2.7796, lr 5.05e-04, time 1656.69ms, tok/s 316466
+iter  3220: loss 2.7295, lr 5.04e-04, time 1656.09ms, tok/s 316582
+iter  3230: loss 2.7885, lr 5.04e-04, time 1656.02ms, tok/s 316595
+iter  3240: loss 2.8298, lr 5.03e-04, time 1655.33ms, tok/s 316726
+iter  3250: loss 2.7122, lr 5.02e-04, time 1658.55ms, tok/s 316112
+iter  3260: loss 2.7534, lr 5.02e-04, time 1654.67ms, tok/s 316853
+iter  3270: loss 2.9167, lr 5.01e-04, time 1654.56ms, tok/s 316874
+iter  3280: loss 2.8507, lr 5.00e-04, time 1655.21ms, tok/s 316750
+iter  3290: loss 2.8284, lr 5.00e-04, time 1659.08ms, tok/s 316011
+iter  3300: loss 2.7375, lr 4.99e-04, time 1655.66ms, tok/s 316663
+iter  3310: loss 2.7774, lr 4.98e-04, time 1656.41ms, tok/s 316519
+iter  3320: loss 2.7653, lr 4.98e-04, time 1653.67ms, tok/s 317045
+iter  3330: loss 2.7405, lr 4.97e-04, time 1658.89ms, tok/s 316047
+iter  3340: loss 2.8149, lr 4.96e-04, time 1654.28ms, tok/s 316927
+iter  3350: loss 2.7743, lr 4.96e-04, time 1658.46ms, tok/s 316130
+iter  3360: loss 2.8621, lr 4.95e-04, time 1659.61ms, tok/s 315909
+iter  3370: loss 2.8186, lr 4.94e-04, time 1659.29ms, tok/s 315970
+iter  3380: loss 2.6978, lr 4.94e-04, time 1657.96ms, tok/s 316224
+iter  3390: loss 2.7018, lr 4.93e-04, time 1658.82ms, tok/s 316059
+step 3400: train loss 2.8045, val loss 2.7335
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis une femme en train d'aller danser ce soir dans mon appartement dans les environs de mon restaurant, j'ai toujours fait une grande fierté et j
+rank 0 sample 1: Je suis plus connu pour être une jeune fille assez timide. Cependant, il était presque certain que c'était lui qui avait une voix bien plus grande, ce
+iter  3400: loss 2.8061, lr 4.92e-04, time 7967.43ms, tok/s 65803
+iter  3410: loss 2.7670, lr 4.91e-04, time 1653.87ms, tok/s 317005
+iter  3420: loss 2.7973, lr 4.91e-04, time 1657.30ms, tok/s 316351
+iter  3430: loss 2.7419, lr 4.90e-04, time 1654.85ms, tok/s 316819
+saving epoch 1 checkpoint to ./checkpoints/ckpt-epoch-1.pt
+iter  3440: loss 2.7214, lr 4.89e-04, time 1645.74ms, tok/s 318571
+iter  3450: loss 2.7291, lr 4.89e-04, time 1650.05ms, tok/s 317740
+iter  3460: loss 2.7621, lr 4.88e-04, time 1647.94ms, tok/s 318148
+iter  3470: loss 2.7342, lr 4.87e-04, time 1644.99ms, tok/s 318717
+iter  3480: loss 2.6806, lr 4.87e-04, time 1649.69ms, tok/s 317809
+iter  3490: loss 2.8033, lr 4.86e-04, time 1643.71ms, tok/s 318966
+iter  3500: loss 2.7161, lr 4.85e-04, time 1643.41ms, tok/s 319024
+iter  3510: loss 2.7772, lr 4.84e-04, time 1646.41ms, tok/s 318442
+iter  3520: loss 2.7956, lr 4.84e-04, time 1646.76ms, tok/s 318376
+iter  3530: loss 2.6971, lr 4.83e-04, time 1650.91ms, tok/s 317574
+iter  3540: loss 2.7950, lr 4.82e-04, time 1645.67ms, tok/s 318585
+iter  3550: loss 2.7902, lr 4.82e-04, time 1646.44ms, tok/s 318436
+iter  3560: loss 2.8365, lr 4.81e-04, time 1649.96ms, tok/s 317758
+iter  3570: loss 2.7736, lr 4.80e-04, time 1649.75ms, tok/s 317798
+iter  3580: loss 2.6744, lr 4.79e-04, time 1643.51ms, tok/s 319004
+iter  3590: loss 2.7948, lr 4.79e-04, time 1648.06ms, tok/s 318123
+step 3600: train loss 2.7612, val loss 2.7226
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis moi-même pour la vérité, en présence de cette dignité qui l'entoure, qui revient dans ma patrie, en tout cas dans ma vie,
+rank 0 sample 1: Je suis marié " , a confié à BFMTV Meghan , ajoutant également qu'elle a été mariée en trois ans , tout en affirmant qu'il allait se
+iter  3600: loss 2.7360, lr 4.78e-04, time 8000.88ms, tok/s 65528
+iter  3610: loss 2.7815, lr 4.77e-04, time 1657.20ms, tok/s 316370
+iter  3620: loss 2.6640, lr 4.77e-04, time 1656.60ms, tok/s 316484
+iter  3630: loss 2.6813, lr 4.76e-04, time 1652.34ms, tok/s 317301
+iter  3640: loss 2.7547, lr 4.75e-04, time 1649.84ms, tok/s 317780
+iter  3650: loss 2.7308, lr 4.74e-04, time 1651.94ms, tok/s 317377
+iter  3660: loss 2.7371, lr 4.74e-04, time 1653.80ms, tok/s 317019
+iter  3670: loss 2.6755, lr 4.73e-04, time 1650.42ms, tok/s 317669
+iter  3680: loss 2.7447, lr 4.72e-04, time 1650.18ms, tok/s 317715
+iter  3690: loss 2.7728, lr 4.71e-04, time 1647.48ms, tok/s 318236
+iter  3700: loss 2.7864, lr 4.71e-04, time 1649.95ms, tok/s 317759
+iter  3710: loss 2.6873, lr 4.70e-04, time 1651.63ms, tok/s 317436
+iter  3720: loss 2.6887, lr 4.69e-04, time 1650.01ms, tok/s 317747
+iter  3730: loss 2.7659, lr 4.68e-04, time 1650.86ms, tok/s 317584
+iter  3740: loss 2.8211, lr 4.68e-04, time 1653.32ms, tok/s 317112
+iter  3750: loss 2.7787, lr 4.67e-04, time 1649.44ms, tok/s 317858
+iter  3760: loss 2.7488, lr 4.66e-04, time 1649.12ms, tok/s 317920
+iter  3770: loss 2.6201, lr 4.65e-04, time 1652.14ms, tok/s 317339
+iter  3780: loss 2.7787, lr 4.65e-04, time 1646.85ms, tok/s 318358
+iter  3790: loss 2.6767, lr 4.64e-04, time 1652.32ms, tok/s 317304
+step 3800: train loss 2.7488, val loss 2.7445
+rank 0 sample 0: Je suis vraiment un artiste de l'humour mais n'était pas une vedette avec moi .Des dizaines de milliers de tonnes de déchets ont été découverts sur
+rank 0 sample 1: Je suis toujours arrivé à la tête de l'équipe . Si bien qu'en cas d'échec de ses concurrents , on vous appelle à l'époque
+iter  3800: loss 2.7788, lr 4.63e-04, time 4673.24ms, tok/s 112189
+iter  3810: loss 2.7321, lr 4.62e-04, time 1648.60ms, tok/s 318019
+iter  3820: loss 2.6519, lr 4.62e-04, time 1647.59ms, tok/s 318214
+iter  3830: loss 2.7941, lr 4.61e-04, time 1648.67ms, tok/s 318005
+iter  3840: loss 2.7002, lr 4.60e-04, time 1648.53ms, tok/s 318033
+iter  3850: loss 2.6603, lr 4.59e-04, time 1643.84ms, tok/s 318940
+iter  3860: loss 2.7900, lr 4.59e-04, time 1646.36ms, tok/s 318453
+iter  3870: loss 2.7349, lr 4.58e-04, time 1647.88ms, tok/s 318158
+iter  3880: loss 2.7645, lr 4.57e-04, time 1650.42ms, tok/s 317668
+iter  3890: loss 2.6685, lr 4.56e-04, time 1648.69ms, tok/s 318001
+iter  3900: loss 2.7128, lr 4.56e-04, time 1649.69ms, tok/s 317809
+iter  3910: loss 2.7395, lr 4.55e-04, time 1647.98ms, tok/s 318140
+iter  3920: loss 2.5574, lr 4.54e-04, time 1649.15ms, tok/s 317913
+iter  3930: loss 2.7082, lr 4.53e-04, time 1648.25ms, tok/s 318087
+iter  3940: loss 2.7233, lr 4.52e-04, time 1649.28ms, tok/s 317888
+iter  3950: loss 2.6238, lr 4.52e-04, time 1645.76ms, tok/s 318568
+iter  3960: loss 2.7735, lr 4.51e-04, time 1648.61ms, tok/s 318018
+iter  3970: loss 2.7580, lr 4.50e-04, time 1652.33ms, tok/s 317302
+iter  3980: loss 2.7062, lr 4.49e-04, time 1647.58ms, tok/s 318216
+iter  3990: loss 2.8096, lr 4.49e-04, time 1647.29ms, tok/s 318272
+step 4000: train loss 2.7561, val loss 2.7003
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis l'impression que je me vois un défaut en m'appâtant sur le sujet . Et j'ai un doute sur la tournure que
+rank 0 sample 1: Je suis tout dit que je n'aurais jamais été un gros assassin , j'en suis très heureuse , elle n'aura jamais été aussi forte' .
+iter  4000: loss 2.7299, lr 4.48e-04, time 7909.17ms, tok/s 66288
+iter  4010: loss 2.6540, lr 4.47e-04, time 1661.61ms, tok/s 315530
+iter  4020: loss 2.7492, lr 4.46e-04, time 1656.98ms, tok/s 316411
+iter  4030: loss 2.8207, lr 4.45e-04, time 1656.72ms, tok/s 316461
+iter  4040: loss 2.7390, lr 4.45e-04, time 1657.52ms, tok/s 316308
+iter  4050: loss 2.7089, lr 4.44e-04, time 1653.96ms, tok/s 316989
+iter  4060: loss 2.8070, lr 4.43e-04, time 1659.78ms, tok/s 315878
+iter  4070: loss 2.7506, lr 4.42e-04, time 1656.18ms, tok/s 316564
+iter  4080: loss 2.6966, lr 4.42e-04, time 1656.18ms, tok/s 316564
+iter  4090: loss 2.7489, lr 4.41e-04, time 1656.60ms, tok/s 316485
+iter  4100: loss 2.8135, lr 4.40e-04, time 1657.60ms, tok/s 316293
+iter  4110: loss 2.8158, lr 4.39e-04, time 1655.83ms, tok/s 316631
+iter  4120: loss 2.7771, lr 4.38e-04, time 1659.99ms, tok/s 315838
+iter  4130: loss 2.7250, lr 4.38e-04, time 1654.87ms, tok/s 316814
+iter  4140: loss 2.7773, lr 4.37e-04, time 1656.61ms, tok/s 316482
+iter  4150: loss 2.7946, lr 4.36e-04, time 1661.91ms, tok/s 315472
+iter  4160: loss 2.7394, lr 4.35e-04, time 1657.42ms, tok/s 316328
+iter  4170: loss 2.8095, lr 4.34e-04, time 1654.11ms, tok/s 316961
+iter  4180: loss 2.7221, lr 4.34e-04, time 1655.62ms, tok/s 316672
+iter  4190: loss 2.5950, lr 4.33e-04, time 1657.10ms, tok/s 316387
+step 4200: train loss 2.7191, val loss 2.6919
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis encore un personnage de l'Histoire» , l'autre personnage des trois personnages principaux des Mystères , on se rappelle d'un épisode comme «
+rank 0 sample 1: Je suis entré de plain-pied , et m'ont réveillé , en sentant qu'ils n'étaient pas des héros . » Le jeune Nahel est
+iter  4200: loss 2.6884, lr 4.32e-04, time 8065.87ms, tok/s 65000
+iter  4210: loss 2.6361, lr 4.31e-04, time 1656.21ms, tok/s 316558
+iter  4220: loss 2.7435, lr 4.30e-04, time 1657.44ms, tok/s 316324
+iter  4230: loss 2.7331, lr 4.30e-04, time 1658.21ms, tok/s 316177
+iter  4240: loss 2.7218, lr 4.29e-04, time 1653.27ms, tok/s 317121
+iter  4250: loss 2.7255, lr 4.28e-04, time 1658.47ms, tok/s 316127
+iter  4260: loss 2.7445, lr 4.27e-04, time 1655.67ms, tok/s 316662
+iter  4270: loss 2.7714, lr 4.26e-04, time 1654.98ms, tok/s 316794
+iter  4280: loss 2.7166, lr 4.26e-04, time 1660.72ms, tok/s 315698
+iter  4290: loss 2.6578, lr 4.25e-04, time 1656.53ms, tok/s 316497
+iter  4300: loss 2.7406, lr 4.24e-04, time 1654.28ms, tok/s 316927
+iter  4310: loss 2.6923, lr 4.23e-04, time 1656.41ms, tok/s 316520
+iter  4320: loss 2.6223, lr 4.22e-04, time 1655.29ms, tok/s 316733
+iter  4330: loss 2.6813, lr 4.21e-04, time 1657.84ms, tok/s 316247
+iter  4340: loss 2.7535, lr 4.21e-04, time 1651.79ms, tok/s 317405
+iter  4350: loss 2.7325, lr 4.20e-04, time 1659.62ms, tok/s 315909
+iter  4360: loss 2.7476, lr 4.19e-04, time 1657.36ms, tok/s 316339
+iter  4370: loss 2.7869, lr 4.18e-04, time 1654.87ms, tok/s 316814
+iter  4380: loss 2.6532, lr 4.17e-04, time 1658.01ms, tok/s 316214
+iter  4390: loss 2.7484, lr 4.17e-04, time 1657.67ms, tok/s 316280
+step 4400: train loss 2.7283, val loss 2.6929
+rank 0 sample 0: Je suis aussi très reconnaissant envers le droit international dans certains pays du monde , où son soutien à l'adhésion est crucial . Nous ne pouvons pas considérer cela comme
+rank 0 sample 1: Je suis plus âgé de la moitié de mes contemporains et de certaines catégories d'universitaires . Il ne s'est pas prononcé sur l'importance des études
+iter  4400: loss 2.6760, lr 4.16e-04, time 4697.99ms, tok/s 111598
+iter  4410: loss 2.7325, lr 4.15e-04, time 1656.87ms, tok/s 316432
+iter  4420: loss 2.7656, lr 4.14e-04, time 1660.15ms, tok/s 315807
+iter  4430: loss 2.6299, lr 4.13e-04, time 1656.89ms, tok/s 316429
+iter  4440: loss 2.7015, lr 4.12e-04, time 1657.51ms, tok/s 316310
+iter  4450: loss 2.7170, lr 4.12e-04, time 1659.80ms, tok/s 315873
+iter  4460: loss 2.7349, lr 4.11e-04, time 1658.43ms, tok/s 316134
+iter  4470: loss 2.7182, lr 4.10e-04, time 1656.16ms, tok/s 316567
+iter  4480: loss 2.6711, lr 4.09e-04, time 1655.39ms, tok/s 316715
+iter  4490: loss 2.7215, lr 4.08e-04, time 1657.84ms, tok/s 316248
+iter  4500: loss 2.7166, lr 4.07e-04, time 1658.30ms, tok/s 316159
+iter  4510: loss 2.6506, lr 4.07e-04, time 1656.59ms, tok/s 316486
+iter  4520: loss 2.7227, lr 4.06e-04, time 1657.15ms, tok/s 316380
+iter  4530: loss 2.8674, lr 4.05e-04, time 1651.44ms, tok/s 317472
+iter  4540: loss 2.6849, lr 4.04e-04, time 1656.20ms, tok/s 316560
+iter  4550: loss 2.6672, lr 4.03e-04, time 1656.12ms, tok/s 316576
+iter  4560: loss 2.7026, lr 4.02e-04, time 1654.26ms, tok/s 316931
+iter  4570: loss 2.6942, lr 4.02e-04, time 1654.88ms, tok/s 316813
+iter  4580: loss 2.7161, lr 4.01e-04, time 1653.74ms, tok/s 317032
+iter  4590: loss 2.6719, lr 4.00e-04, time 1656.96ms, tok/s 316416
+step 4600: train loss 2.7015, val loss 2.6759
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis capable de répondre à la question , ce qui revient à poser une réalité dont nous sommes aujourd'hui les défenseurs . C'est une menace , mais
+rank 0 sample 1: Je suis devenu ma mère et mon père a le même nom... Elle est la demi-sœur du Docteur, l'une des très grandes amies du Doctor.
+iter  4600: loss 2.7932, lr 3.99e-04, time 8011.98ms, tok/s 65438
+iter  4610: loss 2.6828, lr 3.98e-04, time 1661.06ms, tok/s 315634
+iter  4620: loss 2.7634, lr 3.97e-04, time 1656.63ms, tok/s 316479
+iter  4630: loss 2.6631, lr 3.97e-04, time 1656.72ms, tok/s 316460
+iter  4640: loss 2.7420, lr 3.96e-04, time 1657.90ms, tok/s 316235
+iter  4650: loss 2.7325, lr 3.95e-04, time 1659.91ms, tok/s 315854
+iter  4660: loss 2.6039, lr 3.94e-04, time 1656.29ms, tok/s 316543
+iter  4670: loss 2.7398, lr 3.93e-04, time 1657.72ms, tok/s 316271
+iter  4680: loss 2.6942, lr 3.92e-04, time 1655.77ms, tok/s 316643
+iter  4690: loss 2.6827, lr 3.92e-04, time 1650.57ms, tok/s 317640
+iter  4700: loss 2.6822, lr 3.91e-04, time 1652.27ms, tok/s 317313
+iter  4710: loss 2.6594, lr 3.90e-04, time 1621.94ms, tok/s 323247
+iter  4720: loss 2.6585, lr 3.89e-04, time 1649.48ms, tok/s 317850
+iter  4730: loss 2.6559, lr 3.88e-04, time 1650.36ms, tok/s 317680
+iter  4740: loss 2.6342, lr 3.87e-04, time 1652.87ms, tok/s 317197
+iter  4750: loss 2.7500, lr 3.86e-04, time 1651.45ms, tok/s 317471
+iter  4760: loss 2.7748, lr 3.86e-04, time 1649.80ms, tok/s 317788
+iter  4770: loss 2.7463, lr 3.85e-04, time 1647.79ms, tok/s 318175
+iter  4780: loss 2.6016, lr 3.84e-04, time 1650.74ms, tok/s 317608
+iter  4790: loss 2.6638, lr 3.83e-04, time 1648.97ms, tok/s 317949
+step 4800: train loss 2.6849, val loss 2.6617
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis peut-être un homme que je croyais m'être permis de tuer comme il le dit... Et c'est le dernier qui me regarde (J
+rank 0 sample 1: Je suis arrivé. Mon père a été arrêté à la fin à partir du 15 mai pour être libéré par la France et ses complices. Le 3 mai on m
+iter  4800: loss 2.6422, lr 3.82e-04, time 8009.75ms, tok/s 65456
+iter  4810: loss 2.6690, lr 3.81e-04, time 1656.52ms, tok/s 316500
+iter  4820: loss 2.7384, lr 3.81e-04, time 1656.72ms, tok/s 316461
+iter  4830: loss 2.6821, lr 3.80e-04, time 1656.59ms, tok/s 316486
+iter  4840: loss 2.7755, lr 3.79e-04, time 1653.20ms, tok/s 317134
+iter  4850: loss 2.7167, lr 3.78e-04, time 1658.47ms, tok/s 316127
+iter  4860: loss 2.7448, lr 3.77e-04, time 1652.20ms, tok/s 317326
+iter  4870: loss 2.7265, lr 3.76e-04, time 1661.15ms, tok/s 315616
+iter  4880: loss 2.6595, lr 3.75e-04, time 1656.70ms, tok/s 316465
+iter  4890: loss 2.7349, lr 3.75e-04, time 1657.10ms, tok/s 316388
+iter  4900: loss 2.6746, lr 3.74e-04, time 1657.51ms, tok/s 316311
+iter  4910: loss 2.6395, lr 3.73e-04, time 1657.72ms, tok/s 316271
+iter  4920: loss 2.6618, lr 3.72e-04, time 1652.42ms, tok/s 317284
+iter  4930: loss 2.7155, lr 3.71e-04, time 1656.55ms, tok/s 316494
+iter  4940: loss 2.6030, lr 3.70e-04, time 1656.96ms, tok/s 316415
+iter  4950: loss 2.5544, lr 3.69e-04, time 1657.55ms, tok/s 316303
+iter  4960: loss 2.6790, lr 3.69e-04, time 1657.83ms, tok/s 316249
+iter  4970: loss 2.7263, lr 3.68e-04, time 1656.79ms, tok/s 316448
+iter  4980: loss 2.6999, lr 3.67e-04, time 1657.55ms, tok/s 316303
+iter  4990: loss 2.6430, lr 3.66e-04, time 1654.98ms, tok/s 316794
+step 5000: train loss 2.6662, val loss 2.6263
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis bien sûr pour le rôle. C'est que la mort est tout sauf naturelle. Il y a un autre personnage de fiction, qui est assez fort
+rank 0 sample 1: Je suis prêt à assumer ma décision . » Alors que les tensions croissent en fin de semaine et que le club se délocalise en Ligue 1 l'
+iter  5000: loss 2.6013, lr 3.65e-04, time 8976.20ms, tok/s 58408
+iter  5010: loss 2.6634, lr 3.64e-04, time 1647.32ms, tok/s 318267
+iter  5020: loss 2.6342, lr 3.63e-04, time 1649.64ms, tok/s 317819
+iter  5030: loss 2.6791, lr 3.63e-04, time 1644.82ms, tok/s 318751
+iter  5040: loss 2.5254, lr 3.62e-04, time 1648.78ms, tok/s 317986
+iter  5050: loss 2.7441, lr 3.61e-04, time 1647.98ms, tok/s 318138
+iter  5060: loss 2.6729, lr 3.60e-04, time 1643.13ms, tok/s 319079
+iter  5070: loss 2.7081, lr 3.59e-04, time 1648.50ms, tok/s 318039
+iter  5080: loss 2.6357, lr 3.58e-04, time 1649.72ms, tok/s 317804
+iter  5090: loss 2.7120, lr 3.57e-04, time 1650.88ms, tok/s 317581
+iter  5100: loss 2.6014, lr 3.57e-04, time 1646.93ms, tok/s 318342
+iter  5110: loss 2.7738, lr 3.56e-04, time 1650.62ms, tok/s 317630
+iter  5120: loss 2.5415, lr 3.55e-04, time 1647.16ms, tok/s 318298
+iter  5130: loss 2.6716, lr 3.54e-04, time 1645.98ms, tok/s 318527
+iter  5140: loss 2.7027, lr 3.53e-04, time 1644.22ms, tok/s 318867
+iter  5150: loss 2.6052, lr 3.52e-04, time 1647.69ms, tok/s 318194
+iter  5160: loss 2.6527, lr 3.51e-04, time 1649.85ms, tok/s 317778
+iter  5170: loss 2.7199, lr 3.50e-04, time 1650.25ms, tok/s 317701
+iter  5180: loss 2.6243, lr 3.50e-04, time 1644.61ms, tok/s 318792
+iter  5190: loss 2.7734, lr 3.49e-04, time 1645.32ms, tok/s 318653
+step 5200: train loss 2.6518, val loss 2.6596
+rank 0 sample 0: Je suis toujours un garçon de mon histoire qui avait dit le contraire . J'ai un peu l'impression de m'arrêter à la télé . C'
+rank 0 sample 1: Je suis heureux mais je ne veux pas faire autant de mal sans réfléchir à mon enfant " .Donc les trois partis , l'Union des associations européennes
+iter  5200: loss 2.6812, lr 3.48e-04, time 4705.06ms, tok/s 111430
+iter  5210: loss 2.6138, lr 3.47e-04, time 1658.23ms, tok/s 316172
+iter  5220: loss 2.7023, lr 3.46e-04, time 1654.76ms, tok/s 316836
+iter  5230: loss 2.6247, lr 3.45e-04, time 1656.91ms, tok/s 316424
+iter  5240: loss 2.6137, lr 3.44e-04, time 1653.89ms, tok/s 317002
+iter  5250: loss 2.5641, lr 3.44e-04, time 1657.81ms, tok/s 316252
+iter  5260: loss 2.5473, lr 3.43e-04, time 1651.25ms, tok/s 317510
+iter  5270: loss 2.6087, lr 3.42e-04, time 1654.33ms, tok/s 316918
+iter  5280: loss 2.6523, lr 3.41e-04, time 1656.62ms, tok/s 316481
+iter  5290: loss 2.6195, lr 3.40e-04, time 1658.98ms, tok/s 316030
+iter  5300: loss 2.7171, lr 3.39e-04, time 1657.59ms, tok/s 316295
+iter  5310: loss 2.7210, lr 3.38e-04, time 1657.61ms, tok/s 316291
+iter  5320: loss 2.5832, lr 3.37e-04, time 1651.15ms, tok/s 317529
+iter  5330: loss 2.6838, lr 3.37e-04, time 1657.58ms, tok/s 316297
+iter  5340: loss 2.6689, lr 3.36e-04, time 1652.84ms, tok/s 317204
+iter  5350: loss 2.7012, lr 3.35e-04, time 1654.79ms, tok/s 316830
+iter  5360: loss 2.6360, lr 3.34e-04, time 1658.82ms, tok/s 316060
+iter  5370: loss 2.5879, lr 3.33e-04, time 1653.98ms, tok/s 316985
+iter  5380: loss 2.7428, lr 3.32e-04, time 1655.91ms, tok/s 316615
+iter  5390: loss 2.6182, lr 3.31e-04, time 1654.00ms, tok/s 316982
+step 5400: train loss 2.6390, val loss 2.6349
+rank 0 sample 0: Je suis aussi très fière de la région, que nos racines culturelles et religieuses de nous nous soient mutuellement offertes et qu'à travers la diversité de notre histoire
+rank 0 sample 1: Je suis dans mon temps en train de dormir devant moi et devant ce monde qui est à moi, tout ce que j'ai à dire. » Dans une
+iter  5400: loss 2.7159, lr 3.31e-04, time 4660.89ms, tok/s 112486
+iter  5410: loss 2.6140, lr 3.30e-04, time 1657.08ms, tok/s 316392
+iter  5420: loss 2.6781, lr 3.29e-04, time 1658.09ms, tok/s 316199
+iter  5430: loss 2.6482, lr 3.28e-04, time 1657.77ms, tok/s 316261
+iter  5440: loss 2.7206, lr 3.27e-04, time 1656.64ms, tok/s 316477
+iter  5450: loss 2.6852, lr 3.26e-04, time 1654.85ms, tok/s 316819
+iter  5460: loss 2.7113, lr 3.25e-04, time 1659.46ms, tok/s 315939
+iter  5470: loss 2.6583, lr 3.24e-04, time 1656.09ms, tok/s 316581
+iter  5480: loss 2.6426, lr 3.24e-04, time 1654.45ms, tok/s 316895
+iter  5490: loss 2.6124, lr 3.23e-04, time 1653.95ms, tok/s 316991
+iter  5500: loss 2.5987, lr 3.22e-04, time 1658.38ms, tok/s 316144
+iter  5510: loss 2.6163, lr 3.21e-04, time 1652.56ms, tok/s 317257
+iter  5520: loss 2.6476, lr 3.20e-04, time 1653.50ms, tok/s 317077
+iter  5530: loss 2.6800, lr 3.19e-04, time 1659.16ms, tok/s 315996
+iter  5540: loss 2.6258, lr 3.18e-04, time 1654.86ms, tok/s 316816
+iter  5550: loss 2.5998, lr 3.18e-04, time 1656.01ms, tok/s 316597
+iter  5560: loss 2.6060, lr 3.17e-04, time 1653.08ms, tok/s 317157
+iter  5570: loss 2.6391, lr 3.16e-04, time 1657.64ms, tok/s 316285
+iter  5580: loss 2.6666, lr 3.15e-04, time 1654.03ms, tok/s 316976
+iter  5590: loss 2.6920, lr 3.14e-04, time 1655.08ms, tok/s 316774
+step 5600: train loss 2.6473, val loss 2.6093
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis moi-même , j'essaie de rendre ce que j'ai envie de faire . " Le Français , champion de France de France de handball
+rank 0 sample 1: Je suis de mes amis et j'en serai fier de cet écrivain que j'aurais aimé avoir vu mourir d'un cancer dans les années 80 : le
+iter  5600: loss 2.6349, lr 3.13e-04, time 8012.93ms, tok/s 65430
+iter  5610: loss 2.6768, lr 3.12e-04, time 1653.09ms, tok/s 317157
+iter  5620: loss 2.6637, lr 3.12e-04, time 1657.59ms, tok/s 316296
+iter  5630: loss 2.7621, lr 3.11e-04, time 1656.71ms, tok/s 316463
+iter  5640: loss 2.7014, lr 3.10e-04, time 1657.46ms, tok/s 316319
+iter  5650: loss 2.6184, lr 3.09e-04, time 1659.04ms, tok/s 316019
+iter  5660: loss 2.6358, lr 3.08e-04, time 1654.97ms, tok/s 316796
+iter  5670: loss 2.6467, lr 3.07e-04, time 1656.89ms, tok/s 316429
+iter  5680: loss 2.7386, lr 3.06e-04, time 1655.48ms, tok/s 316697
+iter  5690: loss 2.6292, lr 3.05e-04, time 1659.32ms, tok/s 315965
+iter  5700: loss 2.5936, lr 3.05e-04, time 1650.57ms, tok/s 317640
+iter  5710: loss 2.5920, lr 3.04e-04, time 1655.20ms, tok/s 316752
+iter  5720: loss 2.6874, lr 3.03e-04, time 1657.06ms, tok/s 316396
+iter  5730: loss 2.6808, lr 3.02e-04, time 1659.09ms, tok/s 316009
+iter  5740: loss 2.5932, lr 3.01e-04, time 1656.05ms, tok/s 316590
+iter  5750: loss 2.6156, lr 3.00e-04, time 1655.92ms, tok/s 316615
+iter  5760: loss 2.6688, lr 2.99e-04, time 1653.37ms, tok/s 317102
+iter  5770: loss 2.6280, lr 2.99e-04, time 1652.27ms, tok/s 317313
+iter  5780: loss 2.6934, lr 2.98e-04, time 1654.41ms, tok/s 316902
+iter  5790: loss 2.6849, lr 2.97e-04, time 1658.97ms, tok/s 316032
+step 5800: train loss 2.6266, val loss 2.5950
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis convaincu que vous avez été fait à mon juste regard de vous et j'encourage à me considérer pour la dernière fois de ma vie . Et on a
+rank 0 sample 1: Je suis tombé très tôt dans l'arène . Il arrive le matin au travail de nuit , à la même heure que la veille . Je ne veux rien
+iter  5800: loss 2.6524, lr 2.96e-04, time 9155.93ms, tok/s 57262
+iter  5810: loss 2.5584, lr 2.95e-04, time 1656.38ms, tok/s 316526
+iter  5820: loss 2.5807, lr 2.94e-04, time 1657.33ms, tok/s 316344
+iter  5830: loss 2.5873, lr 2.93e-04, time 1653.91ms, tok/s 316999
+iter  5840: loss 2.6520, lr 2.93e-04, time 1656.73ms, tok/s 316459
+iter  5850: loss 2.5891, lr 2.92e-04, time 1651.90ms, tok/s 317384
+iter  5860: loss 2.6056, lr 2.91e-04, time 1656.58ms, tok/s 316487
+iter  5870: loss 2.5716, lr 2.90e-04, time 1656.79ms, tok/s 316447
+iter  5880: loss 2.5929, lr 2.89e-04, time 1657.66ms, tok/s 316282
+iter  5890: loss 2.7024, lr 2.88e-04, time 1654.70ms, tok/s 316847
+iter  5900: loss 2.5490, lr 2.87e-04, time 1655.20ms, tok/s 316752
+iter  5910: loss 2.5409, lr 2.87e-04, time 1655.63ms, tok/s 316669
+iter  5920: loss 2.5570, lr 2.86e-04, time 1653.50ms, tok/s 317077
+iter  5930: loss 2.6928, lr 2.85e-04, time 1660.65ms, tok/s 315712
+iter  5940: loss 2.6296, lr 2.84e-04, time 1653.59ms, tok/s 317059
+iter  5950: loss 2.6447, lr 2.83e-04, time 1657.00ms, tok/s 316408
+iter  5960: loss 2.6417, lr 2.82e-04, time 1654.49ms, tok/s 316888
+iter  5970: loss 2.6841, lr 2.81e-04, time 1655.86ms, tok/s 316626
+iter  5980: loss 2.6365, lr 2.81e-04, time 1656.28ms, tok/s 316546
+iter  5990: loss 2.5926, lr 2.80e-04, time 1655.84ms, tok/s 316630
+step 6000: train loss 2.6468, val loss 2.6164
+rank 0 sample 0: Je suis resté à côté de l'histoire des événements sur la station et de comment le monde se porte encore . On a toujours essayé de comprendre l'impact
+rank 0 sample 1: Je suis devenu fou (Rebber), elle est la princesse Anne, épouse d'un duc de Brunswick-Lunebourg.
+En 1681,
+iter  6000: loss 2.6999, lr 2.79e-04, time 4712.87ms, tok/s 111246
+iter  6010: loss 2.6504, lr 2.78e-04, time 1655.74ms, tok/s 316649
+iter  6020: loss 2.6611, lr 2.77e-04, time 1657.02ms, tok/s 316405
+iter  6030: loss 2.6403, lr 2.76e-04, time 1661.25ms, tok/s 315597
+iter  6040: loss 2.6508, lr 2.75e-04, time 1652.93ms, tok/s 317186
+iter  6050: loss 2.6534, lr 2.75e-04, time 1654.48ms, tok/s 316889
+iter  6060: loss 2.6037, lr 2.74e-04, time 1654.02ms, tok/s 316977
+iter  6070: loss 2.5893, lr 2.73e-04, time 1655.50ms, tok/s 316693
+iter  6080: loss 2.6523, lr 2.72e-04, time 1660.38ms, tok/s 315763
+iter  6090: loss 2.5388, lr 2.71e-04, time 1653.84ms, tok/s 317011
+iter  6100: loss 2.6115, lr 2.70e-04, time 1656.59ms, tok/s 316486
+iter  6110: loss 2.6313, lr 2.70e-04, time 1658.77ms, tok/s 316070
+iter  6120: loss 2.6343, lr 2.69e-04, time 1656.50ms, tok/s 316503
+iter  6130: loss 2.6163, lr 2.68e-04, time 1658.92ms, tok/s 316041
+iter  6140: loss 2.5820, lr 2.67e-04, time 1657.00ms, tok/s 316408
+iter  6150: loss 2.6513, lr 2.66e-04, time 1653.11ms, tok/s 317153
+iter  6160: loss 2.5149, lr 2.65e-04, time 1654.52ms, tok/s 316882
+iter  6170: loss 2.5693, lr 2.64e-04, time 1656.37ms, tok/s 316527
+iter  6180: loss 2.6299, lr 2.64e-04, time 1653.95ms, tok/s 316992
+iter  6190: loss 2.5970, lr 2.63e-04, time 1656.29ms, tok/s 316544
+step 6200: train loss 2.6173, val loss 2.5874
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis sûr que nous avons eu raison» , mais on le revoit de ce sentiment . Je regrette , comme il l'a dit , que la chanson
+rank 0 sample 1: Je suis d'abord un grand poète de nature, un critique qui ne me dit rien de plus à personne . Mais je crois que le lecteur a pris la
+iter  6200: loss 2.6148, lr 2.62e-04, time 7924.60ms, tok/s 66159
+iter  6210: loss 2.5944, lr 2.61e-04, time 1648.88ms, tok/s 317966
+iter  6220: loss 2.6297, lr 2.60e-04, time 1647.57ms, tok/s 318218
+iter  6230: loss 2.5198, lr 2.59e-04, time 1648.88ms, tok/s 317966
+iter  6240: loss 2.6039, lr 2.59e-04, time 1646.88ms, tok/s 318352
+iter  6250: loss 2.6674, lr 2.58e-04, time 1645.85ms, tok/s 318551
+iter  6260: loss 2.5771, lr 2.57e-04, time 1650.94ms, tok/s 317568
+iter  6270: loss 2.6332, lr 2.56e-04, time 1651.09ms, tok/s 317541
+iter  6280: loss 2.5743, lr 2.55e-04, time 1651.94ms, tok/s 317377
+iter  6290: loss 2.6120, lr 2.54e-04, time 1648.24ms, tok/s 318089
+iter  6300: loss 2.5542, lr 2.54e-04, time 1648.00ms, tok/s 318135
+iter  6310: loss 2.5704, lr 2.53e-04, time 1653.72ms, tok/s 317036
+iter  6320: loss 2.6182, lr 2.52e-04, time 1650.92ms, tok/s 317573
+iter  6330: loss 2.5558, lr 2.51e-04, time 1649.08ms, tok/s 317927
+iter  6340: loss 2.6335, lr 2.50e-04, time 1651.66ms, tok/s 317430
+iter  6350: loss 2.6407, lr 2.49e-04, time 1650.67ms, tok/s 317621
+iter  6360: loss 2.6918, lr 2.49e-04, time 1648.26ms, tok/s 318085
+iter  6370: loss 2.5413, lr 2.48e-04, time 1653.24ms, tok/s 317128
+iter  6380: loss 2.4972, lr 2.47e-04, time 1649.19ms, tok/s 317905
+iter  6390: loss 2.7147, lr 2.46e-04, time 1650.40ms, tok/s 317673
+step 6400: train loss 2.6041, val loss 2.5897
+rank 0 sample 0: Je suis trop jeune ! »
+Dans les faits, si son amie de 15 ans était une actrice, on lui reprochera même de ne pas avoir parlé à
+rank 0 sample 1: Je suis d'abord un jeune homme de quatorze ans . Elle y est venue grâce à une jeune fille qui vient d'avoir six ans et demi après avoir
+iter  6400: loss 2.6181, lr 2.45e-04, time 4694.46ms, tok/s 111682
+iter  6410: loss 2.5739, lr 2.45e-04, time 1650.25ms, tok/s 317703
+iter  6420: loss 2.6028, lr 2.44e-04, time 1651.51ms, tok/s 317459
+iter  6430: loss 2.4779, lr 2.43e-04, time 1651.82ms, tok/s 317400
+iter  6440: loss 2.7855, lr 2.42e-04, time 1649.07ms, tok/s 317929
+iter  6450: loss 2.6238, lr 2.41e-04, time 1648.93ms, tok/s 317956
+iter  6460: loss 2.7670, lr 2.40e-04, time 1654.76ms, tok/s 316836
+iter  6470: loss 2.6676, lr 2.40e-04, time 1651.51ms, tok/s 317460
+iter  6480: loss 2.4555, lr 2.39e-04, time 1657.10ms, tok/s 316387
+iter  6490: loss 2.5245, lr 2.38e-04, time 1647.37ms, tok/s 318257
+iter  6500: loss 2.5788, lr 2.37e-04, time 1649.68ms, tok/s 317811
+iter  6510: loss 2.6077, lr 2.36e-04, time 1647.50ms, tok/s 318232
+iter  6520: loss 2.5578, lr 2.36e-04, time 1653.88ms, tok/s 317004
+iter  6530: loss 2.6829, lr 2.35e-04, time 1649.29ms, tok/s 317887
+iter  6540: loss 2.5972, lr 2.34e-04, time 1652.32ms, tok/s 317303
+iter  6550: loss 2.5975, lr 2.33e-04, time 1652.12ms, tok/s 317342
+iter  6560: loss 2.3471, lr 2.32e-04, time 1651.33ms, tok/s 317493
+iter  6570: loss 2.6560, lr 2.31e-04, time 1649.52ms, tok/s 317842
+iter  6580: loss 2.6922, lr 2.31e-04, time 1653.40ms, tok/s 317097
+iter  6590: loss 2.5446, lr 2.30e-04, time 1650.69ms, tok/s 317616
+step 6600: train loss 2.5903, val loss 2.5665
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis la seule victime de la pollution des rues est bien plus douce et c'est une grande tache . C'est aussi le cas de la jeune fille
+rank 0 sample 1: Je suis triste avec vous . » C'est la deuxième Coupe du monde , sans l'équipe de France ! #UnisNews pic . twitter . com
+iter  6600: loss 2.5318, lr 2.29e-04, time 7907.31ms, tok/s 66304
+iter  6610: loss 2.4393, lr 2.28e-04, time 1653.29ms, tok/s 317118
+iter  6620: loss 2.5741, lr 2.27e-04, time 1653.96ms, tok/s 316989
+iter  6630: loss 2.6130, lr 2.27e-04, time 1653.15ms, tok/s 317144
+iter  6640: loss 2.6362, lr 2.26e-04, time 1652.64ms, tok/s 317242
+iter  6650: loss 2.6182, lr 2.25e-04, time 1654.27ms, tok/s 316929
+iter  6660: loss 2.6730, lr 2.24e-04, time 1653.82ms, tok/s 317016
+iter  6670: loss 2.5267, lr 2.23e-04, time 1657.88ms, tok/s 316239
+iter  6680: loss 2.7141, lr 2.23e-04, time 1655.59ms, tok/s 316678
+iter  6690: loss 2.5316, lr 2.22e-04, time 1660.30ms, tok/s 315779
+iter  6700: loss 2.6229, lr 2.21e-04, time 1657.14ms, tok/s 316381
+iter  6710: loss 2.4874, lr 2.20e-04, time 1657.38ms, tok/s 316335
+iter  6720: loss 2.5425, lr 2.19e-04, time 1656.35ms, tok/s 316531
+iter  6730: loss 2.5088, lr 2.19e-04, time 1657.03ms, tok/s 316401
+iter  6740: loss 2.5490, lr 2.18e-04, time 1655.06ms, tok/s 316778
+iter  6750: loss 2.6069, lr 2.17e-04, time 1658.62ms, tok/s 316098
+iter  6760: loss 2.4794, lr 2.16e-04, time 1654.48ms, tok/s 316889
+iter  6770: loss 2.6891, lr 2.16e-04, time 1655.78ms, tok/s 316640
+iter  6780: loss 2.5794, lr 2.15e-04, time 1655.41ms, tok/s 316711
+iter  6790: loss 2.6563, lr 2.14e-04, time 1656.76ms, tok/s 316453
+step 6800: train loss 2.5910, val loss 2.5898
+rank 0 sample 0: Je suis revenue à ma vie . Ma femme de 48 ans , très fière d'ailleurs , était prête à m'aider et à me donner la chance d
+rank 0 sample 1: Je suis mort avec cet homme et est toujours maintenant dans l'ignorance, malgré l'angoisse, l'espoir, le ressentiment. » Dans son
+iter  6800: loss 2.5814, lr 2.13e-04, time 4716.47ms, tok/s 111161
+iter  6810: loss 2.6428, lr 2.12e-04, time 1656.63ms, tok/s 316479
+iter  6820: loss 2.6659, lr 2.12e-04, time 1658.37ms, tok/s 316147
+iter  6830: loss 2.4952, lr 2.11e-04, time 1654.60ms, tok/s 316867
+iter  6840: loss 2.5543, lr 2.10e-04, time 1654.06ms, tok/s 316970
+iter  6850: loss 2.7243, lr 2.09e-04, time 1655.35ms, tok/s 316723
+iter  6860: loss 2.5528, lr 2.09e-04, time 1654.53ms, tok/s 316879
+saving epoch 2 checkpoint to ./checkpoints/ckpt-epoch-2.pt
+iter  6870: loss 2.5924, lr 2.08e-04, time 1654.68ms, tok/s 316851
+iter  6880: loss 2.6092, lr 2.07e-04, time 1655.56ms, tok/s 316683
+iter  6890: loss 2.5274, lr 2.06e-04, time 1652.41ms, tok/s 317287
+iter  6900: loss 2.6735, lr 2.05e-04, time 1657.09ms, tok/s 316391
+iter  6910: loss 2.5568, lr 2.05e-04, time 1656.99ms, tok/s 316408
+iter  6920: loss 2.5997, lr 2.04e-04, time 1653.92ms, tok/s 316997
+iter  6930: loss 2.6529, lr 2.03e-04, time 1656.47ms, tok/s 316508
+iter  6940: loss 2.6146, lr 2.02e-04, time 1656.81ms, tok/s 316445
+iter  6950: loss 2.6420, lr 2.02e-04, time 1656.01ms, tok/s 316597
+iter  6960: loss 2.5954, lr 2.01e-04, time 1656.16ms, tok/s 316568
+iter  6970: loss 2.4483, lr 2.00e-04, time 1656.26ms, tok/s 316550
+iter  6980: loss 2.6321, lr 1.99e-04, time 1656.82ms, tok/s 316441
+iter  6990: loss 2.5973, lr 1.99e-04, time 1653.82ms, tok/s 317017
+step 7000: train loss 2.5754, val loss 2.5611
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis l'ami de la jeunesse . L'ex-reine n'y est pas . Mais c'est comme ça que j'ai pu
+rank 0 sample 1: Je suis vraiment super sportif . Il y a beaucoup de gens géniaux , j'essaye aussi de faire ma vie . C'est une fierté . J
+iter  7000: loss 2.5508, lr 1.98e-04, time 8026.42ms, tok/s 65320
+iter  7010: loss 2.5536, lr 1.97e-04, time 1653.90ms, tok/s 317000
+iter  7020: loss 2.5890, lr 1.96e-04, time 1654.92ms, tok/s 316806
+iter  7030: loss 2.6191, lr 1.96e-04, time 1655.24ms, tok/s 316744
+iter  7040: loss 2.4846, lr 1.95e-04, time 1653.08ms, tok/s 317159
+iter  7050: loss 2.5582, lr 1.94e-04, time 1654.88ms, tok/s 316813
+iter  7060: loss 2.5872, lr 1.93e-04, time 1656.64ms, tok/s 316476
+iter  7070: loss 2.6698, lr 1.93e-04, time 1655.37ms, tok/s 316720
+iter  7080: loss 2.5677, lr 1.92e-04, time 1648.61ms, tok/s 318019
+iter  7090: loss 2.5127, lr 1.91e-04, time 1648.15ms, tok/s 318106
+iter  7100: loss 2.5110, lr 1.90e-04, time 1648.81ms, tok/s 317980
+iter  7110: loss 2.5261, lr 1.90e-04, time 1650.07ms, tok/s 317736
+iter  7120: loss 2.5224, lr 1.89e-04, time 1646.88ms, tok/s 318352
+iter  7130: loss 2.4744, lr 1.88e-04, time 1651.05ms, tok/s 317547
+iter  7140: loss 2.5867, lr 1.87e-04, time 1651.60ms, tok/s 317442
+iter  7150: loss 2.6078, lr 1.87e-04, time 1653.83ms, tok/s 317013
+iter  7160: loss 2.5855, lr 1.86e-04, time 1649.84ms, tok/s 317781
+iter  7170: loss 2.6684, lr 1.85e-04, time 1649.16ms, tok/s 317912
+iter  7180: loss 2.5726, lr 1.84e-04, time 1651.50ms, tok/s 317462
+iter  7190: loss 2.5761, lr 1.84e-04, time 1651.17ms, tok/s 317524
+step 7200: train loss 2.5701, val loss 2.5337
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis donc très déçu de la défaite contre Lyon dimanche ! C'était pour beaucoup le moment où je n'avais pas envie de me retrouver . Dans la
+rank 0 sample 1: Je suis d'accord avec les chrétiens . Avec eux je vis aussi un lien humain entre la vie des gens et les temps , une vie qui s'inscrit
+iter  7200: loss 2.5938, lr 1.83e-04, time 8912.48ms, tok/s 58826
+iter  7210: loss 2.4756, lr 1.82e-04, time 1654.97ms, tok/s 316796
+iter  7220: loss 2.5837, lr 1.82e-04, time 1642.74ms, tok/s 319153
+iter  7230: loss 2.4716, lr 1.81e-04, time 1646.54ms, tok/s 318418
+iter  7240: loss 2.6152, lr 1.80e-04, time 1650.31ms, tok/s 317690
+iter  7250: loss 2.6086, lr 1.79e-04, time 1644.34ms, tok/s 318844
+iter  7260: loss 2.5562, lr 1.79e-04, time 1648.83ms, tok/s 317976
+iter  7270: loss 2.4867, lr 1.78e-04, time 1647.95ms, tok/s 318146
+iter  7280: loss 2.5656, lr 1.77e-04, time 1647.86ms, tok/s 318163
+iter  7290: loss 2.6854, lr 1.76e-04, time 1647.50ms, tok/s 318232
+iter  7300: loss 2.6538, lr 1.76e-04, time 1647.23ms, tok/s 318284
+iter  7310: loss 2.6403, lr 1.75e-04, time 1647.03ms, tok/s 318323
+iter  7320: loss 2.6159, lr 1.74e-04, time 1659.46ms, tok/s 315939
+iter  7330: loss 2.5512, lr 1.74e-04, time 1647.52ms, tok/s 318227
+iter  7340: loss 2.5720, lr 1.73e-04, time 1649.21ms, tok/s 317902
+iter  7350: loss 2.5640, lr 1.72e-04, time 1643.92ms, tok/s 318924
+iter  7360: loss 2.5079, lr 1.72e-04, time 1648.42ms, tok/s 318054
+iter  7370: loss 2.7070, lr 1.71e-04, time 1649.24ms, tok/s 317897
+iter  7380: loss 2.5814, lr 1.70e-04, time 1646.35ms, tok/s 318455
+iter  7390: loss 2.5955, lr 1.69e-04, time 1647.22ms, tok/s 318285
+step 7400: train loss 2.5679, val loss 2.5651
+rank 0 sample 0: Je suis sûr que nous avons eu deux personnes dont certains viennent de nous . Les faits que nous allons faire en matière de santé nous obligent à la concertation ,
+rank 0 sample 1: Je suis devenue présidente de la Commission de l'environnement de 2013 à 2016 puis chef de cabinet adjointe des Affaires administratives et financières.
+Elle a également rejoint l
+iter  7400: loss 2.4921, lr 1.69e-04, time 4705.52ms, tok/s 111419
+iter  7410: loss 2.5539, lr 1.68e-04, time 1658.11ms, tok/s 316196
+iter  7420: loss 2.5101, lr 1.67e-04, time 1655.43ms, tok/s 316708
+iter  7430: loss 2.6054, lr 1.67e-04, time 1655.96ms, tok/s 316607
+iter  7440: loss 2.6156, lr 1.66e-04, time 1657.87ms, tok/s 316242
+iter  7450: loss 2.5961, lr 1.65e-04, time 1655.43ms, tok/s 316707
+iter  7460: loss 2.5993, lr 1.65e-04, time 1655.03ms, tok/s 316785
+iter  7470: loss 2.6118, lr 1.64e-04, time 1657.20ms, tok/s 316369
+iter  7480: loss 2.5756, lr 1.63e-04, time 1656.73ms, tok/s 316460
+iter  7490: loss 2.5118, lr 1.63e-04, time 1659.03ms, tok/s 316021
+iter  7500: loss 2.5449, lr 1.62e-04, time 1656.54ms, tok/s 316494
+iter  7510: loss 2.5706, lr 1.61e-04, time 1656.15ms, tok/s 316570
+iter  7520: loss 2.5743, lr 1.61e-04, time 1656.76ms, tok/s 316453
+iter  7530: loss 2.6274, lr 1.60e-04, time 1657.27ms, tok/s 316356
+iter  7540: loss 2.5365, lr 1.59e-04, time 1654.72ms, tok/s 316844
+iter  7550: loss 2.5971, lr 1.59e-04, time 1653.74ms, tok/s 317032
+iter  7560: loss 2.4927, lr 1.58e-04, time 1659.12ms, tok/s 316004
+iter  7570: loss 2.5466, lr 1.57e-04, time 1654.68ms, tok/s 316851
+iter  7580: loss 2.6455, lr 1.57e-04, time 1656.79ms, tok/s 316448
+iter  7590: loss 2.4517, lr 1.56e-04, time 1657.58ms, tok/s 316297
+step 7600: train loss 2.5685, val loss 2.5428
+rank 0 sample 0: Je suis revenu à moi-moiais . ( V-3 ) C'est comme si le stade d'Istanbul s'était écroulé et qu
+rank 0 sample 1: Je suis née à Prague, dans une famille mennonite dont certaines œuvres et certains de ses tableaux sont conservés dans le musée des beaux-arts du Lín
+iter  7600: loss 2.4963, lr 1.55e-04, time 4708.07ms, tok/s 111359
+iter  7610: loss 2.6103, lr 1.55e-04, time 1653.81ms, tok/s 317018
+iter  7620: loss 2.5724, lr 1.54e-04, time 1658.95ms, tok/s 316036
+iter  7630: loss 2.6646, lr 1.53e-04, time 1655.93ms, tok/s 316612
+iter  7640: loss 2.5271, lr 1.53e-04, time 1657.71ms, tok/s 316272
+iter  7650: loss 2.4704, lr 1.52e-04, time 1654.32ms, tok/s 316920
+iter  7660: loss 2.6097, lr 1.51e-04, time 1656.10ms, tok/s 316579
+iter  7670: loss 2.5136, lr 1.51e-04, time 1650.92ms, tok/s 317572
+iter  7680: loss 2.5006, lr 1.50e-04, time 1655.07ms, tok/s 316777
+iter  7690: loss 2.6441, lr 1.49e-04, time 1655.95ms, tok/s 316608
+iter  7700: loss 2.6498, lr 1.49e-04, time 1657.71ms, tok/s 316272
+iter  7710: loss 2.6497, lr 1.48e-04, time 1651.46ms, tok/s 317468
+iter  7720: loss 2.4784, lr 1.47e-04, time 1655.88ms, tok/s 316621
+iter  7730: loss 2.5631, lr 1.47e-04, time 1656.24ms, tok/s 316553
+iter  7740: loss 2.5989, lr 1.46e-04, time 1656.45ms, tok/s 316513
+iter  7750: loss 2.5505, lr 1.45e-04, time 1656.05ms, tok/s 316589
+iter  7760: loss 2.4687, lr 1.45e-04, time 1652.80ms, tok/s 317211
+iter  7770: loss 2.4764, lr 1.44e-04, time 1656.68ms, tok/s 316469
+iter  7780: loss 2.5214, lr 1.44e-04, time 1652.07ms, tok/s 317353
+iter  7790: loss 2.5299, lr 1.43e-04, time 1656.38ms, tok/s 316526
+step 7800: train loss 2.5490, val loss 2.5346
+rank 0 sample 0: Je suis dans la situation de l'emploi pour améliorer à la fois les conditions de travail et l'offre . Les entreprises de la zone d'emploi ont
+rank 0 sample 1: Je suis née aux États-Unis , mais vous avez toujours de nouvelles informations et votre nom n'est jamais lié à une personne . Votre nom n'apparaît
+iter  7800: loss 2.6391, lr 1.42e-04, time 4625.22ms, tok/s 113354
+iter  7810: loss 2.5911, lr 1.42e-04, time 1652.05ms, tok/s 317356
+iter  7820: loss 2.6186, lr 1.41e-04, time 1658.76ms, tok/s 316071
+iter  7830: loss 2.6096, lr 1.40e-04, time 1658.21ms, tok/s 316176
+iter  7840: loss 2.4529, lr 1.40e-04, time 1658.67ms, tok/s 316088
+iter  7850: loss 2.5967, lr 1.39e-04, time 1656.21ms, tok/s 316558
+iter  7860: loss 2.5577, lr 1.39e-04, time 1661.63ms, tok/s 315526
+iter  7870: loss 2.5075, lr 1.38e-04, time 1655.25ms, tok/s 316742
+iter  7880: loss 2.6386, lr 1.37e-04, time 1658.67ms, tok/s 316089
+iter  7890: loss 2.5974, lr 1.37e-04, time 1654.91ms, tok/s 316807
+iter  7900: loss 2.6388, lr 1.36e-04, time 1653.02ms, tok/s 317168
+iter  7910: loss 2.5407, lr 1.36e-04, time 1656.20ms, tok/s 316560
+iter  7920: loss 2.4372, lr 1.35e-04, time 1654.71ms, tok/s 316846
+iter  7930: loss 2.5974, lr 1.34e-04, time 1653.81ms, tok/s 317017
+iter  7940: loss 2.5570, lr 1.34e-04, time 1654.81ms, tok/s 316826
+iter  7950: loss 2.4627, lr 1.33e-04, time 1655.51ms, tok/s 316693
+iter  7960: loss 2.6009, lr 1.33e-04, time 1654.64ms, tok/s 316858
+iter  7970: loss 2.6463, lr 1.32e-04, time 1657.01ms, tok/s 316406
+iter  7980: loss 2.5853, lr 1.31e-04, time 1655.87ms, tok/s 316624
+iter  7990: loss 2.6329, lr 1.31e-04, time 1655.89ms, tok/s 316620
+step 8000: train loss 2.5399, val loss 2.5451
+rank 0 sample 0: Je suis prêt à m'occuper de l'eau depuis plus de trois semaines environ, et c'est à moi de dire ce que j'ai à
+rank 0 sample 1: Je suis là quand je suis parti , j'ai eu plusieurs mois pour trouver une maison , et un jour la vie s'est arrêtée , je vois des
+iter  8000: loss 2.5607, lr 1.30e-04, time 4685.59ms, tok/s 111893
+iter  8010: loss 2.5519, lr 1.30e-04, time 1654.57ms, tok/s 316873
+iter  8020: loss 2.5289, lr 1.29e-04, time 1656.14ms, tok/s 316572
+iter  8030: loss 2.5962, lr 1.29e-04, time 1656.14ms, tok/s 316571
+iter  8040: loss 2.6129, lr 1.28e-04, time 1654.39ms, tok/s 316906
+iter  8050: loss 2.5010, lr 1.27e-04, time 1657.42ms, tok/s 316328
+iter  8060: loss 2.5282, lr 1.27e-04, time 1657.89ms, tok/s 316238
+iter  8070: loss 2.6931, lr 1.26e-04, time 1655.45ms, tok/s 316703
+iter  8080: loss 2.6225, lr 1.26e-04, time 1655.86ms, tok/s 316626
+iter  8090: loss 2.5120, lr 1.25e-04, time 1655.54ms, tok/s 316686
+iter  8100: loss 2.5270, lr 1.25e-04, time 1656.91ms, tok/s 316424
+iter  8110: loss 2.5645, lr 1.24e-04, time 1655.43ms, tok/s 316708
+iter  8120: loss 2.6419, lr 1.23e-04, time 1658.03ms, tok/s 316211
+iter  8130: loss 2.5393, lr 1.23e-04, time 1652.87ms, tok/s 317199
+iter  8140: loss 2.6040, lr 1.22e-04, time 1654.79ms, tok/s 316830
+iter  8150: loss 2.4346, lr 1.22e-04, time 1652.32ms, tok/s 317304
+iter  8160: loss 2.4981, lr 1.21e-04, time 1658.81ms, tok/s 316063
+iter  8170: loss 2.5533, lr 1.21e-04, time 1656.07ms, tok/s 316584
+iter  8180: loss 2.5785, lr 1.20e-04, time 1657.63ms, tok/s 316288
+iter  8190: loss 2.6290, lr 1.20e-04, time 1658.79ms, tok/s 316067
+step 8200: train loss 2.5561, val loss 2.5057
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis sûr que nous avons eu du mal à voir ça . On ne pensait pas pouvoir faire ce genre de performance-là " , a déclaré le porte-
+rank 0 sample 1: Je suis venue dire que je n'avais rien à dire non ce matin mais là il a dit ce que je pense .On est dans un petit pays
+iter  8200: loss 2.5271, lr 1.19e-04, time 7960.38ms, tok/s 65862
+iter  8210: loss 2.5867, lr 1.18e-04, time 1654.26ms, tok/s 316931
+iter  8220: loss 2.5549, lr 1.18e-04, time 1654.66ms, tok/s 316855
+iter  8230: loss 2.5652, lr 1.17e-04, time 1655.96ms, tok/s 316607
+iter  8240: loss 2.4736, lr 1.17e-04, time 1655.90ms, tok/s 316617
+iter  8250: loss 2.5624, lr 1.16e-04, time 1653.62ms, tok/s 317054
+iter  8260: loss 2.5496, lr 1.16e-04, time 1656.66ms, tok/s 316471
+iter  8270: loss 2.5465, lr 1.15e-04, time 1655.89ms, tok/s 316619
+iter  8280: loss 2.5710, lr 1.15e-04, time 1656.71ms, tok/s 316462
+iter  8290: loss 2.4995, lr 1.14e-04, time 1655.01ms, tok/s 316787
+iter  8300: loss 2.5601, lr 1.14e-04, time 1653.71ms, tok/s 317037
+iter  8310: loss 2.6113, lr 1.13e-04, time 1659.44ms, tok/s 315943
+iter  8320: loss 2.4996, lr 1.13e-04, time 1654.64ms, tok/s 316858
+iter  8330: loss 2.4896, lr 1.12e-04, time 1657.26ms, tok/s 316357
+iter  8340: loss 2.6059, lr 1.12e-04, time 1659.50ms, tok/s 315931
+iter  8350: loss 2.5822, lr 1.11e-04, time 1656.12ms, tok/s 316575
+iter  8360: loss 2.6203, lr 1.11e-04, time 1657.88ms, tok/s 316239
+iter  8370: loss 2.5599, lr 1.10e-04, time 1655.29ms, tok/s 316735
+iter  8380: loss 2.5273, lr 1.10e-04, time 1654.21ms, tok/s 316940
+iter  8390: loss 2.5197, lr 1.09e-04, time 1657.74ms, tok/s 316266
+step 8400: train loss 2.5482, val loss 2.5286
+rank 0 sample 0: Je suis revenu à Saint-Denis à ce moment-là , explique le coach lorientais , auteur et coach en chef à Lorient . J'ai été
+rank 0 sample 1: Je suis aussi arrivé à la conclusion que le droit à une assurance médicale en Suisse me semblait un moyen de protéger , d'une part , le système suisse et
+iter  8400: loss 2.6223, lr 1.09e-04, time 4669.20ms, tok/s 112286
+iter  8410: loss 2.4536, lr 1.08e-04, time 1657.28ms, tok/s 316354
+iter  8420: loss 2.5587, lr 1.08e-04, time 1656.35ms, tok/s 316531
+iter  8430: loss 2.4791, lr 1.07e-04, time 1656.34ms, tok/s 316534
+iter  8440: loss 2.5058, lr 1.07e-04, time 1658.62ms, tok/s 316098
+iter  8450: loss 2.7139, lr 1.06e-04, time 1655.10ms, tok/s 316770
+iter  8460: loss 2.5323, lr 1.06e-04, time 1658.17ms, tok/s 316185
+iter  8470: loss 2.6123, lr 1.05e-04, time 1657.26ms, tok/s 316358
+iter  8480: loss 2.5384, lr 1.05e-04, time 1657.30ms, tok/s 316351
+iter  8490: loss 2.5171, lr 1.04e-04, time 1657.08ms, tok/s 316391
+iter  8500: loss 2.4799, lr 1.04e-04, time 1658.27ms, tok/s 316165
+iter  8510: loss 2.4673, lr 1.03e-04, time 1652.83ms, tok/s 317205
+iter  8520: loss 2.6020, lr 1.03e-04, time 1654.90ms, tok/s 316809
+iter  8530: loss 2.5203, lr 1.02e-04, time 1653.93ms, tok/s 316995
+iter  8540: loss 2.4440, lr 1.02e-04, time 1650.73ms, tok/s 317610
+iter  8550: loss 2.5280, lr 1.01e-04, time 1653.99ms, tok/s 316983
+iter  8560: loss 2.5998, lr 1.01e-04, time 1659.85ms, tok/s 315863
+iter  8570: loss 2.6652, lr 1.01e-04, time 1652.62ms, tok/s 317246
+iter  8580: loss 2.6169, lr 1.00e-04, time 1658.70ms, tok/s 316084
+iter  8590: loss 2.6068, lr 9.96e-05, time 1655.84ms, tok/s 316629
+step 8600: train loss 2.5297, val loss 2.5231
+rank 0 sample 0: Je suis tout de suite pris en charge dans cethôpital car je ne suis pas aussi en forme , on peut avoir beaucoup de temps . Je ne suis pas très
+rank 0 sample 1: Je suis trop préoccupé par l'aspect militaire de notre entreprise ou par sa mise en place et les moyens actuels.São Paulo est un toponyme utilisé
+iter  8600: loss 2.5265, lr 9.92e-05, time 4706.50ms, tok/s 111396
+iter  8610: loss 2.4824, lr 9.87e-05, time 1654.97ms, tok/s 316795
+iter  8620: loss 2.5594, lr 9.83e-05, time 1657.96ms, tok/s 316223
+iter  8630: loss 2.5925, lr 9.78e-05, time 1654.70ms, tok/s 316848
+iter  8640: loss 2.4418, lr 9.74e-05, time 1656.58ms, tok/s 316488
+iter  8650: loss 2.5951, lr 9.70e-05, time 1655.71ms, tok/s 316655
+iter  8660: loss 2.5285, lr 9.65e-05, time 1657.39ms, tok/s 316333
+iter  8670: loss 2.5449, lr 9.61e-05, time 1653.44ms, tok/s 317088
+iter  8680: loss 2.5622, lr 9.57e-05, time 1658.73ms, tok/s 316077
+iter  8690: loss 2.6070, lr 9.52e-05, time 1654.79ms, tok/s 316831
+iter  8700: loss 2.5166, lr 9.48e-05, time 1654.79ms, tok/s 316829
+iter  8710: loss 2.6393, lr 9.44e-05, time 1654.05ms, tok/s 316971
+iter  8720: loss 2.6302, lr 9.40e-05, time 1623.30ms, tok/s 322976
+iter  8730: loss 2.5520, lr 9.35e-05, time 1665.74ms, tok/s 314747
+iter  8740: loss 2.5699, lr 9.31e-05, time 1656.63ms, tok/s 316478
+iter  8750: loss 2.5816, lr 9.27e-05, time 1655.12ms, tok/s 316766
+iter  8760: loss 2.4996, lr 9.23e-05, time 1654.68ms, tok/s 316852
+iter  8770: loss 2.5245, lr 9.19e-05, time 1653.88ms, tok/s 317005
+iter  8780: loss 2.5751, lr 9.15e-05, time 1660.68ms, tok/s 315706
+iter  8790: loss 2.5706, lr 9.11e-05, time 1656.98ms, tok/s 316411
+step 8800: train loss 2.5342, val loss 2.5167
+rank 0 sample 0: Je suis arrivée à cet état-là pour aider ses habitants à bien vivre au Maroc.
+L'idée du voyage a fait son chemin.Dans le
+rank 0 sample 1: Je suis heureuse» , a réagi la maire socialiste de Lille avant de rappeler son engagement en faveur du projet . Sur la place de la République , les barrières ont
+iter  8800: loss 2.5718, lr 9.07e-05, time 5060.94ms, tok/s 103595
+iter  8810: loss 2.3846, lr 9.03e-05, time 1656.59ms, tok/s 316486
+iter  8820: loss 2.5477, lr 8.99e-05, time 1654.30ms, tok/s 316924
+iter  8830: loss 2.6478, lr 8.95e-05, time 1662.27ms, tok/s 315404
+iter  8840: loss 2.4552, lr 8.91e-05, time 1657.27ms, tok/s 316355
+iter  8850: loss 2.5960, lr 8.87e-05, time 1654.69ms, tok/s 316850
+iter  8860: loss 2.4882, lr 8.83e-05, time 1653.43ms, tok/s 317091
+iter  8870: loss 2.5575, lr 8.79e-05, time 1656.28ms, tok/s 316545
+iter  8880: loss 2.5422, lr 8.75e-05, time 1660.78ms, tok/s 315688
+iter  8890: loss 2.5432, lr 8.72e-05, time 1656.43ms, tok/s 316517
+iter  8900: loss 2.6330, lr 8.68e-05, time 1656.02ms, tok/s 316595
+iter  8910: loss 2.5735, lr 8.64e-05, time 1653.44ms, tok/s 317088
+iter  8920: loss 2.5046, lr 8.60e-05, time 1650.34ms, tok/s 317683
+iter  8930: loss 2.5189, lr 8.57e-05, time 1657.25ms, tok/s 316359
+iter  8940: loss 2.6641, lr 8.53e-05, time 1657.80ms, tok/s 316255
+iter  8950: loss 2.5552, lr 8.49e-05, time 1654.91ms, tok/s 316806
+iter  8960: loss 2.6169, lr 8.46e-05, time 1654.63ms, tok/s 316860
+iter  8970: loss 2.4946, lr 8.42e-05, time 1659.10ms, tok/s 316006
+iter  8980: loss 2.5821, lr 8.39e-05, time 1657.47ms, tok/s 316318
+iter  8990: loss 2.5427, lr 8.35e-05, time 1658.01ms, tok/s 316215
+step 9000: train loss 2.5334, val loss 2.5158
+rank 0 sample 0: Je suis convaincu que cette pratique a contribué à donner quelque chose à la science » , souligne-t-il dans les colonnes de Libération .Après une année
+rank 0 sample 1: Je suis de passage à la télévision , mais maintenant je me remets à nouveau tout mon temps à la télévision ( je suis à la télé ) , au téléphone
+iter  9000: loss 2.4960, lr 8.31e-05, time 4880.85ms, tok/s 107417
+iter  9010: loss 2.6379, lr 8.28e-05, time 1656.02ms, tok/s 316595
+iter  9020: loss 2.5064, lr 8.24e-05, time 1664.29ms, tok/s 315021
+iter  9030: loss 2.4548, lr 8.21e-05, time 1653.89ms, tok/s 317002
+iter  9040: loss 2.5762, lr 8.18e-05, time 1657.73ms, tok/s 316267
+iter  9050: loss 2.4383, lr 8.14e-05, time 1654.60ms, tok/s 316866
+iter  9060: loss 2.3778, lr 8.11e-05, time 1658.36ms, tok/s 316147
+iter  9070: loss 2.4584, lr 8.07e-05, time 1664.76ms, tok/s 314934
+iter  9080: loss 2.6358, lr 8.04e-05, time 1657.89ms, tok/s 316237
+iter  9090: loss 2.5481, lr 8.01e-05, time 1654.28ms, tok/s 316929
+iter  9100: loss 2.4959, lr 7.98e-05, time 1654.45ms, tok/s 316896
+iter  9110: loss 2.5605, lr 7.94e-05, time 1655.35ms, tok/s 316724
+iter  9120: loss 2.4326, lr 7.91e-05, time 1650.30ms, tok/s 317691
+iter  9130: loss 2.5776, lr 7.88e-05, time 1652.82ms, tok/s 317207
+iter  9140: loss 2.5093, lr 7.85e-05, time 1648.01ms, tok/s 318133
+iter  9150: loss 2.5427, lr 7.82e-05, time 1649.43ms, tok/s 317860
+iter  9160: loss 2.4898, lr 7.79e-05, time 1650.33ms, tok/s 317686
+iter  9170: loss 2.4712, lr 7.75e-05, time 1599.35ms, tok/s 327812
+iter  9180: loss 2.5801, lr 7.72e-05, time 1651.40ms, tok/s 317480
+iter  9190: loss 2.5408, lr 7.69e-05, time 1651.08ms, tok/s 317542
+step 9200: train loss 2.5264, val loss 2.5081
+rank 0 sample 0: Je suis sorti de là , j'ai senti plein de choses , mais maintenant on m'a vendu tout le monde , tout le monde est parti . C
+rank 0 sample 1: Je suis l'un des meilleurs joueurs du monde , c'est le bon pote , et j'aimais bien l'idée de faire en sorte
+iter  9200: loss 2.5442, lr 7.66e-05, time 4827.82ms, tok/s 108597
+iter  9210: loss 2.5733, lr 7.63e-05, time 1654.24ms, tok/s 316936
+iter  9220: loss 2.5117, lr 7.60e-05, time 1653.31ms, tok/s 317113
+iter  9230: loss 2.5578, lr 7.57e-05, time 1653.18ms, tok/s 317139
+iter  9240: loss 2.4496, lr 7.55e-05, time 1653.03ms, tok/s 317167
+iter  9250: loss 2.5770, lr 7.52e-05, time 1658.99ms, tok/s 316028
+iter  9260: loss 2.4810, lr 7.49e-05, time 1654.73ms, tok/s 316842
+iter  9270: loss 2.5217, lr 7.46e-05, time 1653.56ms, tok/s 317065
+iter  9280: loss 2.5133, lr 7.43e-05, time 1655.63ms, tok/s 316669
+iter  9290: loss 2.5369, lr 7.40e-05, time 1657.94ms, tok/s 316227
+iter  9300: loss 2.5280, lr 7.38e-05, time 1654.46ms, tok/s 316893
+iter  9310: loss 2.4942, lr 7.35e-05, time 1653.09ms, tok/s 317157
+iter  9320: loss 2.4727, lr 7.32e-05, time 1654.02ms, tok/s 316977
+iter  9330: loss 2.5194, lr 7.30e-05, time 1655.94ms, tok/s 316610
+iter  9340: loss 2.4494, lr 7.27e-05, time 1653.05ms, tok/s 317164
+iter  9350: loss 2.4291, lr 7.24e-05, time 1654.60ms, tok/s 316866
+iter  9360: loss 2.5678, lr 7.22e-05, time 1657.15ms, tok/s 316380
+iter  9370: loss 2.4131, lr 7.19e-05, time 1650.84ms, tok/s 317588
+iter  9380: loss 2.4989, lr 7.17e-05, time 1655.16ms, tok/s 316759
+iter  9390: loss 2.5995, lr 7.14e-05, time 1653.84ms, tok/s 317012
+step 9400: train loss 2.5204, val loss 2.4872
+saving checkpoint to ./checkpoints/
+rank 0 sample 0: Je suis surpris de trouver un autre bâtiment, en passant là-haut. Un long mur de la gare se trouve devant la fenêtre d'un étage, où
+rank 0 sample 1: Je suis trop fière de mon père , mais cette fois je souhaite dire à l'un des meilleurs du pays le soutien de mes parents et de ma maison de
+iter  9400: loss 2.5477, lr 7.12e-05, time 9359.50ms, tok/s 56016
+iter  9410: loss 2.5361, lr 7.09e-05, time 1655.51ms, tok/s 316692
+iter  9420: loss 2.4845, lr 7.07e-05, time 1656.44ms, tok/s 316515
+iter  9430: loss 2.5499, lr 7.04e-05, time 1656.06ms, tok/s 316587
+iter  9440: loss 2.5281, lr 7.02e-05, time 1656.88ms, tok/s 316431
+iter  9450: loss 2.4259, lr 7.00e-05, time 1655.02ms, tok/s 316786
+iter  9460: loss 2.6118, lr 6.97e-05, time 1653.78ms, tok/s 317023
+iter  9470: loss 2.5118, lr 6.95e-05, time 1650.36ms, tok/s 317680
+iter  9480: loss 2.5484, lr 6.93e-05, time 1655.94ms, tok/s 316609
+iter  9490: loss 2.5102, lr 6.91e-05, time 1656.96ms, tok/s 316415
+iter  9500: loss 2.5815, lr 6.88e-05, time 1657.47ms, tok/s 316317
+iter  9510: loss 2.5571, lr 6.86e-05, time 1656.85ms, tok/s 316436
+iter  9520: loss 2.5529, lr 6.84e-05, time 1654.60ms, tok/s 316866
+iter  9530: loss 2.2608, lr 6.82e-05, time 1656.67ms, tok/s 316471
+iter  9540: loss 2.4973, lr 6.80e-05, time 1659.09ms, tok/s 316009
+iter  9550: loss 2.4519, lr 6.78e-05, time 1654.37ms, tok/s 316910
+iter  9560: loss 2.5656, lr 6.76e-05, time 1656.41ms, tok/s 316520
+iter  9570: loss 2.4352, lr 6.74e-05, time 1652.36ms, tok/s 317296
+iter  9580: loss 2.5703, lr 6.72e-05, time 1659.96ms, tok/s 315843
+iter  9590: loss 2.5903, lr 6.70e-05, time 1630.53ms, tok/s 321545
+step 9600: train loss 2.4974, val loss 2.5255
+rank 0 sample 0: Je suis tombée dans des mains d'autres qui disaient ça . Ce que je constate à l'époque , je sais que ça fait partie du spectacle et je
+rank 0 sample 1: Je suis vraiment triste de savoir qu'un individu qui n'a jamais vécu aussi dur que le président Macron aurait pu être plus triste . C'est la
+iter  9600: loss 2.4509, lr 6.68e-05, time 4900.41ms, tok/s 106988
+iter  9610: loss 2.5533, lr 6.66e-05, time 1656.93ms, tok/s 316421
+iter  9620: loss 2.6711, lr 6.64e-05, time 1658.53ms, tok/s 316115
+iter  9630: loss 2.5274, lr 6.62e-05, time 1659.29ms, tok/s 315971
+iter  9640: loss 2.5231, lr 6.60e-05, time 1657.35ms, tok/s 316340
+iter  9650: loss 2.5806, lr 6.58e-05, time 1656.02ms, tok/s 316594
+iter  9660: loss 2.5398, lr 6.57e-05, time 1659.24ms, tok/s 315981
+iter  9670: loss 2.5237, lr 6.55e-05, time 1655.67ms, tok/s 316662
+iter  9680: loss 2.5834, lr 6.53e-05, time 1656.94ms, tok/s 316419
+iter  9690: loss 2.4933, lr 6.51e-05, time 1658.04ms, tok/s 316209
+iter  9700: loss 2.5023, lr 6.50e-05, time 1657.62ms, tok/s 316289
+iter  9710: loss 2.5446, lr 6.48e-05, time 1658.85ms, tok/s 316054
+iter  9720: loss 2.5599, lr 6.47e-05, time 1655.33ms, tok/s 316727
+iter  9730: loss 2.4957, lr 6.45e-05, time 1653.21ms, tok/s 317132
+iter  9740: loss 2.5523, lr 6.43e-05, time 1653.13ms, tok/s 317149
+iter  9750: loss 2.4698, lr 6.42e-05, time 1652.42ms, tok/s 317284
+iter  9760: loss 2.5200, lr 6.40e-05, time 1656.77ms, tok/s 316452
+iter  9770: loss 2.6028, lr 6.39e-05, time 1658.02ms, tok/s 316213
+iter  9780: loss 2.4976, lr 6.37e-05, time 1653.01ms, tok/s 317172
+iter  9790: loss 2.4945, lr 6.36e-05, time 1662.18ms, tok/s 315422
+step 9800: train loss 2.5072, val loss 2.4962
+rank 0 sample 0: Je suis heureuse de le dire à toutes ses collègues sur qui je suis , dans son esprit et son esprit . J'ai eu des moments difficiles , des périodes
+rank 0 sample 1: Je suis de loin le plus connu et le plus populaire du quartier que je viens de citer , mais le fait d'être dans le quartier , ce n'
+iter  9800: loss 2.4598, lr 6.35e-05, time 4960.73ms, tok/s 105687
+iter  9810: loss 2.4260, lr 6.33e-05, time 1661.68ms, tok/s 315517
+iter  9820: loss 2.6437, lr 6.32e-05, time 1659.51ms, tok/s 315929
+iter  9830: loss 2.5370, lr 6.31e-05, time 1661.75ms, tok/s 315503
+iter  9840: loss 2.5157, lr 6.29e-05, time 1662.10ms, tok/s 315437
+iter  9850: loss 2.5822, lr 6.28e-05, time 1659.39ms, tok/s 315952
+iter  9860: loss 2.5340, lr 6.27e-05, time 1658.37ms, tok/s 316146
+iter  9870: loss 2.5102, lr 6.26e-05, time 1661.21ms, tok/s 315605
+iter  9880: loss 2.5165, lr 6.24e-05, time 1658.46ms, tok/s 316129
+iter  9890: loss 2.5728, lr 6.23e-05, time 1661.17ms, tok/s 315613
+iter  9900: loss 2.5406, lr 6.22e-05, time 1661.54ms, tok/s 315543
+iter  9910: loss 2.4122, lr 6.21e-05, time 1663.67ms, tok/s 315139
+iter  9920: loss 2.4555, lr 6.20e-05, time 1662.05ms, tok/s 315445
+iter  9930: loss 2.5917, lr 6.19e-05, time 1661.65ms, tok/s 315522
+iter  9940: loss 2.2719, lr 6.18e-05, time 1661.32ms, tok/s 315585
+iter  9950: loss 2.5460, lr 6.17e-05, time 1662.99ms, tok/s 315267
+iter  9960: loss 2.4464, lr 6.16e-05, time 1661.48ms, tok/s 315554
+iter  9970: loss 2.4762, lr 6.15e-05, time 1669.66ms, tok/s 314008
+iter  9980: loss 2.5109, lr 6.14e-05, time 1663.52ms, tok/s 315167
+iter  9990: loss 2.6166, lr 6.13e-05, time 1663.55ms, tok/s 315161
+step 10000: train loss 2.5098, val loss 2.5063
+rank 0 sample 0: Je suis devenue une star . J'espère le reste le plus longtemps possible de ma vie . ' Avant cela , on a également pu voir les premières images du
+rank 0 sample 1: Je suis restée avec moi , mais je me suis dit qu'après le décès de cette amie il me restait tout un tas de choses à raconter , en me
+iter 10000: loss 2.5350, lr 6.12e-05, time 4877.54ms, tok/s 107490
+iter 10010: loss 2.5074, lr 6.12e-05, time 1658.87ms, tok/s 316050
+iter 10020: loss 2.4831, lr 6.11e-05, time 1636.34ms, tok/s 320403
+iter 10030: loss 2.5617, lr 6.10e-05, time 1660.08ms, tok/s 315820
+iter 10040: loss 2.5328, lr 6.09e-05, time 1660.73ms, tok/s 315697
+iter 10050: loss 2.4017, lr 6.09e-05, time 1658.80ms, tok/s 316064
+iter 10060: loss 2.5902, lr 6.08e-05, time 1661.13ms, tok/s 315620
+iter 10070: loss 2.4525, lr 6.07e-05, time 1661.08ms, tok/s 315631
+iter 10080: loss 2.5317, lr 6.07e-05, time 1659.46ms, tok/s 315938
+iter 10090: loss 2.5215, lr 6.06e-05, time 1657.72ms, tok/s 316270
+iter 10100: loss 2.5511, lr 6.06e-05, time 1662.98ms, tok/s 315270
+iter 10110: loss 2.5418, lr 6.05e-05, time 1662.89ms, tok/s 315286
+iter 10120: loss 2.5673, lr 6.04e-05, time 1660.93ms, tok/s 315658
+iter 10130: loss 2.5036, lr 6.04e-05, time 1663.07ms, tok/s 315253
+iter 10140: loss 2.4622, lr 6.04e-05, time 1659.81ms, tok/s 315871
+iter 10150: loss 2.5225, lr 6.03e-05, time 1663.32ms, tok/s 315206
+iter 10160: loss 2.6263, lr 6.03e-05, time 1661.77ms, tok/s 315498
+iter 10170: loss 2.5052, lr 6.02e-05, time 1661.70ms, tok/s 315512
+iter 10180: loss 2.5418, lr 6.02e-05, time 1658.67ms, tok/s 316089
+iter 10190: loss 2.4765, lr 6.02e-05, time 1662.03ms, tok/s 315449
+step 10200: train loss 2.5202, val loss 2.4971
+rank 0 sample 0: Je suis devenue une des plus belles femmes qui ne pouvait mourir en marchant . ” Après un premier long feuilleton à succès et un passage éclair dans le thriller Hust
+rank 0 sample 1: Je suis de mon côté , c'est certain . Mais comme cela a été possible , j'ai décidé de faire un don . " " J'aimer
+iter 10200: loss 2.4256, lr 6.01e-05, time 5000.94ms, tok/s 104837
+iter 10210: loss 2.5215, lr 6.01e-05, time 1660.26ms, tok/s 315786
+iter 10220: loss 2.5502, lr 6.01e-05, time 1661.53ms, tok/s 315546
+iter 10230: loss 2.5352, lr 6.01e-05, time 1662.22ms, tok/s 315415
+iter 10240: loss 2.5149, lr 6.00e-05, time 1656.99ms, tok/s 316410
+iter 10250: loss 2.5794, lr 6.00e-05, time 1662.48ms, tok/s 315365
+iter 10260: loss 2.4462, lr 6.00e-05, time 1659.19ms, tok/s 315990
+iter 10270: loss 2.5015, lr 6.00e-05, time 1658.93ms, tok/s 316039
+iter 10280: loss 2.4348, lr 6.00e-05, time 1661.23ms, tok/s 315602
+iter 10290: loss 2.5716, lr 6.00e-05, time 1660.65ms, tok/s 315712
+saving epoch 3 checkpoint to ./checkpoints/ckpt-epoch-3.pt
+saving final checkpoint to ./checkpoints/
