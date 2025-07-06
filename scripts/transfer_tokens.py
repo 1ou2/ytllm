@@ -53,6 +53,11 @@ def download_shards(max_nb_shards=1000):
         if max_nb_shards == 0:
             break
 
+def wget(remote_dir, filename):
+    remote_path = f"https://s3.us-west-2.amazonaws.com/{remote_dir}/{filename}"
+    # download from aws
+    os.system(f"wget {remote_path}")
+
 def combine_shards(input_dir:str=".", file_prefix:str="shards_"):
     """Combine shards into a single file"""
     # get all shards
@@ -163,6 +168,13 @@ if __name__ == "__main__":
         elif sys.argv[1] == "download":
             max_shards = int(sys.argv[2]) if len(sys.argv) > 2 else 1000
             download_shards(max_shards)
+        elif sys.argv[1] == "wget":
+            dir = sys.argv[2] if len(sys.argv) >2 else None
+            filename = sys.argv[3] if len(sys.argv) >3 else None
+            if dir is None or filename is None:
+                print("No enough arguments.")
+                sys.exit(1)
+            wget(dir,filename)
         elif sys.argv[1] == "shuffle":
             shuffle_shards("data/shards/test")
         elif sys.argv[1] == "concatenate":
@@ -181,12 +193,13 @@ if __name__ == "__main__":
         sys.exit(0)
     else:
         print("No argument provided.")
-        print("Usage: python transfer_tokens.py <package|download|shuffle|combine|concatenate>")
+        print("Usage: python transfer_tokens.py <package|download|wget|shuffle|combine|concatenate>")
         # add usage with additional args for download and concatenate
         print("\nAdditional args: ")
         print(" - download max_nb_shards")
         print(" - combine input_dir file_prefix")
         print(" - concatenate input_dir output_file")
+        print(" - wget remonte_dir filename")
         print("\nExamples:")
         print(" - python transfer_tokens.py package")
         print(" - python transfer_tokens.py download 3")
