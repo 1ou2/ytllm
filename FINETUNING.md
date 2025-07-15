@@ -1,3 +1,4 @@
+# Datasets
 Dataset avec des questions réponses courtes en français
 https://huggingface.co/datasets/FreedomIntelligence/alpaca-gpt4-french
 
@@ -19,6 +20,9 @@ Exemple
 https://github.com/liyuan24/deepseek_from_scratch/blob/main/datacollator.py
 https://github.com/rasbt/LLMs-from-scratch/blob/main/ch07/01_main-chapter-code/gpt_instruction_finetuning.py
 https://qwen.readthedocs.io/en/v1.5/training/SFT/example.html
+
+## Resources
+https://liyuan24.github.io/writings/supervised_fine_tuning.html
 
 # algorithme
 

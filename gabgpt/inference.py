@@ -30,7 +30,7 @@ def load_checkpoint(path, model, optimizer=None, device="cpu"):
     # when using torch.compile with aot_eager backend, the keys have a prefix '_orig_mod.module.'
     # we need, to remov this prefix to be able to load the model otherwise we have a mismatch
     fixed_state_dict = {}
-    for key, value in checkpoint['model_state_dict'].items():
+    for key, value in checkpoint['model'].items():
         if key.startswith('_orig_mod.module.'):
             new_key = key.replace('_orig_mod.module.', '')
             fixed_state_dict[new_key] = value
@@ -67,7 +67,6 @@ def get_last_checkpoint(save_dir):
     if len(checkpoints) == 0:
         return None
     return os.path.join(save_dir, checkpoints[-1])
-
 
 def generate_text_completion(model, text):
     encoded = tokenizer.encode(text).ids
@@ -196,11 +195,11 @@ def load_model(path):
     model.to(device)
 
     # 3. load checkpoint
-    checkpoint = get_last_checkpoint(path)
+    #checkpoint = get_last_checkpoint(path)
     
-    if checkpoint is not None:
-        print(f"checkpoint loaded : {checkpoint}")
-        load_checkpoint(checkpoint, model, device=device)
+    if path is not None:
+        print(f"checkpoint loaded : {path}")
+        load_checkpoint(path, model, device=device)
 
     return model
 
@@ -211,11 +210,11 @@ if __name__ == "__main__":
     # Add special tokens to the loaded tokenizer
     tokenizer = get_tokenizer(FILES["tokenizer_dir"])
 
-    model = load_model(FILES["checkpoint_dir"])
+    model = load_model("checkpoints/ckpt-final.pt")
     
     #generate_text(model, tokenizer, "<|endoftext|>",100)
     #print("done")
-    generate_text(model, tokenizer, "La Seine est un fleuve qui",100)
+    generate_text(model, tokenizer, "Albert Einstein a inventé", 200)
     #evaluate(model)
 
 
