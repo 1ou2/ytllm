@@ -10,8 +10,12 @@ def main():
     # Load config
     GPT_CONFIG, HYPERS, FILES, TRAINING = load_config(config_file="config.txt")
     
-    # Setup device
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    device = "cpu"
+    if torch.cuda.is_available():
+        device = "cuda"
+    elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        device = "mps"
+    print(f"using device: {device}")
     
     # Load tokenizer
     special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
@@ -35,7 +39,15 @@ def main():
     
     # Load pretrained weights
     checkpoint = torch.load("checkpoints/ckpt-final.pt", map_location=device)
-    model.load_state_dict(checkpoint['model'])
+    
+    state_dict = checkpoint['model']
+    # fix the keys of the state dictionary :(
+    # honestly no idea how checkpoints sometimes get this prefix, have to debug more
+    unwanted_prefix = '_orig_mod.'
+    for k,v in list(state_dict.items()):
+        if k.startswith(unwanted_prefix):
+            state_dict[k[len(unwanted_prefix):]] = state_dict.pop(k)
+    model.load_state_dict(state_dict)
     model.to(device)
     
     # Setup optimizer with lower learning rate for fine-tuning
@@ -43,7 +55,7 @@ def main():
         weight_decay=HYPERS["weight_decay"],
         learning_rate=HYPERS["learning_rate"] * 0.1,  # Lower LR for SFT
         betas=(HYPERS["beta1"], HYPERS["beta2"]),
-        device_type='cuda' if device == 'cuda' else 'cpu'
+        device_type=device
     )
     
     # Get dataloader

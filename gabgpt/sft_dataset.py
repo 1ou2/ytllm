@@ -100,5 +100,6 @@ if __name__ == "__main__":
         # decode -100 with a x
         labels = batch[1][0].tolist()
         labels = [l if l != -100 else 0 for l in labels]
-        print(tokenizer.decode(labels[:100], skip_special_tokens=False))
+        print(f"with labels ----")
+        print(tokenizer.decode(labels, skip_special_tokens=False))
         break
