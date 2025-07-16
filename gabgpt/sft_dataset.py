@@ -24,55 +24,44 @@ class AlpacaDataset(Dataset):
     def __getitem__(self, idx):
         conversation = self.data[idx]['conversations']
         
-        # Format conversation and track positions
-        text = ""
-        mask_positions = []  # Track where to mask (instructions)
-        
+        # Special token IDs
+        eos_id = self.tokenizer.token_to_id(self.eos_token)
+        pad_id = self.tokenizer.token_to_id(self.pad_token)
+
+        input_ids = []
+        labels = []
+
         for turn in conversation:
-            start_pos = len(text)
             if turn['from'] == 'human':
-                text += f"{self.user_token}{turn['value']}"
-                # Mark instruction tokens for masking
-                mask_positions.append((start_pos, len(text)))
+                user_text = f"{self.user_token}{turn['value']}"
+                user_tokens = self.tokenizer.encode(user_text).ids
+                input_ids.extend(user_tokens)
+                labels.extend([-100] * len(user_tokens))  # mask human input
             elif turn['from'] == 'gpt':
-                text += f"{self.bot_token}{turn['value']}"
-                # Don't mask assistant responses
-        text += self.eos_token
-        
-        # Tokenize
-        tokens = self.tokenizer.encode(text).ids
-        
-        # Create mask for labels (-100 = ignore in loss)
-        labels_mask = [False] * len(tokens)  # False = compute loss
-        
-        # Mark instruction tokens to ignore
-        for start_char, end_char in mask_positions:
-            start_token = len(self.tokenizer.encode(text[:start_char]).ids)
-            end_token = len(self.tokenizer.encode(text[:end_char]).ids)
-            for i in range(start_token, min(end_token, len(labels_mask))):
-                labels_mask[i] = True  # True = ignore in loss
-        
+                bot_text = f"{self.bot_token}{turn['value']}"
+                bot_tokens = self.tokenizer.encode(bot_text).ids
+                input_ids.extend(bot_tokens)
+                labels.extend(bot_tokens)  # learn from assistant replies
+
+        # Append EOS token
+        input_ids.append(eos_id)
+        labels.append(eos_id)
+
         # Truncate if too long
-        if len(tokens) > self.max_length:
-            tokens = tokens[:self.max_length]
-            labels_mask = labels_mask[:self.max_length]
-        
+        if len(input_ids) > self.max_length:
+            input_ids = input_ids[:self.max_length]
+            labels = labels[:self.max_length]
+
         # Pad if too short
-        pad_length = self.max_length - len(tokens)
-        if pad_length > 0:
-            pad_token = self.tokenizer.token_to_id(self.pad_token)
-            tokens.extend([pad_token] * pad_length)
-            labels_mask.extend([True] * pad_length)  # Ignore padding
-        
-        # Create input and labels
-        input_ids = torch.tensor(tokens[:-1], dtype=torch.long)
-        labels = torch.tensor(tokens[1:], dtype=torch.long)
-        
-        # Apply mask (-100 is ignored by cross_entropy)
-        labels_mask = labels_mask[1:]  # Shift for labels
-        labels[labels_mask] = -100
-        
-        return input_ids, labels
+        pad_len = self.max_length - len(input_ids)
+        if pad_len > 0:
+            input_ids.extend([pad_id] * pad_len)
+            labels.extend([-100] * pad_len)
+
+        # DO NOT shift labels, as the shift is done in the training
+        return torch.tensor(input_ids, dtype=torch.long), torch.tensor(labels, dtype=torch.long)
+
+  
 
 def get_sft_dataloader(tokenizer, batch_size=4, max_length=1024):
     dataset = AlpacaDataset(tokenizer, max_length)
@@ -92,6 +81,7 @@ if __name__ == "__main__":
     dataset = AlpacaDataset(tokenizer)
     dataloader = get_sft_dataloader(tokenizer)
     for batch in dataloader:
+        break
         print(batch)
         # decode batch as text with special tokens visible
         print(tokenizer.decode(batch[0][0].tolist()[:100], skip_special_tokens=False))
@@ -103,3 +93,10 @@ if __name__ == "__main__":
         print(f"with labels ----")
         print(tokenizer.decode(labels, skip_special_tokens=False))
         break
+
+    input_ids, labels = dataset[0]
+    print("Decoded input:")
+    print(tokenizer.decode(input_ids.tolist(), skip_special_tokens=False))
+    print("\nDecoded labels (replace -100):")
+    decoded = [token if token != -100 else tokenizer.token_to_id("<|gab1|>") for token in labels.tolist()]
+    print(tokenizer.decode(decoded, skip_special_tokens=False))

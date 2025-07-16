@@ -210,11 +210,11 @@ if __name__ == "__main__":
     # Add special tokens to the loaded tokenizer
     tokenizer = get_tokenizer(FILES["tokenizer_dir"])
 
-    model = load_model("checkpoints/ckpt-final.pt")
-    
+    #model = load_model("checkpoints/ckpt-final.pt")
+    model = load_model("checkpoints/sft-epoch-2.pt")
     #generate_text(model, tokenizer, "<|endoftext|>",100)
     #print("done")
-    generate_text(model, tokenizer, "Albert Einstein a inventé", 200)
+    generate_text(model, tokenizer, "<|user|>qu’est-ce que a inventé Albert Einstein ?<|bot|>", 100)
     #evaluate(model)
 
 
